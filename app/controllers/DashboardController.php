@@ -32,6 +32,8 @@ class DashboardController
 
     public function renderDashboard()
     {
+        // echo "Hello, World!";
+        // die;
         $verifiedPrestasi = $this->prestasi->getPrestasiByVerificationStatus(true);
 
         session_start();

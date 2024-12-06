@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
-  <link rel="icon" type="image/png" href="assets/img/siPresma1.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+  <link rel="icon" type="image/png" href="../assets/img/siPresma1.png" />
   <title>Sistem Prestasi Mahasiswa</title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -24,7 +24,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <img src="assets/img/siPresma1.png" width="30px" height="30px" class="navbar-brand-img h-100" alt="main_logo" />
+        <img src="../assets/img/siPresma1.png" width="40" height="40" class="navbar-brand-img h-100" alt="main_logo" />
         <span class="ms-1 font-weight-bold">SiPresma</span>
       </a>
     </div>
@@ -71,14 +71,22 @@
             <span class="nav-link-text ms-1">Pengaturan</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?controller=auth&action=logout">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Sign Out</span>
+          </a>
+        </li>
       </ul>
     </div>
     <div class="sidenav-footer mx-3">
       <div class="card card-plain shadow-none" id="sidenavCard">
-        <img class="w-50 mx-auto" src="assets/img/siPresma1.png" alt="sidebar_illustration" />
+        <img class="w-50 mx-auto" src="../assets/img/siPresma1.png" alt="sidebar_illustration" />
         <div class="card-body text-center p-3 w-100 pt-0">
           <div class="docs-info">
-            <h6 class="mb-0">Merasa Kesusahan?</h6>
+            <h6 class="mb-0">Ngerasa kesusahan?</h6>
           </div>
         </div>
       </div>
@@ -96,18 +104,13 @@
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
         </nav>
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-              <div class="sidenav-toggler-inner">
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-              </div>
-            </a>
-          </li>
-          </ul>
-        </div>
+        <li class="nav-item d-flex align-items-center">
+          <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <ul class="navbar-nav justify-content-end">
+              <span class="nav-link text-white font-weight-bold px-0" class="d-sm-inline d-none" href="index.php?controller=auth&action=login"><?= $_SESSION['user']['nama'] ?></span>
+        </li>
+        </ul>
+      </div>
       </div>
     </nav>
     <!-- End Navbar -->
@@ -218,21 +221,21 @@
           <div class="card card-carousel overflow-hidden h-100 p-0">
             <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
               <div class="carousel-inner border-radius-lg h-100">
-                <div class="carousel-item h-100 active" style="background-image: url('assets/img/gedung.jpg'); background-size: cover">
+                <div class="carousel-item h-100 active" style="background-image: url('../assets/img/gedung.jpg'); background-size: cover">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                     <div class="icon icon-shape icon-sm text-center border-radius-md mb-3">
                       <i class="ni text-dark opacity-10"></i>
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item h-100" style="background-image: url('assets/img/polinema-slide2.jpg'); background-size: cover">
+                <div class="carousel-item h-100" style="background-image: url('../assets/img/polinema-slide2.jpg'); background-size: cover">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                     <div class="icon icon-shape text-center border-radius-md mb-3">
                       <i class="ni  text-dark opacity-10"></i>
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item h-100" style="background-image: url('assets/img/polinema-slide.jpeg'); background-size: cover">
+                <div class="carousel-item h-100" style="background-image: url('../assets/img/polinema-slide.jpeg'); background-size: cover">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                     <div class="icon icon-shape icon-sm text-center border-radius-md mb-3">
                       <i class="ni text-dark opacity-10"></i>
@@ -373,7 +376,12 @@
           </div>
         </div>
       </div>
-    </div>
+      <footer class="footer pt-3">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+              </div>
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -451,11 +459,11 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
@@ -550,7 +558,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/argon-dashboard.min.js?v=2.1.0"></script>
+  <script src="../assets/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>
