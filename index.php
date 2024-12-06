@@ -17,9 +17,14 @@ switch ($controller) {
         include_once __DIR__ . '/app/controllers/DashboardController.php';
         $dashboardController = new DashboardController();
 
+        if ($action === 'manageMahasiswa') {
+            $dashboardController->manageMahasiswa();
+        } elseif ($action === 'manageDosen') {
+            $dashboardController->manageDosen();
+        } 
         // Jika aksi yang diminta adalah verifyPrestasi, panggil method verifyPrestasi
-        if ($action === 'verifyPrestasi') {
-            $dashboardController->verifyPrestasi();
+        // elseif ($action === 'verifyPrestasi') {
+        //     $dashboardController->verifyPrestasi();
         // } elseif ($action === 'addPrestasi') {
         //     $dashboardController->addPrestasi();
         // } elseif ($action === 'rejectPrestasi') {
@@ -90,7 +95,7 @@ switch ($controller) {
         // } elseif ($action === 'deleteTingkatan') {
         //     $id = isset($_GET['id']) ? $_GET['id'] : null;
         //     $dashboardController->deleteTingkatan($id);
-        } else {
+        else {
             $dashboardController->renderDashboard();
         }
         break;

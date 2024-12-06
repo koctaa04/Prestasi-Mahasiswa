@@ -15,7 +15,7 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- CSS Files -->
-  <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="app/views/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
@@ -32,7 +32,7 @@
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="../pages/dashboard.html">
+          <a class="nav-link active" href="index.php?controller=dashboard">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
@@ -40,38 +40,46 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Manajemen-Data.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Manajemen Data</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../pages/Prestasi.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Prestasi</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../pages/Info-lomba.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-app text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Informasi Lomba</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../pages/Pengaturan.html">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Pengaturan</span>
-          </a>
-        </li>
-      </ul>
+            <a class="nav-link" href="index.php?controller=dashboard&action=manageMahasiswa">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Manajemen Data</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/Prestasi.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Prestasi</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/Info-lomba.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-app text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Informasi Lomba</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/Pengaturan.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Pengaturan</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?controller=auth&action=logout">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Keluar</span>
+            </a>
+          </li>
+        </ul>
     </div>
     <div class="sidenav-footer mx-3">
       <div class="card card-plain shadow-none" id="sidenavCard">
@@ -97,16 +105,10 @@
           <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-            <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
-              <div class="sidenav-toggler-inner">
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-                <i class="sidenav-toggler-line bg-white"></i>
-              </div>
-            </a>
-          </li>
-          </ul>
+          <div class="ms-md-auto text-light">
+            <p>Welcome, <span class=" text-bold"><?= $_SESSION['user']['nama']; ?></span></p>
+            
+          </div>
         </div>
       </div>
     </nav>

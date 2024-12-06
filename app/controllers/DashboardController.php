@@ -75,6 +75,15 @@ class DashboardController
         include_once __DIR__ . '/../views/dashboard-admin.php';
     }
 
+    public function manageMahasiswa()
+    {
+        include_once __DIR__ . '/../views/Kelola-Mahasiswa.php';
+    }
+    public function manageDosen()
+    {
+        include_once __DIR__ . '/../views/Kelola-Dosen.php';
+    }
+
     public function mahasiswaDashboard()
     {
         $nim = $_SESSION['user']['nim'];
