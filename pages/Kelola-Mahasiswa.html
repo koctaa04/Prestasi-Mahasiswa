@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="../pages/Manajemen-Data.html">
+            <a class="nav-link" href="../pages/Manajemen-Data.html">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
               </div>
@@ -49,7 +49,7 @@
               <div class="d-flex flex-column justify-content-center" width="10px">
                 <ul>
                   <li><a class="nav-link active" href="../pages/Kelola-Mahasiswa.html"> Kelola Mahasiswa</a></li>
-                  <li><a class="nav-link active" href="../pages/Kelola-Dosen.html"> Kelola Dosen</a></li>
+                  <li><a class="nav-link" href="../pages/Kelola-Dosen.html"> Kelola Dosen</a></li>
                 </ul>
               </div>
             </ul>
@@ -76,6 +76,14 @@
                 <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1">Pengaturan</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/homepage-aman.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Keluar</span>
             </a>
           </li>
         </ul>
@@ -125,19 +133,19 @@
             <div class="card mb-4">
               <div class="card-header pb-0 d-flex justify-content-between align-items-start">
                 <td class="align-middle text-center"></td>
-                <h6>Tambah Data</h6>
-                <button type="button" class="btn bg-gradient-info">Simpan</button>
+                <h6>Tambah Data Mahasiswa</h6>
               </div>
               <div class="p-4 bg-gradient-secondary border-radius-lg">
                 <form>
-                <div class="row mb-3">
-                  <label for="NIM">NIM</label>
-                <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="NIM">NIM</label>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-alternative" id="NIM" placeholder="Masukkan NIM">
                   </div>
                 </div>
                 <div class="col-md-6">
+                  <label for="NIM">Nama Mahasiswa</label>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-alternative" id="Nama" placeholder="Masukkan Nama Mahasiswa">
                   </div>
@@ -153,6 +161,7 @@
                   </div>
                 </div>
                 <div class="col-md-6">
+                  <label for="password">Program Studi</label>
                   <div class="form-group">
                     <div class="input-group input-group-alternative mb-4">
                       <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Program Studi">
@@ -168,11 +177,13 @@
                   </div>
                 </div>
                 <div class="col-md-6">
+                  <label for="Jurusan">Angkatan</label>
                   <div class="form-group has-danger">
                     <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Angkatan">
                   </div>
                 </div>
                 </div>
+                <button type="button" class="btn bg-gradient-info">Tambah</button>
                 </form>
               </div>
               </div>
@@ -187,8 +198,7 @@
             <div class="card mb-4 bg-light border-radius-md">
               <div class="card-header pb-0 d-flex justify-content-between align-items-start">
                 <td class="align-middle text-center"></td>
-                <h6>Tambah Mahasiswa</h6>
-                <button type="button" class="btn bg-gradient-info">Tambah</button>
+                <h6>Data Mahasiswa</h6>
               </div>
               <div class="card-header pb-0"></div>
               <div class="card-body px-0 pt-0 pb-2 border-radius-lg">
@@ -196,39 +206,40 @@
                   <table class="table align-items-center mb-0">
                     <thead>
                       <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Nama Mahasiswa</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-dark">NIM</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Jurusan</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">NIM</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-dark">Nama Mahasiswa</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Password</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Program Studi</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Status</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Aksi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Jurusan</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Angkatan</th>
+                        <th class="text-secondary opacity-7"></th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="../assets/img/profile-mahasiswa.png" class="avatar avatar-sm me-3" alt="user1" />
-                            </div>
+                          <div class="d-flex px-1 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">Erik</h6>
+                              <h6 class="mb-0 text-sm">2341123456</h6>
                             </div>
                             <td>
-                              <p class="text-xs font-weight-bold mb-0">Lomba Menyanyi</p>
+                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
                             </td>
                             <td class="align-middle text-center text-sm">
-                              <p class="text-xs font-weight-bold mb-0">3</p>
+                              <p class="text-xs font-weight-bold mb-0">erik123</p>
                             </td>
                             <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Nasional</span>
+                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
                             </td>
                             <td class="align-middle text-center">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Selesai </a>
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
                             </td>
                             <td class="align-middle text-end">
-                              <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">Edit</button>
+                              <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">EDIT</button>
                             </td>
                             <td class="align-middle text-center">
                               <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
@@ -238,122 +249,122 @@
                       </tr>
                       <tr>
                         <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="../assets/img/profile-mahasiswa.png" class="avatar avatar-sm me-3" alt="user2" />
-                            </div>
+                          <div class="d-flex px-1 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">Erik</h6>
+                              <h6 class="mb-0 text-sm">2341123456</h6>
                             </div>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                              <p class="text-xs font-weight-bold mb-0">erik123</p>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
+                            </td>
+                            <td class="align-middle text-end">
+                              <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">EDIT</button>
+                            </td>
+                            <td class="align-middle text-center">
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
+                            </td>
                           </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">Lomba Menyanyi</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">3</p>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold">Nasional</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Selesai </a>
-                        </td>
-                        <td class="align-middle text-end">
-                          <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">Edit</button>
-                        </td>
-                        <td class="align-middle text-center">
-                          <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="../assets/img/profile-mahasiswa.png" class="avatar avatar-sm me-3" alt="user2" />
-                            </div>
+                          <div class="d-flex px-1 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">Erik</h6>
+                              <h6 class="mb-0 text-sm">2341123456</h6>
                             </div>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                              <p class="text-xs font-weight-bold mb-0">erik123</p>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
+                            </td>
+                            <td class="align-middle text-end">
+                              <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">EDIT</button>
+                            </td>
+                            <td class="align-middle text-center">
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
+                            </td>
                           </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">Lomba Menyanyi</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">3</p>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold">Nasional</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Selesai </a>
-                        </td>
-                        <td class="align-middle text-end">
-                          <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">Edit</button>
-                        </td>
-                        <td class="align-middle text-center">
-                          <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="../assets/img/profile-mahasiswa.png" class="avatar avatar-sm me-3" alt="user2" />
-                            </div>
+                          <div class="d-flex px-1 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">Erik</h6>
+                              <h6 class="mb-0 text-sm">2341123456</h6>
                             </div>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                              <p class="text-xs font-weight-bold mb-0">erik123</p>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
+                            </td>
+                            <td class="align-middle text-end">
+                              <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">EDIT</button>
+                            </td>
+                            <td class="align-middle text-center">
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
+                            </td>
                           </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">Lomba Menyanyi</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">3</p>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold">Nasional</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Selesai </a>
-                        </td>
-                        <td class="align-middle text-end">
-                          <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">Edit</button>
-                        </td>
-                        <td class="align-middle text-center">
-                          <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img src="../assets/img/profile-mahasiswa.png" class="avatar avatar-sm me-3" alt="user5" />
-                            </div>
+                          <div class="d-flex px-1 py-1">
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">Erik</h6>
+                              <h6 class="mb-0 text-sm">2341123456</h6>
                             </div>
+                            <td>
+                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                              <p class="text-xs font-weight-bold mb-0">erik123</p>
+                            </td>
+                            <td class="align-middle text-center">
+                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
+                            </td>
+                            <td class="align-middle text-center">
+                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
+                            </td>
+                            <td class="align-middle text-end">
+                              <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">EDIT</button>
+                            </td>
+                            <td class="align-middle text-center">
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
+                            </td>
                           </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">Lomba Menyanyi</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">3</p>
-                        </td>
-                        <td class="align-middle text-center">
-                          <span class="text-secondary text-xs font-weight-bold">Nasional</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Selesai </a>
-                        </td>
-                        <td class="align-middle text-end">
-                          <button type="button" class="btn btn-secondary bg-gradient-info btn-sm">Edit</button>
-                        </td>
-                        <td class="align-middle text-center">
-                          <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm">Delete</button>
                         </td>
                       </tr>
                     </tbody>
