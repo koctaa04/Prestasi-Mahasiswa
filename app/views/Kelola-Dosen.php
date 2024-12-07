@@ -279,7 +279,7 @@ session_start();
                                       <input type="hidden" name="nip" value="<?= htmlspecialchars($ds['nip']) ?>">
                                       <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
                                       <button type="submit" class="btn bg-gradient-danger">Hapus</button>
-                                    </form>
+                                    </form>www
                                   </div>
                                 </div>
                               </div>
