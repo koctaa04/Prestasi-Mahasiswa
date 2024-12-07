@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="../pages/Manajemen-Data.html">
+            <a class="nav-link" href="../pages/Manajemen-Data.html">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
               </div>
@@ -48,7 +48,7 @@
             <ul>
               <div class="d-flex flex-column justify-content-center" width="10px">
                 <ul>
-                  <li><a class="nav-link active" href="../pages/Kelola-Mahasiswa.html"> Kelola Mahasiswa</a></li>
+                  <li><a class="nav-link" href="../pages/Kelola-Mahasiswa.html"> Kelola Mahasiswa</a></li>
                   <li><a class="nav-link active" href="../pages/Kelola-Dosen.html"> Kelola Dosen</a></li>
                 </ul>
               </div>
@@ -76,6 +76,14 @@
                 <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
               </div>
               <span class="nav-link-text ms-1">Pengaturan</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/Keluar.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Keluar</span>
             </a>
           </li>
         </ul>
@@ -125,54 +133,25 @@
             <div class="card mb-4">
               <div class="card-header pb-0 d-flex justify-content-between align-items-start">
                 <td class="align-middle text-center"></td>
-                <h6>Tambah Data</h6>
-                <button type="button" class="btn bg-gradient-info">Tambah</button>
+                <h6>Tambah Data Dosen</h6>
               </div>
               <div class="p-4 bg-gradient-secondary border-radius-lg">
                 <form>
-                <div class="row mb-3">
-                  <label for="NIM">NIM</label>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-alternative" id="NIM" placeholder="Masukkan NIM">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-alternative" id="Nama" placeholder="Masukkan Nama Mahasiswa">
-                  </div>
-                </div>
-                </div>
                 <div class="row">
-                <div class="col-md-6">
-                  <label for="password">Password</label>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-4">
-                      <input type="password" class="form-control form-control-alternative" id="password" placeholder="Masukkan Password">
+                  <div class="col-md-6">
+                    <label for="NIP">NIP</label>
+                    <div class="form-group">
+                      <input type="text" class="form-control form-control-alternative" id="NIP" placeholder="Masukkan NIP">
                     </div>
                   </div>
-                </div>
-                <div class="col-md-6">
+                  <div class="col-md-6">
+                    <label for="NamaMahasiswa">Nama Dosen</label>
                   <div class="form-group">
-                    <div class="input-group input-group-alternative mb-4">
-                      <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Program Studi">
-                    </div>
+                    <input type="text" class="form-control form-control-alternative" id="Nama Mahasiswa" placeholder="Masukkan Nama Dosen">
                   </div>
                 </div>
                 </div>
-                <div class="row">
-                <div class="col-md-6">
-                  <label for="Jurusan">Jurusan</label>
-                  <div class="form-group has-success">
-                    <input type="text" class="form-control form-control-alternative" id="Jurusan" placeholder="Jurusan">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group has-danger">
-                    <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Angkatan">
-                  </div>
-                </div>
-                </div>
+                <button type="button" class="btn bg-gradient-info">Tambah</button>
                 </form>
               </div>
               </div>
@@ -187,8 +166,7 @@
             <div class="card mb-4 bg-light border-radius-md">
               <div class="card-header pb-0 d-flex justify-content-between align-items-start ">
                 <td class="align-middle text-center"></td>
-                <h6>Tambah Dosen</h6>
-                <button type="button" class="btn bg-gradient-info">Tambah</button>
+                <h6>Data Dosen</h6>
               </div>
               <div class="card-header pb-0"></div>
               <div class="card-body px-0 pt-0 pb-2">
@@ -201,7 +179,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Juara</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Tingkatan</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Status</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Aksi</th>
+                        <th class="text-secondary opacity-7"></th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
                     </thead>
