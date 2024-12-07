@@ -61,10 +61,10 @@ class DashboardController
         $totalPrestasiVerified = $this->prestasi->getTotalPrestasiVerified();
         $totalPrestasiUnverified = $this->prestasi->getTotalPrestasiUnverified();
         $totalLombaUnverified = $this->infoLomba->getTotalLombaUnverified();
-        
+
         // Top 5 Mahasiswa
         $topMhs = $this->user->getMahasiswaTop(5);
-        
+
         // info kelola
         $totalTingkatan = $this->tingkatan->getTotalTingkatan();
         $totalKategori = $this->category->getTotalKategori();
@@ -77,11 +77,139 @@ class DashboardController
 
     public function manageMahasiswa()
     {
+
+        $mahasiswa = $this->user->getAllMahasiswa();
         include_once __DIR__ . '/../views/Kelola-Mahasiswa.php';
     }
+    public function addMahasiswa()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // var_dump($_POST);
+            // die;
+            $nim = $_POST['nim'];
+            $nama = $_POST['nama'];
+            $password = $_POST['password'];
+            $program_studi = $_POST['program_studi'];
+            $jurusan = $_POST['jurusan'];
+            $angkatan = $_POST['angkatan'];
+
+            // Menambahkan mahasiswa ke database
+            $success = $this->user->addMahasiswa($nim, $nama, $password, $program_studi, $jurusan, $angkatan);
+            session_start();
+            if ($success) {
+                $_SESSION['message'] = "Prestasi berhasil ditambahkan!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=dashboard&action=manageMahasiswa");
+    }
+
+    public function editMahasiswa()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nim = $_POST['nim'];
+            $nama = $_POST['nama'];
+            $password = $_POST['password'];
+            $program_studi = $_POST['program_studi'];
+            $jurusan = $_POST['jurusan'];
+            $angkatan = $_POST['angkatan'];
+
+            $success = $this->user->updateMahasiswa($nim, $nama, $password,  $program_studi, $jurusan, $angkatan);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Mahsiswa dengan NIM $nim berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=dashboard&action=manageMahasiswa");
+    }
+
+    // Fungsi untuk menghapus mahasiswa
+    public function deleteMahasiswa()
+    {
+        if (isset($_POST['nim'])) {
+            $nim = $_POST['nim'];
+
+            $success = $this->user->deleteMahasiswa($nim);
+
+            session_start();
+            if ($success) {
+                $_SESSION['message'] = "Mahsiswa dengan NIM $nim berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=dashboard&action=manageMahasiswa");
+    }
+
     public function manageDosen()
     {
+        $dosen = $this->user->getAllDosen();
         include_once __DIR__ . '/../views/Kelola-Dosen.php';
+    }
+    public function addDosen()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // var_dump($_POST);
+            // die;
+            $nip = $_POST['nip'];
+            $nama = $_POST['nama'];
+
+            // Menambahkan mahasiswa ke database
+            $success = $this->user->addDosen($nip, $nama);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Prestasi berhasil ditambahkan!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=dashboard&action=manageDosen");
+    }
+
+    public function editDosen()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nip = $_POST['nip'];
+            $nama = $_POST['nama'];
+
+            $success = $this->user->updateDosen($nip, $nama);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Mahsiswa dengan NIP $nip berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=dashboard&action=manageDosen");
+    }
+
+    // Fungsi untuk menghapus Dosen
+    public function deleteDosen()
+    {
+        if (isset($_POST['nip'])) {
+            $nip = $_POST['nip'];
+
+            $success = $this->user->deleteDosen($nip);
+
+            session_start();
+            if ($success) {
+                $_SESSION['message'] = "Mahsiswa dengan NIP $nip berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=dashboard&action=manageDosen");
     }
 
     public function mahasiswaDashboard()
@@ -413,7 +541,7 @@ class DashboardController
         }
         include_once __DIR__ . '/../views/mhs_add_info_lomba.php';
     }
-    
+
     public function editLomba($id)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

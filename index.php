@@ -95,6 +95,29 @@ switch ($controller) {
         // } elseif ($action === 'deleteTingkatan') {
         //     $id = isset($_GET['id']) ? $_GET['id'] : null;
         //     $dashboardController->deleteTingkatan($id);
+
+        // Mahasiswa
+        elseif ($action === 'addMahasiswa') {
+            $dashboardController->addMahasiswa();
+        } 
+        elseif ($action === 'editMahasiswa') {
+            $dashboardController->editMahasiswa();
+        } 
+        elseif ($action === 'deleteMahasiswa') {
+            $dashboardController->deleteMahasiswa();
+        } 
+        // Dosen
+        elseif ($action === 'addDosen') {
+            $dashboardController->addDosen();
+        } 
+        elseif ($action === 'editDosen') {
+            $dashboardController->editDosen();
+        } 
+        elseif ($action === 'deleteDosen') {
+            $dashboardController->deleteDosen();
+        } 
+
+
         else {
             $dashboardController->renderDashboard();
         }

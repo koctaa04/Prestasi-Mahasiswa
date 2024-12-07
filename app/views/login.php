@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="app/views/assets/img/apple-icon.png" />
   <link rel="icon" type="image/png" />
   <title>Pencatatan Mahasiswa Berprestasi</title>
   <!--     Fonts and icons     -->
@@ -15,7 +15,7 @@
   <!-- Font Awesome Icons -->
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- CSS Files -->
-  <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  <link id="pagestyle" href="app/views/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -109,7 +109,7 @@
             </div>
             <div class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column">
               <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden">
-                <img src="../assest/img/gedung.jpg" style="background-size: cover" />
+                <img src="app/views/assets/img/gedung.jpg" style="background-size: cover" />
                 <span class="mask bg-gradient-primary opacity-6"></span>
                 <h4 class="mt-5 text-white font-weight-bolder position-relative">"Attention is the new currency"</h4>
                 <p class="text-white position-relative">The more effortless the writing looks, the more effort the writer actually put into the process.</p>
@@ -121,10 +121,10 @@
     </section>
   </main>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="app/views/assets/css/argon-dashboard.css?v=2.1.0/js/core/popper.min.js"></script>
+  <script src="app/views/assets/css/argon-dashboard.css?v=2.1.0/js/core/bootstrap.min.js"></script>
+  <script src="app/views/assets/css/argon-dashboard.css?v=2.1.0/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="app/views/assets/css/argon-dashboard.css?v=2.1.0/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf("Win") > -1;
     if (win && document.querySelector("#sidenav-scrollbar")) {
@@ -141,7 +141,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/argon-dashboard.min.js?v=2.1.0"></script>
+  <script src="app/views/assets/css/argon-dashboard.css?v=2.1.0/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>

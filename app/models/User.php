@@ -116,4 +116,113 @@ class User
 
         return $result;
     }
+
+
+
+
+    public function getAllDosen()
+    {
+        $query = "SELECT * FROM tabel_dosen";
+        $stmt = sqlsrv_query($this->conn, $query);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $result = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+
+    // Fungsi untuk menambahkan mahasiswa
+    public function addDosen($nip, $nama)
+    {
+        $query = "INSERT INTO tabel_dosen (nip, nama) 
+                  VALUES (?, ?)";
+
+        $params = [$nip, $nama];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        return true;
+    }
+        // Fungsi untuk menghapus dosen
+        public function deleteDosen($nip)
+        {
+            $query = "DELETE FROM tabel_dosen WHERE nip = ?";
+            $params = [$nip];
+            $stmt = sqlsrv_query($this->conn, $query, $params);
+    
+            if ($stmt === false) {
+                die(print_r(sqlsrv_errors(), true));
+            }
+    
+            return true;
+        }
+        // Fungsi untuk memperbarui data dosen
+        public function updateDosen($nip, $nama)
+        {
+            $query = "UPDATE tabel_dosen 
+                       SET nama = ?
+                       WHERE nip = ?";
+            $params = [$nama,$nip];
+            $stmt = sqlsrv_query($this->conn, $query, $params);
+    
+            if ($stmt === false) {
+                die(print_r(sqlsrv_errors(), true));
+            }
+            
+            return true;
+        }
+
+
+    // Fungsi untuk menambahkan mahasiswa
+    public function addMahasiswa($nim, $nama, $password, $program_studi, $jurusan, $angkatan)
+    {
+        $query = "INSERT INTO tabel_mahasiswa (nim, nama, password, prodi, jurusan, angkatan) 
+                  VALUES (?, ?, ?, ?, ?, ?)";
+
+        $params = [$nim, $nama, $password, $program_studi, $jurusan, $angkatan];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        return true;
+    }
+    // Fungsi untuk menghapus mahasiswa
+    public function deleteMahasiswa($nim)
+    {
+        $query = "DELETE FROM tabel_mahasiswa WHERE nim = ?";
+        $params = [$nim];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        return true;
+    }
+    // Fungsi untuk memperbarui data mahasiswa
+    public function updateMahasiswa($nim, $nama, $password, $program_studi, $jurusan, $angkatan)
+    {
+        $query = "UPDATE tabel_mahasiswa 
+                   SET nama = ?, password = ?, prodi = ?, jurusan = ?, angkatan = ? 
+                   WHERE nim = ?";
+        $params = [$nama, $password, $program_studi, $jurusan, $angkatan, $nim];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        
+        return true;
+    }
 }
