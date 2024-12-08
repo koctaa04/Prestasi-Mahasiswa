@@ -113,6 +113,8 @@ class InfoLomba
     }
 
 
+
+
     public function getLombaByNim($nim)
     {
         $query = "SELECT * FROM tabel_info_lomba WHERE nim = ?";

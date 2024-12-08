@@ -96,7 +96,7 @@ switch ($controller) {
         //     $id = isset($_GET['id']) ? $_GET['id'] : null;
         //     $dashboardController->deleteTingkatan($id);
 
-        // Mahasiswa
+        // CRUD Mahasiswa
         elseif ($action === 'addMahasiswa') {
             $dashboardController->addMahasiswa();
         } 

@@ -20,6 +20,77 @@ class Prestasi
         return sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
     }
 
+    public function getTotalPrestasiVerifiedbyNim($nim)
+    {
+        // Query untuk mendapatkan total prestasi yang sudah disetujui
+        $query = "SELECT COUNT(DISTINCT p.id) AS total_lomba
+                  FROM tabel_prestasi p
+                  JOIN tabel_mahasiswa m ON p.nim = m.nim
+                  WHERE m.nim = ? AND p.verifikasi = 'Disetujui'";
+
+        // Menyiapkan parameter untuk query
+        $params = [$nim];
+
+        // Menjalankan query
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true)); // Menampilkan error jika query gagal
+        }
+
+        // Mengambil hasil dari query
+        $prestasi = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+        // Mengembalikan total prestasi yang disetujui
+        return $prestasi['total_lomba'];
+    }
+
+
+    public function getTotalPrestasiDitolakbyNim($nim)
+    {
+        $query = "SELECT COUNT(*) AS total_prestasi_ditolak
+FROM tabel_prestasi p
+JOIN tabel_mahasiswa m ON p.nim = m.nim
+WHERE m.nim = ? AND p.verifikasi = 'Ditolak';
+;
+";
+        $params = [$nim];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        // Mengambil hasil dari query
+        $prestasi = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+        // Mengembalikan total prestasi yang disetujui
+        return $prestasi['total_prestasi_ditolak'];
+    }
+
+    public function getRankingMahasiswaByNim($nim)
+    {
+        $query = "
+        SELECT 
+            m.nim, 
+            m.nama, 
+            m.total_poin,
+            ROW_NUMBER() OVER (ORDER BY m.total_poin DESC) AS ranking
+        FROM tabel_mahasiswa m
+        WHERE m.nim = 200001
+        ORDER BY ranking;
+        ";
+        $params = [$nim];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        $result = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+
+        return $result['ranking'];
+    }
+
+
     public function getTotalPrestasiVerified()
     {
         $query = "SELECT COUNT(*) AS total_prestasi FROM tabel_prestasi where verifikasi = 'Disetujui'";
@@ -112,7 +183,9 @@ class Prestasi
 			t.nama AS nama_tingkatan,
 			p.verifikasi,
 			p.alasan_penolakan,
-            p.poin AS total_poin
+            p.poin AS total_poin,
+            p.tanggal AS tanggal,
+			p.penyelenggara
         FROM tabel_prestasi p
         LEFT JOIN tabel_kategori k ON p.kategori = k.id
         LEFT JOIN tabel_juara j ON p.juara = j.id
@@ -245,23 +318,31 @@ class Prestasi
         return true;
     }
 
-        // Update data prestasi berdasarkan ID
-        public function updatePrestasi($id, $data)
-        {
-            $query = "UPDATE tabel_prestasi
+    // Update data prestasi berdasarkan ID
+    public function updatePrestasi($id, $data)
+    {
+        $query = "UPDATE tabel_prestasi
                       SET nama_lomba = ?, kategori = ?, juara = ?, tingkatan = ?, penyelenggara = ?, sertifikat = ?, karya = ?, surat_tugas = ?, tanggal = ?, verifikasi = 'Pending'
                       WHERE id = ?";
-            $params = [
-                $data['nama_lomba'], $data['kategori'], $data['juara'], $data['tingkatan'], $data['penyelenggara'],
-                $data['sertifikat'], $data['karya'], $data['surat_tugas'], $data['tanggal'], $id
-            ];
-    
-            $stmt = sqlsrv_query($this->conn, $query, $params);
-    
-            if ($stmt === false) {
-                die(print_r(sqlsrv_errors(), true));
-            }
-    
-            return true;
+        $params = [
+            $data['nama_lomba'],
+            $data['kategori'],
+            $data['juara'],
+            $data['tingkatan'],
+            $data['penyelenggara'],
+            $data['sertifikat'],
+            $data['karya'],
+            $data['surat_tugas'],
+            $data['tanggal'],
+            $id
+        ];
+
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
         }
+
+        return true;
+    }
 }

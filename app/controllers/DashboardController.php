@@ -52,6 +52,24 @@ class DashboardController
         }
     }
 
+    
+    public function mahasiswaDashboard()
+    {
+        $nim = $_SESSION['user']['nim'];
+        
+        $total_lomba = $this->prestasi->getTotalPrestasiVerifiedbyNim($nim);
+        $lomba_ditolak = $this->prestasi->getTotalPrestasiDitolakbyNim($nim);
+        $myRanking = $this->prestasi->getRankingMahasiswaByNim($nim);
+        
+        $info_lomba_list = $this->infoLomba->getLombaByNim($nim);
+        $prestasi_list = $this->prestasi->getPrestasiByMahasiswa($nim);
+        $user = $this->user->getMahasiswaByNim($nim);
+
+        // Logika untuk menampilkan dashboard mahasiswa
+        include_once __DIR__ . '/../views/mahasiswa/dashboard-mahasiswa.php';
+    }
+
+
     public function adminDashboard()
     {
         // Logika untuk menampilkan dashboard admin
@@ -72,14 +90,14 @@ class DashboardController
 
         $verifiedPrestasi = $this->prestasi->getPrestasiByVerificationStatus(true);
         $unverifiedPrestasi = $this->prestasi->getPrestasiByVerificationStatus(false);
-        include_once __DIR__ . '/../views/dashboard-admin.php';
+        include_once __DIR__ . '/../views/admin/dashboard-admin.php';
     }
 
     public function manageMahasiswa()
     {
 
         $mahasiswa = $this->user->getAllMahasiswa();
-        include_once __DIR__ . '/../views/Kelola-Mahasiswa.php';
+        include_once __DIR__ . '/../views/admin/Kelola-Mahasiswa.php';
     }
     public function addMahasiswa()
     {
@@ -210,17 +228,6 @@ class DashboardController
         }
 
         header("Location: index.php?controller=dashboard&action=manageDosen");
-    }
-
-    public function mahasiswaDashboard()
-    {
-        $nim = $_SESSION['user']['nim'];
-        $infoLomba = $this->infoLomba->getLombaByNim($nim);
-        $prestasi = $this->prestasi->getPrestasiByMahasiswa($nim);
-        $user = $this->user->getMahasiswaByNim($nim);
-
-        // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/dashboard-mahasiswa.php';
     }
 
 
