@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/siPresma.png" />
+    <title>Sistem Prestasi Mahasiswa</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="https://demos.creative-tim.com/argon-dashboard-pro/assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+  </head>
+
+  <body class="g-sidenav-show bg-gray-100">
+    <div class="min-height-300 bg-dark position-absolute w-100"></div>
+    <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main">
+      <div class="sidenav-header">
+        <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+        <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
+          <img src="../assets/img/siPresma1.png" width="40" height="40" class="navbar-brand-img h-100" alt="main_logo" />
+          <span class="ms-1 font-weight-bold">SiPresma</span>
+        </a>
+      </div>
+      <hr class="horizontal dark mt-0" />
+      <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/dashboard-Mahasiswa.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="../pages/tambah-prestasi.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Prestasi</span>
+            </a>
+            <ul>
+              <div class="d-flex flex-column justify-content-center" width="10px">
+                <ul>
+                    <li><a class="nav-link active" href="../pages/tambah-prestasi.html">Tambah Prestasi</a></li>
+                  <li><a class="nav-link " href="../pages/veriflomba-Mahasiswa.html">Lomba Terverifikasi</a></li>
+                  <li><a class="nav-link " href="../pages/prestasi-ditolak-mahasiswa.html">Prestasi Ditolak</a></li>
+                </ul>
+              </div>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/info-lomba-Mahasiswa.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-app text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Informasi Lomba</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/profile-mahasiswa.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-collection text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Profil Mahasiswa</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../pages/homepage-aman.html">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Keluar</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+     
+        </div>
+       
+    </aside>
+    <main class="main-content position-relative border-radius-lg">
+    <div>
+      <!-- Navbar -->
+      <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mt-3 mx-3 bg-primary" id="navbarBlur" data-scroll="false">
+        <div class="container-fluid py-1 px-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+              <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
+              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Prestasi</li>
+            </ol>
+            <h6 class="font-weight-bolder text-white mb-0">Tambahkan Prestasi anda</h6>
+          </nav>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <style>
+        .form-container {
+            max-width: 1200px; /* Lebar lebih besar agar sesuai dengan space */
+            margin: 40px auto; /* Tambahkan jarak atas-bawah */
+            padding: 30px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    
+        .form-group {
+            margin-bottom: 20px; /* Jarak antar elemen */
+        }
+    
+        .form-control-label {
+            display: block;
+            margin-bottom: 8px; /* Jarak label dengan input */
+            font-weight: bold;
+            font-size: 14px;
+        }
+    
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    
+        .form-control:focus {
+            border-color: #5e72e4;
+            outline: none;
+            box-shadow: 0 0 5px rgba(94, 114, 228, 0.5);
+        }
+    
+        .submit-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #5e72e4;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+        }
+    
+        .submit-btn:hover {
+            background-color: #465acb;
+        }
+    
+        .button-container {
+            text-align: left; /* Posisi tombol di bawah kiri */
+        }
+    </style>
+    
+    <div class="form-container">
+        <form>
+            <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Kategori</label>
+                <input class="form-control" type="text" value="Tradisional" id="example-text-input">
+            </div>
+            <div class="form-group">
+                <label for="example-search-input" class="form-control-label">Nama Lomba</label>
+                <input class="form-control" type="text" value="Balap Karung" id="example-search-input">
+            </div>
+            <div class="form-group">
+                <label for="example-email-input" class="form-control-label">Juara</label>
+                <input class="form-control" type="text" value="Harapan 1" id="example-text-input">
+            </div>
+            <div class="form-group">
+                <label for="example-url-input" class="form-control-label">Tingkatan</label>
+                <input class="form-control" type="text" value="Provinsi" id="example-url-input">
+            </div>
+            <div class="form-group">
+                <label for="example-tel-input" class="form-control-label">Penyelenggara</label>
+                <input class="form-control" type="text" value="PENS" id="example-text-input">
+            </div>
+            <div class="form-group">
+                <label for="example-pdf-input" class="form-control-label">Sertifikat</label>
+                <input class="form-control" type="file" id="example-pdf-input" accept="application/pdf">
+            </div>
+            <div class="form-group">
+                <label for="example-number-input" class="form-control-label">Karya (Opsional)</label>
+                <input class="form-control" type="file" value="example-pdf-input" id="example-number-input">
+            </div>
+            <div class="form-group">
+                <label for="example-number-input" class="form-control-label">Surat Tugas</label>
+                <input class="form-control" type="file" id="example-pdf-input" accept="application/pdf">
+            </div>
+            <div class="form-group">
+                <label for="example-date-input" class="form-control-label">Date</label>
+                <input class="form-control" type="date" id="example-date-input">
+            </div>
+            <!-- Kontainer untuk tombol -->
+            <div class="button-container">
+                <button type="submit" class="submit-btn">Kirim</button>
+            </div>
+        </form>
+    </div>
+    
+    </div>
+    
+    
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../assets/js/argon-dashboard.min.js?v=2.1.0"></script>
+  </body>
+</html>
