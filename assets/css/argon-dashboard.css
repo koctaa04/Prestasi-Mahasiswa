@@ -5725,8 +5725,8 @@ fieldset:disabled .btn {
 }
 
 .breadcrumb {
-  --bs-breadcrumb-padding-x: 1rem;
-  --bs-breadcrumb-padding-y: 0.5rem;
+  --bs-breadcrumb-padding-x: 27rem;
+  --bs-breadcrumb-padding-y: 1rem;
   --bs-breadcrumb-margin-bottom: 1rem;
   --bs-breadcrumb-bg: #e9ecef;
   --bs-breadcrumb-border-radius: 0.5rem;
@@ -23902,7 +23902,7 @@ hr.horizontal.gray-light {
 .navbar-vertical.navbar-expand-xs .navbar-nav .nav-link {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  margin: 0 0.5rem;
+  margin: 0 0.05rem;
 }
 
 .navbar-vertical.navbar-expand-xs .navbar-nav .nav-link .nav-link-text,

@@ -45,14 +45,6 @@
               </div>
               <span class="nav-link-text ms-1">Manajemen Data</span>
             </a>
-            <ul>
-              <div class="d-flex flex-column justify-content-center" width="10px">
-                <ul>
-                  <li><a class="nav-link active" href="../pages/Kelola-Mahasiswa.html"> Kelola Mahasiswa</a></li>
-                  <li><a class="nav-link" href="../pages/Kelola-Dosen.html"> Kelola Dosen</a></li>
-                </ul>
-              </div>
-            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../pages/Prestasi.html">
@@ -61,6 +53,17 @@
               </div>
               <span class="nav-link-text ms-1">Prestasi</span>
             </a>
+            <ul>
+              <div class="d-flex flex-column justify-content-center" width="10px">
+                <ul>
+                  <li><a class="nav-link active" href="../pages/Prestasi-terverifikasi.html">Prestasi yang terverifkasi</a></li>
+                  <li><a class="nav-link " href="../pages/Prestasi-Ditolak.html">Prestasi Ditolak</a></li>
+                  <li><a class="nav-link" href="../pages/Kelola-Kategori.html"> Kelola Kategori</a></li>
+                  <li><a class="nav-link" href="../pages/Kelola-Tingkatan.html"> Kelola Tingkatan</a></li>
+                  <li><a class="nav-link" href="../pages/Kelola-Juara.html"> Kelola Juara</a></li>
+                </ul>
+              </div>
+            </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../pages/Info-lomba.html">
@@ -96,9 +99,9 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
               <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Kelola Mahasiswa</li>
+              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Prestasi yang terverifikasi</li>
             </ol>
-            <h6 class="font-weight-bolder text-white mb-0">Kelola Mahasiswa</h6>
+            <h6 class="font-weight-bolder text-white mb-0">Prestasi yang terverifikasi</h6>
           </nav>
           <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <ul class="navbar-nav justify-content-end">
@@ -115,79 +118,14 @@
           </div>
         </div>
       </nav>
-      <!--End Navbar-->
-      <div class="container-fluid py-4">
-        <div class="row">
-          <div class="col-12">
-            <div class="card mb-4">
-              <div class="card-header pb-0 d-flex justify-content-between align-items-start">
-                <td class="align-middle text-center"></td>
-                <h6>Tambah Data Mahasiswa</h6>
-              </div>
-              <div class="p-4 bg-gradient-secondary border-radius-lg">
-                <form>
-                <div class="row">
-                  <div class="col-md-6">
-                    <label for="NIM">NIM</label>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-alternative" id="NIM" placeholder="Masukkan NIM">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="NIM">Nama Mahasiswa</label>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-alternative" id="Nama" placeholder="Masukkan Nama Mahasiswa">
-                  </div>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col-md-6">
-                  <label for="password">Password</label>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-4">
-                      <input type="password" class="form-control form-control-alternative" id="password" placeholder="Masukkan Password">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="password">Program Studi</label>
-                  <div class="form-group">
-                    <div class="input-group input-group-alternative mb-4">
-                      <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Program Studi">
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <div class="row">
-                <div class="col-md-6">
-                  <label for="Jurusan">Jurusan</label>
-                  <div class="form-group has-success">
-                    <input type="text" class="form-control form-control-alternative" id="Jurusan" placeholder="Jurusan">
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <label for="Jurusan">Angkatan</label>
-                  <div class="form-group has-danger">
-                    <input type="text" class="form-control form-control-alternative" id="exampleFormControlInput1" placeholder="Angkatan">
-                  </div>
-                </div>
-                </div>
-                <button type="button" class="btn bg-gradient-info">Tambah</button>
-                </form>
-              </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--tambah data -->
       <div class="container-fluid">
         <div class="row">
           <div class="col-13">
             <div class="card mb-4 bg-light border-radius-md">
               <div class="card-header pb-0 d-flex justify-content-between align-items-start">
                 <td class="align-middle text-center"></td>
-                <h6>Data Mahasiswa</h6>
+                <h6>Data prestasi yang terverifikasi</h6>
               </div>
               <div class="card-header pb-0"></div>
               <div class="card-body px-0 pt-0 pb-2 border-radius-lg">
@@ -195,12 +133,12 @@
                   <table class="table align-items-center mb-0">
                     <thead>
                       <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">NIM</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">NO</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-dark">Nama Mahasiswa</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Password</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Program Studi</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Jurusan</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Angkatan</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Jenis Prestasi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Tingkat</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Nama Kegiatan</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Tanggal</th>
                         <th class="text-secondary opacity-7"></th>
                         <th class="text-secondary opacity-7"></th>
                       </tr>
@@ -215,7 +153,7 @@
                             <td>
                               <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
                             </td>
-                            <td class="align-middle text-center text-sm">
+                            <td class="align-middle text-center">
                               <p class="text-xs font-weight-bold mb-0">erik123</p>
                             </td>
                             <td class="align-middle text-center">
@@ -270,59 +208,156 @@
                                               </div>
                                             </form>
                                           </div>
-                            <td class="align-middle text-center">
-                                <button type="button" class="btn btn-block bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-notification">Delete</button>
-                                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-                                  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h6 class="modal-title" id="modal-title-notification">PERHATIAN!</h6>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">×</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <div class="py-3 text-center">
-                                          <i class="ni ni-bell-55 ni-3x"></i>
-                                          <h4 class="text-dark text-danger mt-4">Apakah anda yakin ingin</h4>
-                                          <h4 class="text-dark text-danger mt-4">menghapus data ini?</h4>
-                                        </div>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn bg-dark text-white">Delete</button>
-                                        <button type="button" class="btn bg-dark text-white ml-auto" data-bs-dismiss="modal">Close</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-1 py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">2341123456</h6>
-                            </div>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
-                            </td>
-                            <td class="align-middle text-center text-sm">
-                              <p class="text-xs font-weight-bold mb-0">erik123</p>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
-                            </td>
-                            <td class="align-middle text-center">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
-                            </td>
-                            <td class="align-middle text-end">
-                              <!-- Button trigger modal -->
+                                          <div>
+                                            <td class="align-middle text-center">
+                                              <button type="button" class="btn btn-block bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-notification">Delete</button>
+                                              <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                                                <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h6 class="modal-title" id="modal-title-notification">PERHATIAN!</h6>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <div class="py-3 text-center">
+                                                        <i class="ni ni-bell-55 ni-3x"></i>
+                                                        <h4 class="text-dark text-danger mt-4">Apakah anda yakin ingin</h4>
+                                                        <h4 class="text-dark text-danger mt-4">menghapus data ini?</h4>
+                                                      </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn bg-dark text-white">Delete</button>
+                                                      <button type="button" class="btn bg-dark text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </td>
+                                          </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td>
+                                          <div class="d-flex px-1 py-1">
+                                            <div class="d-flex flex-column justify-content-center">
+                                              <h6 class="mb-0 text-sm">2341123456</h6>
+                                            </div>
+                                            <td>
+                                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
+                                            </td>
+                                            <td class="align-middle text-center text-sm">
+                                              <p class="text-xs font-weight-bold mb-0">erik123</p>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
+                                            </td>
+                                            <td class="align-middle text-end">
+                                              <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-secondary bg-gradient-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-form">Edit</button>
+                                                <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                                                  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                                    <div class="modal-content">
+                                                      <div class="modal-body p-0">
+                                                        <div class="card card-plain">
+                                                          <div class="card-header pb-0 text-left">
+                                                            <h3 class="font-weight-bolder text-info text-gradient text-center">Edit Data Mahasiswa</h3>
+                                                            <p class="mb-0 text-center">Masukkan Perubahan</p>
+                                                          </div>
+                                                          <div class="card-body">
+                                                            <form role="form text-left">
+                                                              <label>NIM</label>
+                                                              <div class="input-group mb-3">
+                                                                <input type="email" class="form-control" placeholder="Masukkan NIM" aria-label="NIM" aria-describedby="NIM">
+                                                              </div>
+                                                              <label>Nama Mahasiswa</label>
+                                                              <div class="input-group mb-3">
+                                                                <input type="email" class="form-control" placeholder="Masukkan Nama Mahasiswa" aria-label="Nama-Mhs" aria-describedby="Nama-Mhs">
+                                                              </div>
+                                                              <label>Password</label>
+                                                              <div class="input-group mb-3">
+                                                                <input type="password" class="form-control" placeholder="Masukkan Password" aria-label="Password" aria-describedby="Password">
+                                                              </div>
+                                                              <label>Program Studi</label>
+                                                              <div class="input-group mb-3">
+                                                                <input type="password" class="form-control" placeholder="Masukkan Program Studi" aria-label="Program-Studi" aria-describedby="Program-Studi">
+                                                              </div>
+                                                              <label>Jurusan</label>
+                                                              <div class="input-group mb-3">
+                                                                <input type="password" class="form-control" placeholder="Masukkan Jurusan" aria-label="Jurusan" aria-describedby="Jurusan">
+                                                              </div>
+                                                              <label>Angkatan</label>
+                                                              <div class="input-group mb-3">
+                                                                <input type="password" class="form-control" placeholder="Masukkan Angkatan" aria-label="Angkatan" aria-describedby="Angkatan">
+                                                              </div>
+                                                              <div class="text-center">
+                                                                <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Simpan</button>
+                                                              </div>
+                                                            </form>
+                                                          </div>
+                                                          <div>
+                                                            <td class="align-middle text-center">
+                                                              <button type="button" class="btn btn-block bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-notification">Delete</button>
+                                                              <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                                                                <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                                                                  <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                      <h6 class="modal-title" id="modal-title-notification">PERHATIAN!</h6>
+                                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">×</span>
+                                                                      </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                      <div class="py-3 text-center">
+                                                                        <i class="ni ni-bell-55 ni-3x"></i>
+                                                                        <h4 class="text-dark text-danger mt-4">Apakah anda yakin ingin</h4>
+                                                                        <h4 class="text-dark text-danger mt-4">menghapus data ini?</h4>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                      <button type="button" class="btn bg-dark text-white">Delete</button>
+                                                                      <button type="button" class="btn bg-dark text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                          </td>
+                                                        </div>
+                                                      </td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td>
+                                                        <div class="d-flex px-1 py-1">
+                                                          <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">2341123456</h6>
+                                                          </div>
+                                                          <td>
+                                                            <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
+                                                          </td>
+                                                          <td class="align-middle text-center text-sm">
+                                                            <p class="text-xs font-weight-bold mb-0">erik123</p>
+                                                          </td>
+                                                          <td class="align-middle text-center">
+                                                            <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
+                                                          </td>
+                                                          <td class="align-middle text-center">
+                                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
+                                                          </td>
+                                                          <td class="align-middle text-center">
+                                                            <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
+                                                          </td>
+                                                          <td class="align-middle text-end">
+                                                            <div>
+                                                              <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-secondary bg-gradient-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-form">Edit</button>
                                 <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
                                   <div class="modal-dialog modal-dialog-centered modal-md" role="document">
@@ -364,128 +399,44 @@
                                               </div>
                                             </form>
                                           </div>
-                            <td class="align-middle text-center">
-                                <button type="button" class="btn btn-block bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-notification">Delete</button>
-                                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-                                  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h6 class="modal-title" id="modal-title-notification">PERHATIAN!</h6>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">×</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <div class="py-3 text-center">
-                                          <i class="ni ni-bell-55 ni-3x"></i>
-                                          <h4 class="text-dark text-danger mt-4">Apakah anda yakin ingin</h4>
-                                          <h4 class="text-dark text-danger mt-4">menghapus data ini?</h4>
-                                        </div>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn bg-dark text-white">Delete</button>
-                                        <button type="button" class="btn bg-dark text-white ml-auto" data-bs-dismiss="modal">Close</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-1 py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">2341123456</h6>
-                            </div>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
-                            </td>
-                            <td class="align-middle text-center text-sm">
-                              <p class="text-xs font-weight-bold mb-0">erik123</p>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
-                            </td>
-                            <td class="align-middle text-center">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
-                            </td>
-                            <td class="align-middle text-end">
-                              <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-secondary bg-gradient-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-form">Edit</button>
-                                <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-                                  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-body p-0">
-                                        <div class="card card-plain">
-                                          <div class="card-header pb-0 text-left">
-                                            <h3 class="font-weight-bolder text-info text-gradient text-center">Edit Data Mahasiswa</h3>
-                                            <p class="mb-0 text-center">Masukkan Perubahan</p>
+                                          <div>
+                                            <td class="align-middle text-center">
+                                              <button type="button" class="btn btn-block bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-notification">Delete</button>
+                                              <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+                                                <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header">
+                                                      <h6 class="modal-title" id="modal-title-notification">PERHATIAN!</h6>
+                                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                      </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                      <div class="py-3 text-center">
+                                                        <i class="ni ni-bell-55 ni-3x"></i>
+                                                        <h4 class="text-dark text-danger mt-4">Apakah anda yakin ingin</h4>
+                                                        <h4 class="text-dark text-danger mt-4">menghapus data ini?</h4>
+                                                      </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                      <button type="button" class="btn bg-dark text-white">Delete</button>
+                                                      <button type="button" class="btn bg-dark text-white ml-auto" data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </td>
                                           </div>
-                                          <div class="card-body">
-                                            <form role="form text-left">
-                                              <label>NIM</label>
-                                              <div class="input-group mb-3">
-                                                <input type="email" class="form-control" placeholder="Masukkan NIM" aria-label="NIM" aria-describedby="NIM">
-                                              </div>
-                                              <label>Nama Mahasiswa</label>
-                                              <div class="input-group mb-3">
-                                                <input type="email" class="form-control" placeholder="Masukkan Nama Mahasiswa" aria-label="Nama-Mhs" aria-describedby="Nama-Mhs">
-                                              </div>
-                                              <label>Password</label>
-                                              <div class="input-group mb-3">
-                                                <input type="password" class="form-control" placeholder="Masukkan Password" aria-label="Password" aria-describedby="Password">
-                                              </div>
-                                              <label>Program Studi</label>
-                                              <div class="input-group mb-3">
-                                                <input type="password" class="form-control" placeholder="Masukkan Program Studi" aria-label="Program-Studi" aria-describedby="Program-Studi">
-                                              </div>
-                                              <label>Jurusan</label>
-                                              <div class="input-group mb-3">
-                                                <input type="password" class="form-control" placeholder="Masukkan Jurusan" aria-label="Jurusan" aria-describedby="Jurusan">
-                                              </div>
-                                              <label>Angkatan</label>
-                                              <div class="input-group mb-3">
-                                                <input type="password" class="form-control" placeholder="Masukkan Angkatan" aria-label="Angkatan" aria-describedby="Angkatan">
-                                              </div>
-                                              <div class="text-center">
-                                                <button type="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0">Simpan</button>
-                                              </div>
-                                            </form>
-                                          </div>
-                            <td class="align-middle text-center">
-                                <button type="button" class="btn btn-block bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-notification">Delete</button>
-                                <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
-                                  <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <h6 class="modal-title" id="modal-title-notification">PERHATIAN!</h6>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">×</span>
-                                        </button>
-                                      </div>
-                                      <div class="modal-body">
-                                        <div class="py-3 text-center">
-                                          <i class="ni ni-bell-55 ni-3x"></i>
-                                          <h4 class="text-dark text-danger mt-4">Apakah anda yakin ingin</h4>
-                                          <h4 class="text-dark text-danger mt-4">menghapus data ini?</h4>
-                                        </div>
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn bg-dark text-white">Delete</button>
-                                        <button type="button" class="btn bg-dark text-white ml-auto" data-bs-dismiss="modal">Close</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                          </div>
+                                          
+
+
+                        
+                            
+
+                          
+                              
+                            
                         </td>
                       </tr>
                       <tr>
