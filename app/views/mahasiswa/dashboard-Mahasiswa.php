@@ -283,19 +283,19 @@
                         <p class="text-xs font-weight-bold mb-0"><?=$info_lomba['nama']?></p>
                       </td>
                       <td class="text-center align-middle">
-                        <p class="text-xs font-weight-bold mb-0"><?=$info_lomba['tenggat']?></p>
+                        <p class="text-xs font-weight-bold mb-0"><?=$info_lomba['tenggat']->format('Y-m-d')?></p>
                       </td>
                       <td class="text-center align-middle">
                         <a href="<?=$info_lomba['link']?>" class="text-xs font-weight-bold mb-0"><?=$info_lomba['link']?></a>
                       </td>
                       <td class="text-center align-middle">
-                        <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-1">Lihat Pamflet</button>
-                        <div class="modal fade" id="modal-lihatPamflet-1" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-1" aria-hidden="true">
+                        <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?=$info_lomba['id']?>">Lihat Pamflet</button>
+                        <div class="modal fade" id="modal-lihatPamflet-<?=$info_lomba['id']?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?=$info_lomba['id']?>" aria-hidden="true">
                           <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                             <div class="modal-content">
                               <div class="modal-body p-0">
                                 <div class="card">
-                                  <img src="app/views/assets/img/img_lomba1.jpg" alt="Pamflet" class="img-fluid" />
+                                  <img src="app/views/<?=$info_lomba['pamflet']?>" alt="Pamflet" class="img-fluid" />
                                 </div>
                               </div>
                             </div>
@@ -309,34 +309,6 @@
                         <td colspan="8">Tidak ada data.</td>
                       </tr>
                     <?php endif; ?>
-                    <tr>
-                      <td class="text-center align-middle">
-                        <p class="text-xs font-weight-bold mb-0">10123</p>
-                      </td>
-                      <td class="text-center align-middle">
-                        <p class="text-xs font-weight-bold mb-0">FESTIDA 2024</p>
-                      </td>
-                      <td class="text-center align-middle">
-                        <p class="text-xs font-weight-bold mb-0">17 November 2024</p>
-                      </td>
-                      <td class="text-center align-middle">
-                        <p class="text-xs font-weight-bold mb-0">https://linkLomba2</p>
-                      </td>
-                      <td class="text-center align-middle">
-                        <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-2">Lihat Pamflet</button>
-                        <div class="modal fade" id="modal-lihatPamflet-2" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-2" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                            <div class="modal-content">
-                              <div class="modal-body p-0">
-                                <div class="card">
-                                  <img src="app/views/assets/img/img_lomba2.jpg" alt="Pamflet" class="img-fluid" />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>
