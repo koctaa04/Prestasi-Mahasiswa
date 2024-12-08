@@ -169,6 +169,8 @@ class InfoLomba
     // Memperbarui info lomba
     public function updateLomba($id, $nama, $pamflet, $tenggat, $link)
     {
+        // var_dump($id, $nama, $pamflet, $tenggat, $link);
+        // die;
         $query = "UPDATE tabel_info_lomba SET nama = ?, pamflet = ?, tenggat = ?, link = ? WHERE id = ?";
         $params = [$nama, $pamflet, $tenggat, $link, $id];
         $stmt = sqlsrv_query($this->conn, $query, $params);
@@ -177,6 +179,8 @@ class InfoLomba
             die(print_r(sqlsrv_errors(), true));
         }
     }
+
+    
 
     // Menghapus info lomba
     public function deleteLomba($id)

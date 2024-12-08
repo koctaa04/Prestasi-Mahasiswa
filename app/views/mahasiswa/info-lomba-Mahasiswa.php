@@ -114,14 +114,14 @@ if (!isset($_SESSION)) {
 
     <div class="border-radius-xl mt-4 mx-4 position-relative" style="background-color: rgb(35, 35, 73);">
       <div class="container-fluid py-4">
-      <?php
-    if (isset($_SESSION['message'])) { ?>
-      <div class="alert alert-success mx-4" role="alert">
-        <strong>Success!</strong> <?= $_SESSION['message'] ?>
-      </div>
+        <?php
+        if (isset($_SESSION['message'])) { ?>
+          <div class="alert alert-success mx-4" role="alert">
+            <strong>Success!</strong> <?= $_SESSION['message'] ?>
+          </div>
 
-    <?php }
-    unset($_SESSION['message']); ?>
+        <?php }
+        unset($_SESSION['message']); ?>
         <div class="row">
           <!-- Card Form submit info lomba-->
           <div class="col-12">
@@ -192,8 +192,8 @@ if (!isset($_SESSION)) {
                               <a href="<?= $lombaVerif['link'] ?>" class="text-xs font-weight-bold mb-0"><?= $lombaVerif['link'] ?></a>
                             </td>
                             <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?=$lombaVerif['id']?>">Lihat Pamflet</button>
-                              <div class="modal fade" id="modal-lihatPamflet-<?=$lombaVerif['id']?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?=$lombaVerif['id']?>" aria-hidden="true">
+                              <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?= $lombaVerif['id'] ?>">Lihat Pamflet</button>
+                              <div class="modal fade" id="modal-lihatPamflet-<?= $lombaVerif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?= $lombaVerif['id'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
                                     <div class="modal-body p-0">
@@ -206,57 +206,21 @@ if (!isset($_SESSION)) {
                               </div>
                             </td>
                             <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-1">Edit</button>
-                              <div class="modal fade" id="modal-edit-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-body p-0">
-                                      <div class="card card-plain">
-                                        <div class="card-header pb-0 text-left">
-                                          <h3 class="font-weight-bolder text-info text-gradient text-center">Edit Info Lomba</h3>
-                                          <p class="mb-0 text-center">Masukkan Perubahan</p>
-                                        </div>
-                                        <div class="card-body">
-                                          <form role="form text-left">
-                                            <div class="form-group">
-                                              <label for="namaLomba">Nama Lomba</label>
-                                              <input type="text" class="form-control" id="namaLomba" placeholder="Masukkan nama lomba">
-                                            </div>
-                                            <div class="form-group mt-3">
-                                              <label for="tanggalLomba">Tenggat Pendaftaran</label>
-                                              <input type="date" class="form-control" id="tanggalLomba">
-                                            </div>
-                                            <div class="form-group">
-                                              <label for="linkLomba">Link</label>
-                                              <input type="text" class="form-control btn-link" id="linkLomba" placeholder="Masukkan link lomba">
-                                            </div>
-                                            <div class="form-group mt-3">
-                                              <label for="uploadPamflet">Unggah Pamflet Lomba</label>
-                                              <input type="file" class="form-control" id="uploadPamflet" accept="image/*">
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
-                                          </form>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-1">Details</button>
-                              <div class="modal fade" id="modal-details-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-1" aria-hidden="true">
+                              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-<?= $lombaVerif['id'] ?>">Details</button>
+                              <div class="modal fade" id="modal-details-verif-<?= $lombaVerif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-<?= $lombaVerif['id'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="modal-details-verif-1">Detail Info Lomba</h5>
+                                      <h5 class="modal-title" id="modal-details-verif-<?= $lombaVerif['id'] ?>">Detail Info Lomba</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      <p><strong>Nama Lomba:</strong> Kompetisi Nasional IT-CAS 2024 </p>
-                                      <p><strong>Tenggat Pendaftaran:</strong> 2 Desember 2024 </p>
-                                      <p><strong>Link:</strong> <a href="https://linkLomba1" target="_blank">https://linkLomba1</a></p>
+                                      <p><strong>Nama Lomba:</strong> <?= $lombaVerif['nama'] ?> </p>
+                                      <p><strong>Tenggat Pendaftaran:</strong> <?= $lombaVerif['tenggat']->format('Y-m-d') ?> </p>
+                                      <p><strong>Link:</strong> <a href="<?= $lombaVerif['link'] ?>" target="_blank"><?= $lombaVerif['link'] ?></a></p>
                                       <p><strong>Pamflet:</strong></p>
                                       <!-- Menampilkan Gambar Pamflet -->
-                                      <img src="../assets/img/img_lomba1.jpg" alt="Pamflet" class="img-fluid" />
+                                      <img src="app/views/<?= $lombaVerif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
                                     </div>
                                   </div>
                                 </div>
@@ -289,7 +253,7 @@ if (!isset($_SESSION)) {
                   <table class="table table-striped table-hover table-bordered align-items-center mb-0">
                     <thead class="bg-primary">
                       <tr>
-                      <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Lomba</th>
+                        <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID Lomba</th>
                         <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Lomba</th>
                         <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tenggat Pendaftaran</th>
                         <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Link</th>
@@ -300,7 +264,7 @@ if (!isset($_SESSION)) {
                       </tr>
                     </thead>
                     <tbody>
-                    <?php if (!empty($infoLombaUnverified)): ?>
+                      <?php if (!empty($infoLombaUnverified)): ?>
                         <?php foreach ($infoLombaUnverified as $lombaUnverif): ?>
                           <tr>
                             <td class="text-center align-middle">
@@ -316,8 +280,8 @@ if (!isset($_SESSION)) {
                               <a href="<?= $lombaUnverif['link'] ?>" class="text-xs font-weight-bold mb-0"><?= $lombaUnverif['link'] ?></a>
                             </td>
                             <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?=$lombaUnverif['id']?>">Lihat Pamflet</button>
-                              <div class="modal fade" id="modal-lihatPamflet-<?=$lombaUnverif['id']?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?=$lombaUnverif['id']?>" aria-hidden="true">
+                              <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?= $lombaUnverif['id'] ?>">Lihat Pamflet</button>
+                              <div class="modal fade" id="modal-lihatPamflet-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
                                     <div class="modal-body p-0">
@@ -337,8 +301,8 @@ if (!isset($_SESSION)) {
                             </td>
 
                             <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-1">Edit</button>
-                              <div class="modal fade" id="modal-edit-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-1" aria-hidden="true">
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-<?= $lombaUnverif['id'] ?>" <?= $lombaUnverif['status'] == "Pending" ? '' : '' ?> > Edit</button>
+                              <div class="modal fade" id="modal-edit-verif-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
                                     <div class="modal-body p-0">
@@ -348,22 +312,23 @@ if (!isset($_SESSION)) {
                                           <p class="mb-0 text-center">Masukkan Perubahan</p>
                                         </div>
                                         <div class="card-body">
-                                          <form role="form text-left">
+                                          <form role="form text-left" method="post" action="index.php?controller=dashboard&action=editLomba" enctype="multipart/form-data">
+                                            <input type="hidden" class="form-control"  name="id" value="<?= $lombaUnverif['id'] ?>">
                                             <div class="form-group">
                                               <label for="namaLomba">Nama Lomba</label>
-                                              <input type="text" class="form-control" id="namaLomba" placeholder="Masukkan nama lomba">
+                                              <input type="text" class="form-control" id="namaLomba" name="nama" value="<?= $lombaUnverif['nama'] ?>">
                                             </div>
                                             <div class="form-group mt-3">
                                               <label for="tanggalLomba">Tenggat Pendaftaran</label>
-                                              <input type="date" class="form-control" id="tanggalLomba">
+                                              <input type="date" class="form-control" id="tanggalLomba" name="tenggat" value="<?= $lombaUnverif['tenggat']->format('Y-m-d') ?>">
                                             </div>
                                             <div class="form-group">
                                               <label for="linkLomba">Link</label>
-                                              <input type="text" class="form-control btn-link" id="linkLomba" placeholder="Masukkan link lomba">
+                                              <input type="text" class="form-control btn-link" id="linkLomba" name="link" value="<?= $lombaUnverif['link'] ?>">
                                             </div>
                                             <div class="form-group mt-3">
                                               <label for="uploadPamflet">Unggah Pamflet Lomba</label>
-                                              <input type="file" class="form-control" id="uploadPamflet" accept="image/*">
+                                              <input type="file" class="form-control" id="uploadPamflet" name="pamflet" accept="image/*">
                                             </div>
                                             <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                           </form>
@@ -373,21 +338,21 @@ if (!isset($_SESSION)) {
                                   </div>
                                 </div>
                               </div>
-                              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-1">Details</button>
-                              <div class="modal fade" id="modal-details-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-1" aria-hidden="true">
+                              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-<?= $lombaUnverif['id'] ?>">Details</button>
+                              <div class="modal fade" id="modal-details-verif-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="modal-details-verif-1">Detail Info Lomba</h5>
+                                      <h5 class="modal-title" id="modal-details-verif-<?= $lombaUnverif['id'] ?>">Detail Info Lomba</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      <p><strong>Nama Lomba:</strong> Kompetisi Nasional IT-CAS 2024 </p>
-                                      <p><strong>Tenggat Pendaftaran:</strong> 2 Desember 2024 </p>
-                                      <p><strong>Link:</strong> <a href="https://linkLomba1" target="_blank">https://linkLomba1</a></p>
+                                      <p><strong>Nama Lomba:</strong> <?= $lombaUnverif['nama'] ?> </p>
+                                      <p><strong>Tenggat Pendaftaran:</strong> <?= $lombaUnverif['tenggat']->format('Y-m-d') ?> </p>
+                                      <p><strong>Link:</strong> <a href="<?= $lombaUnverif['link'] ?>" target="_blank"><?= $lombaUnverif['link'] ?></a></p>
                                       <p><strong>Pamflet:</strong></p>
                                       <!-- Menampilkan Gambar Pamflet -->
-                                      <img src="../assets/img/img_lomba1.jpg" alt="Pamflet" class="img-fluid" />
+                                      <img src="app/views/<?= $lombaUnverif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
                                     </div>
                                   </div>
                                 </div>

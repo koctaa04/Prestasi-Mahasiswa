@@ -44,10 +44,10 @@ switch ($controller) {
         } elseif ($action === 'addInfoLomba') {
             $dashboardController->addInfoLomba();
         } 
-        // elseif ($action === 'editLomba') {
-        //     $id = isset($_GET['id']) ? $_GET['id'] : null;
-        //     $dashboardController->editLomba($id);
-        // } elseif ($action === 'deleteLomba') {
+        elseif ($action === 'editLomba') {
+            $dashboardController->editLomba();
+        } 
+        // elseif ($action === 'deleteLomba') {
         //     $id = isset($_GET['id']) ? $_GET['id'] : null;
         //     $dashboardController->deleteLomba($id);
         // } elseif ($action === 'verifyLomba') {

@@ -523,76 +523,118 @@ class DashboardController
     }
 
     public function addInfoLomba()
-{
-    session_start();
-
-    // Cek apakah form sudah disubmit
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        // Ambil data dari form
-        $nim = $_SESSION['user']['nim'];
-        $nama = $_POST['nama'];
-        $tenggat = $_POST['tanggal'];
-        $link = $_POST['link'];
-        $verifikasi = 'Pending'; // Set status verifikasi menjadi 'Pending'
-
-        // Proses upload pamflet
-        $pamflet = null; // Default jika tidak ada file
-        if (isset($_FILES['pamflet']) && $_FILES['pamflet']['error'] === UPLOAD_ERR_OK) {
-            $uploadDir = __DIR__ . '/../views/assets/uploads/';
-            $fileTmpPath = $_FILES['pamflet']['tmp_name'];
-            $originalFileName = $_FILES['pamflet']['name'];
-            $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
-            $uniqueFileName = uniqid('pamflet_', true) . '.' . $fileExtension;
-
-            // Buat folder uploads jika belum ada
-            if (!file_exists($uploadDir)) {
-                mkdir($uploadDir, 0777, true);
-            }
-
-            $destinationPath = $uploadDir . $uniqueFileName;
-
-            // Pindahkan file ke folder tujuan
-            if (move_uploaded_file($fileTmpPath, $destinationPath)) {
-                $pamflet = 'assets/uploads/' . $uniqueFileName; // Path yang disimpan di database
-            } else {
-                $_SESSION['message'] = "Gagal mengupload file pamflet.";
-                header("Location: index.php?controller=dashboard&action=viewLomba");
-                exit();
-            }
-        }
-
-        // Panggil model untuk menyimpan data ke database
-        $result = $this->infoLomba->addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $verifikasi);
-    session_start();
-
-        if ($result) {
-            $_SESSION['message'] = "Info lomba berhasil ditambahkan!";
-        } else {
-            $_SESSION['message'] = "Terjadi kesalahan saat menyimpan data.";
-        }
-
-        header("Location: index.php?controller=dashboard&action=viewLomba");
-        exit();
-    }
-}
-
-
-    public function editLomba($id)
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nama = htmlspecialchars($_POST['nama']);
-            $pamflet = htmlspecialchars($_POST['pamflet']);
-            $tenggat = htmlspecialchars($_POST['tenggat']);
-            $link = htmlspecialchars($_POST['link']);
+        session_start();
 
-            $this->infoLomba->updateLomba($id, $nama, $pamflet, $tenggat, $link);
+        // Cek apakah form sudah disubmit
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            // Ambil data dari form
+            $nim = $_SESSION['user']['nim'];
+            $nama = $_POST['nama'];
+            $tenggat = $_POST['tanggal'];
+            $link = $_POST['link'];
+            $verifikasi = 'Pending'; // Set status verifikasi menjadi 'Pending'
+
+            // Proses upload pamflet
+            $pamflet = null; // Default jika tidak ada file
+            if (isset($_FILES['pamflet']) && $_FILES['pamflet']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = __DIR__ . '/../views/assets/uploads/';
+                $fileTmpPath = $_FILES['pamflet']['tmp_name'];
+                $originalFileName = $_FILES['pamflet']['name'];
+                $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+                $uniqueFileName = uniqid('pamflet_', true) . '.' . $fileExtension;
+
+                // Buat folder uploads jika belum ada
+                if (!file_exists($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+
+                $destinationPath = $uploadDir . $uniqueFileName;
+
+                // Pindahkan file ke folder tujuan
+                if (move_uploaded_file($fileTmpPath, $destinationPath)) {
+                    $pamflet = 'assets/uploads/' . $uniqueFileName; // Path yang disimpan di database
+                } else {
+                    $_SESSION['message'] = "Gagal mengupload file pamflet.";
+                    header("Location: index.php?controller=dashboard&action=viewLomba");
+                    exit();
+                }
+            }
+
+            // Panggil model untuk menyimpan data ke database
+            $result = $this->infoLomba->addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $verifikasi);
+            session_start();
+
+            if ($result) {
+                $_SESSION['message'] = "Info lomba berhasil ditambahkan!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan saat menyimpan data.";
+            }
+
             header("Location: index.php?controller=dashboard&action=viewLomba");
             exit();
         }
-        $lomba = $this->infoLomba->getLombaById($id);
-        include_once __DIR__ . '/../views/admin_edit_lomba.php';
     }
+
+    public function editLomba()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+    
+            // Ambil data dari form
+            $id = htmlspecialchars($_POST['id']);
+            $nama = htmlspecialchars($_POST['nama']);
+            $tenggat = htmlspecialchars($_POST['tanggal']);
+            $link = htmlspecialchars($_POST['link']);
+    
+            // Ambil pamflet lama dari database
+            $lomba = $this->infoLomba->getLombaById($id);
+            $oldPamflet = $lomba['pamflet'];
+    
+            // Proses upload pamflet baru
+            $pamflet = $oldPamflet; // Default menggunakan pamflet lama jika tidak ada file baru
+            if (isset($_FILES['pamflet']) && $_FILES['pamflet']['error'] === UPLOAD_ERR_OK) {
+                $uploadDir = __DIR__ . '/../views/assets/uploads/';
+                $fileTmpPath = $_FILES['pamflet']['tmp_name'];
+                $originalFileName = $_FILES['pamflet']['name'];
+                $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+                $uniqueFileName = uniqid('pamflet_', true) . '.' . $fileExtension;
+    
+                // Buat folder uploads jika belum ada
+                if (!file_exists($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);
+                }
+    
+                $destinationPath = $uploadDir . $uniqueFileName;
+    
+                // Pindahkan file ke folder tujuan
+                if (move_uploaded_file($fileTmpPath, $destinationPath)) {
+                    // Hapus file pamflet lama jika ada
+                    if (!empty($oldPamflet) && file_exists(__DIR__ . '/../views/' . $oldPamflet)) {
+                        unlink(__DIR__ . '/../views/' . $oldPamflet);
+                    }
+    
+                    $pamflet = 'assets/uploads/' . $uniqueFileName; // Path yang disimpan di database
+                } else {
+                    $_SESSION['message'] = "Gagal mengupload file pamflet.";
+                    header("Location: index.php?controller=dashboard&action=viewLomba");
+                    exit();
+                }
+            }
+    
+            // Update data lomba ke database
+            $this->infoLomba->updateLomba($id, $nama, $pamflet, $tenggat, $link);
+    
+            // Redirect setelah berhasil edit
+            $_SESSION['message'] = "Info lomba berhasil diperbarui!";
+            header("Location: index.php?controller=dashboard&action=viewLomba");
+            exit();
+        }
+    }
+    
+
+
 
     public function deleteLomba($id)
     {
