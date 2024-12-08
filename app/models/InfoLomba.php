@@ -27,7 +27,7 @@ class InfoLomba
 
     public function getTotalLombaUnverified()
     {
-        $query = "SELECT COUNT(*) AS total_lomba FROM tabel_info_lomba where verifikasi = 'Pending' or verifikasi = 'Ditolak'";
+        $query = "SELECT COUNT(*) AS total_lomba FROM tabel_info_lomba where status = 'Pending' or status = 'Ditolak'";
         $stmt = sqlsrv_query($this->conn, $query);
 
         if ($stmt === false) {
@@ -41,7 +41,7 @@ class InfoLomba
     // Ambil semua info lomba yang terverifikasi
     public function getVerifiedLomba()
     {
-        $query = "SELECT * FROM tabel_info_lomba WHERE verifikasi = 'Terverifikasi'";
+        $query = "SELECT * FROM tabel_info_lomba WHERE status = 'Terverifikasi'";
         $stmt = sqlsrv_query($this->conn, $query);
 
         if ($stmt === false) {
