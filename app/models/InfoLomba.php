@@ -56,6 +56,42 @@ class InfoLomba
 
         return $result;
     }
+
+    public function getVerifiedLombaByNim($nim)
+    {
+        $query = "SELECT * FROM tabel_info_lomba WHERE status = 'Terverifikasi' AND nim = '$nim'";
+        $stmt = sqlsrv_query($this->conn, $query);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $result = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $row['tenggat'] = $row['tenggat'] instanceof DateTime ? $row['tenggat'] : new DateTime($row['tenggat']);
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+    public function getUnverifiedLombaByNim($nim)
+    {
+        $query = "SELECT * FROM tabel_info_lomba WHERE status = 'Pending' OR status = 'Ditolak' AND nim = '$nim'";
+        $stmt = sqlsrv_query($this->conn, $query);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $result = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $row['tenggat'] = $row['tenggat'] instanceof DateTime ? $row['tenggat'] : new DateTime($row['tenggat']);
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+
     public function verifyLomba($id, $status)
     {
         $query = "UPDATE tabel_info_lomba SET verifikasi = ? WHERE id = ?";
@@ -81,14 +117,16 @@ class InfoLomba
         }
     }
     // Fungsi untuk menambahkan info lomba
-    public function addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $verifikasi)
+    public function addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $status)
     {
+        // var_dump($nim, $nama, $pamflet, $tenggat, $link, $status);
+        // die;
         // Query untuk menambahkan info lomba
-        $query = "INSERT INTO tabel_info_lomba (nim, nama, pamflet, tenggat, link, verifikasi) 
+        $query = "INSERT INTO tabel_info_lomba (nim, nama, pamflet, tenggat, link, status) 
                   VALUES (?, ?, ?, ?, ?, ?)";
 
         // Persiapkan statement
-        $stmt = sqlsrv_query($this->conn, $query, [$nim, $nama, $pamflet, $tenggat, $link, $verifikasi]);
+        $stmt = sqlsrv_query($this->conn, $query, [$nim, $nama, $pamflet, $tenggat, $link, $status]);
 
         // Periksa apakah query berhasil
         if ($stmt === false) {
@@ -111,9 +149,6 @@ class InfoLomba
 
         return sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
     }
-
-
-
 
     public function getLombaByNim($nim)
     {

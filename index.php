@@ -39,11 +39,12 @@ switch ($controller) {
         // }
 
         // INFO LOMBA
-        // elseif ($action === 'viewLomba') {
-        //     $dashboardController->viewLomba();
-        // } elseif ($action === 'addLomba') {
-        //     $dashboardController->addInfoLomba();
-        // } elseif ($action === 'editLomba') {
+        elseif ($action === 'viewLomba') {
+            $dashboardController->viewLomba();
+        } elseif ($action === 'addInfoLomba') {
+            $dashboardController->addInfoLomba();
+        } 
+        // elseif ($action === 'editLomba') {
         //     $id = isset($_GET['id']) ? $_GET['id'] : null;
         //     $dashboardController->editLomba($id);
         // } elseif ($action === 'deleteLomba') {

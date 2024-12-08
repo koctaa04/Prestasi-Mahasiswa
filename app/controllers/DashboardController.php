@@ -52,15 +52,15 @@ class DashboardController
         }
     }
 
-    
+
     public function mahasiswaDashboard()
     {
         $nim = $_SESSION['user']['nim'];
-        
+
         $total_lomba = $this->prestasi->getTotalPrestasiVerifiedbyNim($nim);
         $lomba_ditolak = $this->prestasi->getTotalPrestasiDitolakbyNim($nim);
         $myRanking = $this->prestasi->getRankingMahasiswaByNim($nim);
-        
+
         $info_lomba_list = $this->infoLomba->getLombaByNim($nim);
         $prestasi_list = $this->prestasi->getPrestasiByMahasiswa($nim);
         $user = $this->user->getMahasiswaByNim($nim);
@@ -515,39 +515,68 @@ class DashboardController
     // INFO LOMBA
     public function viewLomba()
     {
-        $infoLomba = $this->infoLomba->getAllLomba();
-        include_once __DIR__ . '/../views/admin_info_lomba.php';
+        session_start();
+        $nim = $_SESSION['user']['nim'];
+        $infoLombaVerified = $this->infoLomba->getVerifiedLombaByNim($nim);
+        $infoLombaUnverified = $this->infoLomba->getUnverifiedLombaByNim($nim);
+        include_once __DIR__ . '/../views/mahasiswa/info-lomba-Mahasiswa.php';
     }
 
     public function addInfoLomba()
-    {
-        session_start();
-        // Cek apakah form sudah disubmit
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Ambil data 
-            $nim = $_SESSION['user']['nim'];
-            $nama = $_POST['nama'];
-            $tenggat = $_POST['tenggat'];
-            $link = $_POST['link'];
-            $pamflet = htmlspecialchars($_POST['pamflet']);
+{
+    session_start();
 
-            // Set status verifikasi menjadi 'Menunggu'
-            $verifikasi = 'Pending';
+    // Cek apakah form sudah disubmit
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            // Panggil model untuk menambahkan info lomba
-            $result = $this->infoLomba->addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $verifikasi);
+        // Ambil data dari form
+        $nim = $_SESSION['user']['nim'];
+        $nama = $_POST['nama'];
+        $tenggat = $_POST['tanggal'];
+        $link = $_POST['link'];
+        $verifikasi = 'Pending'; // Set status verifikasi menjadi 'Pending'
 
-            if ($result) {
-                // Redirect setelah berhasil menambah info lomba
-                header("Location: index.php?controller=dashboard");
-                exit();
+        // Proses upload pamflet
+        $pamflet = null; // Default jika tidak ada file
+        if (isset($_FILES['pamflet']) && $_FILES['pamflet']['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = __DIR__ . '/../views/assets/uploads/';
+            $fileTmpPath = $_FILES['pamflet']['tmp_name'];
+            $originalFileName = $_FILES['pamflet']['name'];
+            $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+            $uniqueFileName = uniqid('pamflet_', true) . '.' . $fileExtension;
+
+            // Buat folder uploads jika belum ada
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+
+            $destinationPath = $uploadDir . $uniqueFileName;
+
+            // Pindahkan file ke folder tujuan
+            if (move_uploaded_file($fileTmpPath, $destinationPath)) {
+                $pamflet = 'assets/uploads/' . $uniqueFileName; // Path yang disimpan di database
             } else {
-                // Tampilkan pesan error jika gagal
-                echo "Terjadi kesalahan saat menambah info lomba.";
+                $_SESSION['message'] = "Gagal mengupload file pamflet.";
+                header("Location: index.php?controller=dashboard&action=viewLomba");
+                exit();
             }
         }
-        include_once __DIR__ . '/../views/mhs_add_info_lomba.php';
+
+        // Panggil model untuk menyimpan data ke database
+        $result = $this->infoLomba->addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $verifikasi);
+    session_start();
+
+        if ($result) {
+            $_SESSION['message'] = "Info lomba berhasil ditambahkan!";
+        } else {
+            $_SESSION['message'] = "Terjadi kesalahan saat menyimpan data.";
+        }
+
+        header("Location: index.php?controller=dashboard&action=viewLomba");
+        exit();
     }
+}
+
 
     public function editLomba($id)
     {
