@@ -39,7 +39,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Manajemen-Data.html">
+          <a class="nav-link" href="../pages/Kelola-Mahasiswa.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
             </div>
@@ -47,7 +47,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Prestasi.html">
+          <a class="nav-link" href="../pages/Prestasi-terverifikasi.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-trophy text-dark text-sm opacity-10"></i>
             </div>
@@ -57,7 +57,7 @@
             <div class="d-flex flex-column justify-content-center" width="10px">
               <ul>
                 <li><a class="nav-link" href="../pages/Prestasi-terverifikasi.html">Prestasi yang terverifkasi</a></li>
-                <li><a class="nav-link active" href="../pages/Prestasi-Ditolak.html">Prestasi Ditolak</a></li>
+                <li><a class="nav-link active" href="../pages/Prestasi-Ditolak.html">Prestasi belum terverifikasi</a></li>
                 <li><a class="nav-link" href="../pages/Kelola-Kategori.html"> Kelola Kategori</a></li>
                 <li><a class="nav-link" href="../pages/Kelola-Tingkatan.html"> Kelola Tingkatan</a></li>
                 <li><a class="nav-link" href="../pages/Kelola-Juara.html"> Kelola Juara</a></li>
@@ -66,7 +66,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Info-lomba.html">
+          <a class="nav-link" href="../pages/Lomba-terverifikasi.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-dark text-sm opacity-10"></i>
             </div>
@@ -74,11 +74,11 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Pengaturan.html">
+          <a class="nav-link" href="../pages/profile.html">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
+              <i class="ni ni-collection text-dark text-sm opacity-10"></i>
             </div>
-            <span class="nav-link-text ms-1">Pengaturan</span>
+            <span class="nav-link-text ms-1">Profil Admin</span>
           </a>
         </li>
         <li class="nav-item">
@@ -99,9 +99,9 @@
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Prestasi Ditolak</li>
+                <li class="breadcrumb-item text-sm text-white active" aria-current="page">Pending</li>
               </ol>
-              <h6 class="font-weight-bolder text-white mb-0">Prestasi Ditolak</h6>
+              <h6 class="font-weight-bolder text-white mb-0">Pending</h6>
             </nav>          
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -118,52 +118,78 @@
           </div>
         </nav>
       <!--tabel prestasi ditolak-->
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-13">
-            <div class="card mb-4 bg-light border-radius-md">
-              <div class="card-header pb-0 d-flex justify-content-between align-items-start">
-                <td class="align-middle text-center"></td>
-                <h6>Data prestasi yang terverifikasi</h6>
-              </div>
-              <div class="card-header pb-0"></div>
-              <div class="card-body px-0 pt-0 pb-2 border-radius-lg">
-                <div class="table-responsive p-0">
-                  <table class="table align-items-center mb-0">
-                    <thead>
-                      <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">NO</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2 text-dark">Nama Mahasiswa</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Jenis Prestasi</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Tingkat</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Nama Kegiatan</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 text-dark">Tanggal</th>
-                        <th class="text-secondary opacity-7"></th>
-                        <th class="text-secondary opacity-7"></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="d-flex px-1 py-1">
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">2341123456</h6>
-                            </div>
-                            <td>
-                              <p class="text-xs font-weight-bold mb-0">Erik Ridho</p>
-                            </td>
-                            <td class="align-middle text-center">
-                              <p class="text-xs font-weight-bold mb-0">erik123</p>
-                            </td>
-                            <td class="align-middle text-center">
-                              <span class="text-secondary text-xs font-weight-bold">Teknik Informatka</span>
-                            </td>
-                            <td class="align-middle text-center">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> Teknologi Informasi </a>
-                            </td>
-                            <td class="align-middle text-center">
-                              <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user"> 2024 </a>
-                            </td>
-                            <td class="align-middle text-end">
+      <main class="main-content position-relative border-radius-lg">
+        <!--navbar-->
+           
+            <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                  <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                    <div class="sidenav-toggler-inner">
+                      <i class="sidenav-toggler-line bg-white"></i>
+                      <i class="sidenav-toggler-line bg-white"></i>
+                      <i class="sidenav-toggler-line bg-white"></i>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav><div class="border-radius-xl mt-4 mx-4 position-relative" style="background-color: rgb(35, 35, 73);">
+          <div class="container-fluid py-4">
+            
+            <div class="row"> 
+              <!-- Card Lomba yang Terverifikasi -->
+              <div class="row mt-4">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-header pb-0 px-3">
+                      <h6 class="mb-0">Prestasi Pending</h6>
+                    </div>
+                    <div class="card-body pt-4 p-3">
+                      <div class="table-responsive border-radius-lg">
+                        <table class="table table-striped table-hover table-bordered align-items-center mb-0">
+                          <thead class="bg-primary">
+                            <tr>
+                              <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">NO</th>
+                              <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Mahasiswa</th>
+                              <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori Prestasi</th>
+                              <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tingkat</th>
+                              <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Kegiatan</th>
+                              <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
+                              <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">2341720059</p></td>
+                              <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">Satria Ersa</p></td>
+                              <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">Olahraga</p></td>
+                              <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">Provinsi</p></td>
+                              <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">4C Competition</p></td>
+                              <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">Tanggal</p></td>
+
+                              
+                              <td class="text-center align-middle">
+                                <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-1">Tolak</button>
+                                <div class="modal fade" id="modal-edit-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-1" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-body p-0">
+                                        </div>  
+                                      </div>
+                                    </div>
+                                  </div>
+                                         
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-1">Verif</button>
+                                  <div class="modal fade" id="modal-details-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-body p-0">
+                                        </div>  
+                                      </div>
+                                    </div>
+                                  </div>
+                              </td>
+                            </tr>
                             </body>
                             </html>
