@@ -62,7 +62,16 @@ switch ($controller) {
             $mhsController->viewInformasiLomba();
         } elseif ($action === 'viewProfilMahasiswa') {
             $mhsController->viewProfilMahasiswa();
-        } else {
+        }
+        
+        // KELOLA ACTION INFORMASI LOMBA
+        elseif ($action === 'addInfoLomba') {
+            $mhsController->addInfoLomba();
+        } elseif ($action === 'editInfoLomba') {
+            $mhsController->editInfoLomba();
+        } 
+        
+        else {
             $mhsController->mahasiswaDashboard();
         }
         break;

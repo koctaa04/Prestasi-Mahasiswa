@@ -131,7 +131,7 @@ if (!isset($_SESSION)) {
               </div>
               <div class="card-body pt-4 p-3">
                 <!-- Form submit info lomba -->
-                <form action="index.php?controller=dashboard&action=addInfoLomba" method="POST" enctype="multipart/form-data">
+                <form action="index.php?controller=mahasiswa&action=addInfoLomba" method="POST" enctype="multipart/form-data">
                   <div class="form-group">
                     <label for="namaLomba">Nama Lomba</label>
                     <input type="text" class="form-control" id="namaLomba" name="nama" placeholder="Masukkan nama lomba">
@@ -301,7 +301,7 @@ if (!isset($_SESSION)) {
                             </td>
 
                             <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-<?= $lombaUnverif['id'] ?>" <?= $lombaUnverif['status'] == "Pending" ? '' : '' ?> > Edit</button>
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-<?= $lombaUnverif['id'] ?>" <?= $lombaUnverif['status'] == "Pending" ? '' : '' ?>> Edit</button>
                               <div class="modal fade" id="modal-edit-verif-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
@@ -312,8 +312,8 @@ if (!isset($_SESSION)) {
                                           <p class="mb-0 text-center">Masukkan Perubahan</p>
                                         </div>
                                         <div class="card-body">
-                                          <form role="form text-left" method="post" action="index.php?controller=dashboard&action=editLomba" enctype="multipart/form-data">
-                                            <input type="hidden" class="form-control"  name="id" value="<?= $lombaUnverif['id'] ?>">
+                                          <form role="form text-left" method="post" action="index.php?controller=mahasiswa&action=editInfoLomba" enctype="multipart/form-data">
+                                            <input type="hidden" class="form-control" name="id" value="<?= $lombaUnverif['id'] ?>">
                                             <div class="form-group">
                                               <label for="namaLomba">Nama Lomba</label>
                                               <input type="text" class="form-control" id="namaLomba" name="nama" value="<?= $lombaUnverif['nama'] ?>">

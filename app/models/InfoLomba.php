@@ -119,8 +119,6 @@ class InfoLomba
     // Fungsi untuk menambahkan info lomba
     public function addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $status)
     {
-        // var_dump($nim, $nama, $pamflet, $tenggat, $link, $status);
-        // die;
         // Query untuk menambahkan info lomba
         $query = "INSERT INTO tabel_info_lomba (nim, nama, pamflet, tenggat, link, status) 
                   VALUES (?, ?, ?, ?, ?, ?)";
@@ -178,6 +176,7 @@ class InfoLomba
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
     }
 
     
