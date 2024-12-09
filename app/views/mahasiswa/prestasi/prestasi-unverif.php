@@ -157,13 +157,92 @@
                       <td class="text-sm"><?= htmlspecialchars($presVerif['verifikasi']) ?></td>
                       <td class="text-sm"><?= htmlspecialchars($presVerif['alasan_penolakan'] ?? '-') ?></td>
                       <td class="text-sm text-center">
-                        <?php if ($presVerif['verifikasi'] === 'Ditolak'): ?>
-                          <!-- Tombol dapat diklik jika status Ditolak -->
-                          <button class="btn btn-primary btn-sm">Edit</button>
-                        <?php else: ?>
-                          <!-- Tombol dinonaktifkan jika status Pending -->
-                          <button class="btn btn-primary btn-sm" disabled>Edit</button>
-                        <?php endif; ?>
+                        <button <?= $presVerif['verifikasi'] == "Pending" ? '' : '' ?> class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-">Edit</button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="modal-edit-verif-" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                              <div class="modal-body p-0">
+                                <div class="card card-plain">
+                                  <div class="card-header pb-0 text-left">
+                                    <h3 class="font-weight-bolder text-info text-gradient text-center">Edit Prestasi Saya</h3>
+                                    <p class="mb-0 text-center">Masukkan Perubahan</p>
+                                  </div>
+                                  <div class="card-body">
+                                    <form action="index.php?controller=mahasiswa&action=editPrestasi" method="POST" enctype="multipart/form-data">
+                                      <input name="id" class="form-control" type="hidden" value="<?= htmlspecialchars($presVerif['id_prestasi']) ?>" id="nama">
+                                      <div class="form-group">
+                                        <label for="nama" class="form-control-label">Nama Lomba</label>
+                                        <input name="nama" class="form-control" type="text" value="<?= htmlspecialchars($presVerif['nama_lomba']) ?>" id="nama">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="kategori" class="form-control-label">Kategori</label>
+                                        <select name="kategori" class="form-control" id="kategori">
+                                          <option value="" disabled>Pilih Kategori</option>
+                                          <?php foreach ($kategoriList as $kategori): ?>
+                                            <option value="<?= htmlspecialchars($kategori['id']) ?>"
+                                              <?= isset($presVerif['kategori']) && $presVerif['nama_kategori'] == $kategori['nama'] ? 'selected' : ''; ?>>
+                                              <?= htmlspecialchars($kategori['nama']) ?>
+                                            </option>
+                                          <?php endforeach; ?>
+                                        </select>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="juara" class="form-control-label">Juara</label>
+                                        <select name="juara" class="form-control" id="juara">
+                                          <option value="" disabled >Pilih Juara</option>
+                                          <?php foreach ($juaraList as $juara): ?>
+                                            <option value="<?= htmlspecialchars($juara['id']) ?>"
+                                              <?= isset($presVerif['juara']) && $presVerif['nama_juara'] == $juara['nama'] ? 'selected' : ''; ?>>
+                                              <?= htmlspecialchars($juara['nama']) ?>
+                                            </option>
+                                          <?php endforeach; ?>
+                                        </select>
+                                      </div>
+
+                                      <div class="form-group">
+                                        <label for="tingkatan" class="form-control-label">Tingkatan</label>
+                                        <select name="tingkatan" class="form-control" id="tingkatan">
+                                          <option value="" disabled>Pilih Tingkatan</option>
+                                          <?php foreach ($tingkatanList as $tingkatan): ?>
+                                            <option value="<?= htmlspecialchars($tingkatan['id']) ?>"
+                                              <?= isset($presVerif['tingkatan']) && $presVerif['nama_tingkatan'] == $tingkatan['nama'] ? 'selected' : ''; ?>>
+                                              <?= htmlspecialchars($tingkatan['nama']) ?>
+                                            </option>
+                                          <?php endforeach; ?>
+                                        </select>
+                                      </div>
+                                      <div class="form-group">
+                                        
+                                        <label for="penyelenggara" class="form-control-label">Penyelenggara</label>
+                                        <input name="penyelenggara" class="form-control" type="text" value="<?= htmlspecialchars($presVerif['penyelenggara']) ?>" id="penyelenggara">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="sertifikat" class="form-control-label">Sertifikat</label>
+                                        <input name="sertifikat" class="form-control" type="file" id="sertifikat" accept="application/pdf">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="karya" class="form-control-label">Karya (Opsional)</label>
+                                        <input name="karya" class="form-control" type="text" value="<?= htmlspecialchars($presVerif['nama_lomba']) ?>" id="karya">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="surat_tugas" class="form-control-label">Surat Tugas</label>
+                                        <input name="surat_tugas" class="form-control" type="file" id="surat_tugas" accept="application/pdf">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="tanggal" class="form-control-label">Tanggal Pelaksanaan</label>
+                                        <input name="tanggal" class="form-control" type="date" id="tanggal" value="<?= $presVerif['tanggal']->format('Y-m-d') ?>">
+                                      </div>
+                                      <button type="submit" class="btn btn-primary mt-3">Kirim</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </td>
 
                     </tr>
@@ -257,12 +336,16 @@
           /* Memberikan jarak dari sidebar */
         }
       </style>
-
+      <!--   Core JS Files   -->
+      <script src="app/views/assets/js/core/popper.min.js"></script>
+      <script src="app/views/assets/js/core/bootstrap.min.js"></script>
+      <script src="app/views/assets/js/plugins/perfect-scrollbar.min.js"></script>
+      <script src="app/views/assets/js/plugins/smooth-scrollbar.min.js"></script>
       </script>
       <!-- Github buttons -->
       <script async defer src="https://buttons.github.io/buttons.js"></script>
       <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-      <script src="../assets/js/argon-dashboard.min.js?v=2.1.0"></script>
+      <script src="app/views/assets/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>

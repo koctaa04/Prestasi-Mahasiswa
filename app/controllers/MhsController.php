@@ -77,6 +77,9 @@ class MhsController
         }
 
         $nim = $_SESSION['user']['nim'];
+        $juaraList = $this->juara->getAllJuara();
+        $tingkatanList = $this->tingkatan->getAllTingkatan();
+        $kategoriList = $this->category->getAllCategories();
         $unverifiedPrestasi = $this->prestasi->getUnverifiedPrestasiByNim($nim);
 
 
@@ -330,41 +333,79 @@ class MhsController
 
     public function editPrestasi()
     {
-        // Ambil ID prestasi dari parameter URL
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        session_start(); // Pastikan session dimulai
 
-        if (!$id) {
-            die("ID prestasi tidak ditemukan.");
-        }
-
-        // Ambil data prestasi berdasarkan ID
-        $prestasi = $this->prestasi->getPrestasiById($id);
-
-        if (!$prestasi) {
-            die("Data prestasi tidak ditemukan.");
-        }
-
-        // Jika form di-submit
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // var_dump($_POST);
+            // die;
             // Ambil data dari form
-            $data = [
-                'nama_lomba' => $_POST['nama_lomba'],
-                'kategori' => $_POST['kategori'],
-                'juara' => $_POST['juara'],
-                'tingkatan' => $_POST['tingkatan'],
-                'penyelenggara' => $_POST['penyelenggara'],
-                'sertifikat' => $_POST['sertifikat'],
-                'karya' => $_POST['karya'] ?? null, // Opsional
-                'surat_tugas' => $_POST['surat_tugas'],
-                'tanggal' => $_POST['tanggal']
-            ];
+            $nim = $_SESSION['user']['nim']; // NIM dari session
+            $idPrestasi = $_POST['id']; // ID Prestasi untuk edit
+            $kategori = htmlspecialchars($_POST['kategori']);
+            $nama_lomba = htmlspecialchars($_POST['nama']);
+            $juara = htmlspecialchars($_POST['juara']);
+            $tingkatan = htmlspecialchars($_POST['tingkatan']);
+            $penyelenggara = htmlspecialchars($_POST['penyelenggara']);
+            $karya = isset($_POST['karya']) ? htmlspecialchars($_POST['karya']) : null;
+            $tanggal = htmlspecialchars($_POST['tanggal']);
+            $sertifikat = $this->getFile($idPrestasi, 'sertifikat');
+            $surat_tugas = $this->getFile($idPrestasi, 'surat_tugas');
+            $verifikasi = 'Pending';
 
-            // Update data prestasi menggunakan model
-            $this->prestasi->updatePrestasi($id, $data);
+            // Panggil model untuk update data prestasi
+            $isUpdated = $this->prestasi->updatePrestasi(
+                $idPrestasi,
+                $nim,
+                $kategori,
+                $nama_lomba,
+                $juara,
+                $tingkatan,
+                $penyelenggara,
+                $sertifikat,
+                $karya,
+                $surat_tugas,
+                $verifikasi,
+                $tanggal
+            );
 
-            // Redirect ke halaman dashboard setelah berhasil menyimpan
-            header("Location: index.php?controller=mahasiswa");
+            if ($isUpdated) {
+                $_SESSION['message'] = "Prestasi berhasil diperbarui!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+
+            // Redirect kembali ke halaman dashboard atau halaman lain
+            header("Location: index.php?controller=mahasiswa&action=viewPrestasiUnverif");
             exit();
         }
+
+        // Ambil data prestasi untuk diisi dalam form edit
+        $presVerif = $this->prestasi->getPrestasiById($_GET['id']);
+        $juaraList = $this->juara->getAllJuara();
+        $tingkatanList = $this->tingkatan->getAllTingkatan();
+        $kategoriList = $this->category->getAllCategories();
+
+        // Load view form edit prestasi
+        include_once __DIR__ . '/../views/mahasiswa/prestasi/edit-prestasi.php';
     }
+
+    /**
+     * Fungsi untuk mendapatkan file jika ada, jika tidak ada, kembalikan nilai file lama
+     */
+    private function getFile($idPrestasi, $fileField)
+    {
+        // Jika ada file yang diupload, proses file
+        if (isset($_FILES[$fileField]) && $_FILES[$fileField]['error'] === UPLOAD_ERR_OK) {
+            $uploadDir = __DIR__ . '/../views/assets/uploads/';
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0777, true); // Buat folder jika belum ada
+            }
+            return $this->uploadFile($_FILES[$fileField], $uploadDir);
+        } else {
+            // Ambil file lama jika tidak ada file baru
+            $prestasi = $this->prestasi->getPrestasiById($idPrestasi);
+            return $prestasi[$fileField];
+        }
+    }
+
 }
