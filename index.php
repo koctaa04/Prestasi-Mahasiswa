@@ -54,6 +54,14 @@ switch ($controller) {
             $adminController->editMahasiswa();
         } elseif ($action === 'deleteMahasiswa') {
             $adminController->deleteMahasiswa();
+        
+        // KELOLA CRUD KELOLA MAHASISWA
+        } elseif ($action === 'addDosen') {
+            $adminController->addDosen();
+        } elseif ($action === 'editDosen') {
+            $adminController->editDosen();
+        } elseif ($action === 'deleteDosen') {
+            $adminController->deleteDosen();
         } 
         
         

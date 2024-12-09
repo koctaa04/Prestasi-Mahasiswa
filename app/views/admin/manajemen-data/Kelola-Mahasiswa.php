@@ -49,8 +49,8 @@
           <ul>
             <div class="d-flex flex-column justify-content-center" width="10px">
               <ul>
-                <li><a class="nav-link active" href="index.php?controller=dashboard&action=manageMahasiswa"> Kelola Mahasiswa</a></li>
-                <li><a class="nav-link" href="index.php?controller=dashboard&action=manageDosen"> Kelola Dosen</a></li>
+                <li><a class="nav-link active" href="index.php?controller=admin&action=viewKelolaMhs"> Kelola Mahasiswa</a></li>
+                <li><a class="nav-link" href="index.php?controller=admin&action=viewKelolaDosen"> Kelola Dosen</a></li>
               </ul>
             </div>
           </ul>

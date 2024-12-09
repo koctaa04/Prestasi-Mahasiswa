@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,8 +49,8 @@ session_start();
           <ul>
             <div class="d-flex flex-column justify-content-center" width="10px">
               <ul>
-                <li><a class="nav-link " href="index.php?controller=dashboard&action=manageMahasiswa"> Kelola Mahasiswa</a></li>
-                <li><a class="nav-link active" href="index.php?controller=dashboard&action=manageDosen"> Kelola Dosen</a></li>
+                <li><a class="nav-link " href="index.php?controller=admin&action=manageMahasiswa"> Kelola Mahasiswa</a></li>
+                <li><a class="nav-link active" href="index.php?controller=admin&action=manageDosen"> Kelola Dosen</a></li>
               </ul>
             </div>
           </ul>
@@ -149,7 +145,7 @@ session_start();
               <h6>Tambah Data Dosen</h6>
             </div>
             <div class="p-4 bg-gradient-secondary border-radius-lg">
-              <form action="index.php?controller=dashboard&action=addDosen" method="post">
+              <form action="index.php?controller=admin&action=addDosen" method="post">
                 <div class="row">
                   <div class="col-md-6">
                     <label for="NIP">NIP</label>
@@ -223,7 +219,7 @@ session_start();
                                     </button>
                                   </div>
                                   <div class="modal-body text-start">
-                                    <form action="index.php?controller=dashboard&action=editDosen" method="post">
+                                    <form action="index.php?controller=admin&action=editDosen" method="post">
                                       <div class="row">
                                         <div class="col-md-6">
                                           <label for="NIP">NIP</label>
@@ -275,11 +271,11 @@ session_start();
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <form action="index.php?controller=dashboard&action=deleteDosen" method="post">
+                                    <form action="index.php?controller=admin&action=deleteDosen" method="post">
                                       <input type="hidden" name="nip" value="<?= htmlspecialchars($ds['nip']) ?>">
                                       <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
                                       <button type="submit" class="btn bg-gradient-danger">Hapus</button>
-                                    </form>www
+                                    </form>
                                   </div>
                                 </div>
                               </div>

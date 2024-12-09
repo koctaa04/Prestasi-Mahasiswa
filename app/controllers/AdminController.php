@@ -70,8 +70,6 @@ class AdminController
     }
     public function viewKelolaDosen()
     {
-        echo "Dashbord viewKelolaDosen Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -80,10 +78,10 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $dosen = $this->user->getAllDosen();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/manajemenData/viewKelolaDosen.php';
+        include_once __DIR__ . '/../views/admin/manajemen-data/Kelola-Dosen.php';
     }
     public function viewKelolaJurusan()
     {
@@ -243,7 +241,7 @@ class AdminController
 
 
 
-    // CRUD Kelol Mahasiswa
+    // CRUD Kelola Mahasiswa
     public function addMahasiswa()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -268,7 +266,6 @@ class AdminController
 
         header("Location: index.php?controller=admin&action=viewKelolaMhs");
     }
-
     public function editMahasiswa()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -291,8 +288,6 @@ class AdminController
 
         header("Location: index.php?controller=admin&action=viewKelolaMhs");
     }
-
-    // Fungsi untuk menghapus mahasiswa
     public function deleteMahasiswa()
     {
         if (isset($_POST['nim'])) {
@@ -309,5 +304,65 @@ class AdminController
         }
 
         header("Location: index.php?controller=admin&action=viewKelolaMhs");
+    }
+
+    // CRUD KELOLA ADMIN
+    public function addDosen()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // var_dump($_POST);
+            // die;
+            $nip = $_POST['nip'];
+            $nama = $_POST['nama'];
+
+            // Menambahkan mahasiswa ke database
+            $success = $this->user->addDosen($nip, $nama);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Prestasi berhasil ditambahkan!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewKelolaDosen");
+    }
+
+    public function editDosen()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nip = $_POST['nip'];
+            $nama = $_POST['nama'];
+
+            $success = $this->user->updateDosen($nip, $nama);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Mahsiswa dengan NIP $nip berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=admin&action=viewKelolaDosen");
+    }
+
+    // Fungsi untuk menghapus Dosen
+    public function deleteDosen()
+    {
+        if (isset($_POST['nip'])) {
+            $nip = $_POST['nip'];
+
+            $success = $this->user->deleteDosen($nip);
+
+            session_start();
+            if ($success) {
+                $_SESSION['message'] = "Mahsiswa dengan NIP $nip berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=admin&action=viewKelolaDosen");
     }
 }
