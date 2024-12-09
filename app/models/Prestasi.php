@@ -119,6 +119,8 @@ WHERE m.nim = ? AND p.verifikasi = 'Ditolak';
 
     public function addPrestasi($nim, $kategori, $nama_lomba, $juaraId, $tingkatanId, $penyelenggara, $sertifikat, $karya, $surat_tugas, $verifikasi, $tanggal)
     {
+        // var_dump($nim, $kategori, $nama_lomba, $juaraId, $tingkatanId, $penyelenggara, $sertifikat, $karya, $surat_tugas, $verifikasi, $tanggal);
+        // die;
         // Ambil poin juara
         $queryJuara = "SELECT poin FROM tabel_juara WHERE id = ?";
         $stmtJuara = sqlsrv_query($this->conn, $queryJuara, [$juaraId]);
