@@ -39,7 +39,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Manajemen-Data.html">
+            <a class="nav-link" href="../pages/Kelola-Mahasiswa.html">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
               </div>
@@ -47,7 +47,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Prestasi.html">
+            <a class="nav-link" href="../pages/Prestasi-terverifikasi.html">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-trophy text-dark text-sm opacity-10"></i>
               </div>
@@ -57,7 +57,7 @@
               <div class="d-flex flex-column justify-content-center" width="10px">
                 <ul>
                   <li><a class="nav-link" href="../pages/Prestasi-terverifikasi.html">Prestasi yang terverifikasi</a></li>
-                  <li><a class="nav-link" href="../pages/Prestasi-Ditolak.html">Prestasi Ditolak</a></li>
+                  <li><a class="nav-link" href="../pages/Prestasi-Ditolak.html">Prestasi belum terverifikasi</a></li>
                   <li><a class="nav-link active" href="../pages/Kelola-Kategori.html"> Kelola Kategori</a></li>
                   <li><a class="nav-link" href="../pages/Kelola-Tingkatan.html"> Kelola Tingkatan</a></li>
                   <li><a class="nav-link" href="../pages/Kelola-Juara.html"> Kelola Juara</a></li>
@@ -66,7 +66,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Info-lomba.html">
+            <a class="nav-link" href="../pages/Lomba-terverifikasi.html">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-app text-dark text-sm opacity-10"></i>
               </div>
@@ -74,11 +74,11 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Pengaturan.html">
+            <a class="nav-link" href="../pages/profile.html">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
+                <i class="ni ni-collection text-dark text-sm opacity-10"></i>
               </div>
-              <span class="nav-link-text ms-1">Pengaturan</span>
+              <span class="nav-link-text ms-1">Profil Admin</span>
             </a>
           </li>
           <li class="nav-item">
@@ -92,6 +92,7 @@
         </ul>
       </div>
     </aside>
+    
     <main class="main-content position-relative border-radius-lg">
       <!--navbar-->
       <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" data-scroll="false">
@@ -99,9 +100,9 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
               <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
-              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Lomba belum terverifikasi</li>
+              <li class="breadcrumb-item text-sm text-white active" aria-current="page">Kategori</li>
             </ol>
-            <h6 class="font-weight-bolder text-white mb-0">Lomba belum terverifikasi</h6>
+            <h6 class="font-weight-bolder text-white mb-0">Kategori</h6>
           </nav>          
           <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
               <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -116,27 +117,77 @@
             </ul>
           </div>
         </div>
-      </nav>
-    <div class="card">
-      <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-        <a href="javascript:;" class="d-block">
-          <img src="./assets/img/kit/pro/anastasia.jpg" class="img-fluid border-radius-lg" />
-        </a>
-      </div>
-      <div class="card-body pt-2">
-        <span class="text-gradient text-primary text-uppercase text-xs font-weight-bold my-2">House</span>
-        <a href="javascript:;" class="card-title h5 d-block text-darker"> Shared Coworking </a>
-        <p class="card-description mb-4">Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons.</p>
-        <div class="author align-items-center">
-          <img src="./assets/img/kit/pro/team-2.jpg" alt="..." class="avatar shadow" />
-          <div class="name ps-3">
-            <span>Mathew Glock</span>
-            <div class="stats">
-              <small>Posted on 28 February</small>
+      </nav><div class="border-radius-xl mt-4 mx-4 position-relative" style="background-color: rgb(35, 35, 73);">
+        <div class="container-fluid py-4">
+          
+          <div class="row"> 
+            <!-- Card Form submit info lomba-->
+            <div class="col-12">
+              <div class="card">
+                <div class="card-header pb-0 px-3">
+                  <h6 class="mb-0">Tambah Kategori</h6>
+                </div>
+                <div class="card-body pt-4 p-3">
+                  <!-- Form submit info lomba -->
+                  <form>
+                    <div class="form-group">
+                      <label for="namaLomba">ID</label>
+                      <input type="text" class="form-control" id="namaLomba" placeholder="Masukkan ID">
+                    </div>
+                    <div class="form-group mt-3">
+                      <label for="tanggalLomba">Kategori</label>
+                      <input type="text" class="form-control" id="nama" placeholder="Masukkan nama Kategori">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+  
+            <!-- Card Lomba yang Terverifikasi -->
+            <div class="row mt-4">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header pb-0 px-3">
+                    <h6 class="mb-0">Kelola Kategori</h6>
+                  </div>
+                  <div class="card-body pt-4 p-3">
+                    <div class="table-responsive border-radius-lg">
+                      <table class="table table-striped table-hover table-bordered align-items-center mb-0">
+                        <thead class="bg-primary">
+                          <tr>
+                            <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
+                            <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori</th>
+                            <th class="text-white text-center align-middle text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">1</p></td>
+                            <td class="text-center align-middle"><p class="text-xs font-weight-bold mb-0">Olahraga</p></td>
+                            
+                            <td class="text-center align-middle">
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-1">Edit</button>
+                              <div class="modal fade" id="modal-edit-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-body p-0">
+                                      </div>  
+                                    </div>
+                                  </div>
+                                </div>
+                                       
+                              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-1">Delete</button>
+                                <div class="modal fade" id="modal-details-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-1" aria-hidden="true">
+                                  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-body p-0">
+                                      </div>  
+                                    </div>
+                                  </div>
+                                </div>
+                            </td>
+                          </tr>
   </body>
 </html>
