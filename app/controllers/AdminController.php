@@ -102,8 +102,6 @@ class AdminController
     }
     public function viewPrestasiVerif()
     {
-        echo "Dashbord viewPrestasiVerif Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -112,16 +110,14 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $lomba = $this->infoLomba->getVerifiedLomba();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewPrestasiVerif.php';
+        include_once __DIR__ . '/../views/admin/info-lomba/lomba-verif.php';
     }
 
     public function viewPrestasiUnverif()
     {
-        echo "Dashbord viewPrestasiUnverif Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -129,11 +125,10 @@ class AdminController
             header("Location: index.php?controller=auth&action=login");
             exit();
         }
-
-        $nim = $_SESSION['user']['nim'];
+        $lomba = $this->infoLomba->getUnverifiedLomba();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewPrestasiUnverif.php';
+        include_once __DIR__ . '/../views/admin/info-lomba/lomba-Unverif.php';
     }
 
     public function viewKategori()
@@ -189,8 +184,6 @@ class AdminController
     }
     public function viewLombaVerif()
     {
-        echo "Dashbord viewLombaVerif Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -199,15 +192,13 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $info_lomba = $this->infoLomba->getVerifiedLomba();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/infoLomba/viewLombaVerif.php';
+        include_once __DIR__ . '/../views/admin/info-lomba/lomba-verif.php';
     }
     public function viewLombaUnverif()
     {
-        echo "Dashbord viewLombaUnverif Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -216,10 +207,12 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $info_lomba = $this->infoLomba->getUnverifiedLomba();
+        // var_dump($lomba);
+        // die;
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/infoLomba/viewLombaUnverif.php';
+        include_once __DIR__ . '/../views/admin/info-lomba/lomba-Unverif.php';
     }
     public function viewProfil()
     {

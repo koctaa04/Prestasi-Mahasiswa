@@ -41,7 +41,35 @@ class InfoLomba
     // Ambil semua info lomba yang terverifikasi
     public function getVerifiedLomba()
     {
-        $query = "SELECT * FROM tabel_info_lomba WHERE status = 'Terverifikasi'";
+        $query = "SELECT 
+            i.id, i.nama AS nama_lomba, i.tenggat, i.pamflet, i.link, m.nama AS nama_mahasiswa FROM tabel_info_lomba i
+            JOIN 
+            tabel_mahasiswa m ON i.nim = m.nim
+            WHERE status = 'Terverifikasi'";
+        $stmt = sqlsrv_query($this->conn, $query);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $result = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $row['tenggat'] = $row['tenggat'] instanceof DateTime ? $row['tenggat'] : new DateTime($row['tenggat']);
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+    // Ambil semua info lomba yang terverifikasi
+    public function getUnverifiedLomba()
+    {
+        $query = "	SELECT 
+            i.id, i.nama AS nama_lomba, i.tenggat, i.link,i.pamflet ,m.nama AS nama_mahasiswa, i.status, i.alasan_penolakan 
+        FROM tabel_info_lomba i
+        JOIN 
+        tabel_mahasiswa m ON i.nim = m.nim
+        WHERE status = 'Pending' or status = 'Ditolak'";
+
         $stmt = sqlsrv_query($this->conn, $query);
 
         if ($stmt === false) {
