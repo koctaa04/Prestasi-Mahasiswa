@@ -15,6 +15,13 @@ class AuthController
 
     public function login()
     {
+        session_start();
+
+        // Pastikan user adalah mahasiswa
+        if (isset($_SESSION['user']) ) {
+            header("Location: index.php?controller=dashboard");
+            exit();
+        }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $username = htmlspecialchars($_POST['username']);
             $password = htmlspecialchars($_POST['password']);
@@ -22,7 +29,6 @@ class AuthController
 
             $user = $this->user->login($username, $password, $role);
             if ($user) {
-                session_start();
                 $_SESSION['user'] = $user;
                 $_SESSION['role'] = $role;
 
