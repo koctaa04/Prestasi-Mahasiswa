@@ -46,7 +46,18 @@ switch ($controller) {
             $adminController->viewLombaUnverif();
         } elseif ($action === 'viewProfil') {
             $adminController->viewProfil();
-        } else {
+
+        // KELOLA CRUD KELOLA MAHASISWA
+        } elseif ($action === 'addMahasiswa') {
+            $adminController->addMahasiswa();
+        } elseif ($action === 'editMahasiswa') {
+            $adminController->editMahasiswa();
+        } elseif ($action === 'deleteMahasiswa') {
+            $adminController->deleteMahasiswa();
+        } 
+        
+        
+        else {
             $adminController->adminDashboard();
         }
         break;

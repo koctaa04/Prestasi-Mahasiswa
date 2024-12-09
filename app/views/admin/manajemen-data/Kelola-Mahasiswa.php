@@ -1,9 +1,3 @@
-<?php
-
-
-session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -153,7 +147,7 @@ session_start();
               <h6>Tambah Data Mahasiswa</h6>
             </div>
             <div class="p-4 bg-gradient-secondary border-radius-lg">
-              <form action="index.php?controller=dashboard&action=addMahasiswa" method="post">
+              <form action="index.php?controller=admin&action=addMahasiswa" method="post">
                 <div class="row">
                   <div class="col-md-6">
                     <label for="NIM">NIM</label>
@@ -275,7 +269,7 @@ session_start();
                                     </button>
                                   </div>
                                   <div class="modal-body text-start">
-                                    <form action="index.php?controller=dashboard&action=editMahasiswa" method="post">
+                                    <form action="index.php?controller=admin&action=editMahasiswa" method="post">
                                       <div class="row">
                                         <div class="col-md-6">
                                           <label for="NIM">NIM</label>
@@ -359,7 +353,7 @@ session_start();
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <form action="index.php?controller=dashboard&action=deleteMahasiswa" method="post">
+                                    <form action="index.php?controller=admin&action=deleteMahasiswa" method="post">
                                       <input type="hidden" name="nim" value="<?= htmlspecialchars($mhs['nim']) ?>">
                                       <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
                                       <button type="submit" class="btn bg-gradient-danger">Hapus</button>

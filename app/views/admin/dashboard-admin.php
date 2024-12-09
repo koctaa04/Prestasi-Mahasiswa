@@ -32,7 +32,7 @@
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="index.php?controller=dashboard">
+          <a class="nav-link active" href="index.php?controller=admin">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
@@ -40,7 +40,7 @@
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?controller=dashboard&action=manageMahasiswa">
+            <a class="nav-link" href="index.php?controller=admin&action=viewKelolaMhs">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
               </div>
@@ -48,7 +48,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Prestasi.html">
+            <a class="nav-link" href="index.php?controller=admin&action=viewPrestasiVerif">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
               </div>
@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Info-lomba.html">
+            <a class="nav-link" href="index.php?controller=admin&action=viewLombaVerif">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-app text-dark text-sm opacity-10"></i>
               </div>
@@ -64,7 +64,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Pengaturan.html">
+            <a class="nav-link" href="index.php?controller=admin&action=viewProfil">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
               </div>
@@ -220,21 +220,21 @@
           <div class="card card-carousel overflow-hidden h-100 p-0">
             <div id="carouselExampleCaptions" class="carousel slide h-100" data-bs-ride="carousel">
               <div class="carousel-inner border-radius-lg h-100">
-                <div class="carousel-item h-100 active" style="background-image: url('assets/img/gedung.jpg'); background-size: cover">
+                <div class="carousel-item h-100 active" style="background-image: url('app/views/assets/img/gedung.jpg'); background-size: cover">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                     <div class="icon icon-shape icon-sm text-center border-radius-md mb-3">
                       <i class="ni text-dark opacity-10"></i>
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item h-100" style="background-image: url('assets/img/polinema-slide2.jpg'); background-size: cover">
+                <div class="carousel-item h-100" style="background-image: url('app/views/assets/img/polinema-slide2.jpg'); background-size: cover">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                     <div class="icon icon-shape text-center border-radius-md mb-3">
                       <i class="ni  text-dark opacity-10"></i>
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item h-100" style="background-image: url('assets/img/polinema-slide.jpeg'); background-size: cover">
+                <div class="carousel-item h-100" style="background-image: url('app/views/assets/img/polinema-slide.jpeg'); background-size: cover">
                   <div class="carousel-caption d-none d-md-block bottom-0 text-start start-0 ms-5">
                     <div class="icon icon-shape icon-sm text-center border-radius-md mb-3">
                       <i class="ni text-dark opacity-10"></i>
@@ -453,11 +453,11 @@
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script src="app/views/assets/js/core/popper.min.js"></script>
+  <script src="app/views/assets/js/core/bootstrap.min.js"></script>
+  <script src="app/views/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="app/views/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="app/views/assets/js/plugins/chartjs.min.js"></script>
   <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 
@@ -552,7 +552,7 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/argon-dashboard.min.js?v=2.1.0"></script>
+  <script src="app/views/assets/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 
 </html>

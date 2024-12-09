@@ -64,6 +64,32 @@ class Prestasi
         return $result;
     }
 
+    public function getTotalPrestasiUnverified()
+    {
+        $query = "SELECT COUNT(*) AS total_prestasi FROM tabel_prestasi where verifikasi = 'Pending' or verifikasi = 'Ditolak'";
+        $stmt = sqlsrv_query($this->conn, $query);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+        return $row['total_prestasi'];
+    }
+
+    public function getTotalPrestasiVerified()
+    {
+        $query = "SELECT COUNT(*) AS total_prestasi FROM tabel_prestasi where verifikasi = 'Disetujui'";
+        $stmt = sqlsrv_query($this->conn, $query);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+        return $row['total_prestasi'];
+    }
+
     public function getTotalPrestasiVerifiedbyNim($nim)
     {
         // Query untuk mendapatkan total prestasi yang sudah disetujui
