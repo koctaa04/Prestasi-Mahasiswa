@@ -14,7 +14,7 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
-    <link id="pagestyle" href="../assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
+    <link id="pagestyle" href="app/views/assets/css/argon-dashboard.css?v=2.1.0" rel="stylesheet" />
   </head>
 
   <body class="g-sidenav-show bg-gray-100">
@@ -49,8 +49,8 @@
               <div class="d-flex flex-column justify-content-center" width="10px">
                 <ul>
                     <li><a class="nav-link " href="../pages/tambah-prestasi.html">Tambah Prestasi</a></li>
-                  <li><a class="nav-link " href="../pages/veriflomba-Mahasiswa.html">Lomba Terverifikasi</a></li>
-                  <li><a class="nav-link active" href="../pages/prestasi-ditolak-mahasiswa.html">Prestasi Ditolak</a></li>
+                  <li><a class="nav-link active" href="../pages/veriflomba-Mahasiswa.html">Lomba Terverifikasi</a></li>
+                  <li><a class="nav-link " href="../pages/prestasi-ditolak-mahasiswa.html">Prestasi Ditolak</a></li>
                 </ul>
               </div>
             </ul>
@@ -92,161 +92,105 @@
               <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
               <li class="breadcrumb-item text-sm text-white active" aria-current="page">Info</li>
             </ol>
-            <h6 class="font-weight-bolder text-white mb-0">Data anda ditolak, edit untuk melakukan perbaikkan!</h6>
+            <h6 class="font-weight-bolder text-white mb-0">Prestasi anda yang telah terverifikasi</h6>
           </nav>
         </div>
       </nav>
       <!-- End Navbar -->
-      <div class="container mt-5" style="padding-left: 1.5rem; padding-right: 1.5rem;">
-        <div class="card mt-5 px-4">
-        <div class="table-responsive">
+      <div class="container-fluid px-4"> <!-- Tambahkan container pembungkus -->
+        <div class="card mt-5">
+          <div class="table-responsive border-radius-lg">
           <table class="table table-striped table-hover table-bordered rounded align-items-center mb-0">
-            <thead class="bg-gradient-primary text-white">
-              <tr>
-                <th class="text-uppercase text-xs font-weight-bold">Kategori</th>
-                <th class="text-uppercase text-xs font-weight-bold">Nama Lomba</th>
-                <th class="text-uppercase text-xs font-weight-bold">Juara</th>
-                <th class="text-uppercase text-xs font-weight-bold">Tingkatan</th>
-                <th class="text-uppercase text-xs font-weight-bold">Penyelenggara</th>
-                <th class="text-uppercase text-xs font-weight-bold">Sertifikat</th>
-                <th class="text-uppercase text-xs font-weight-bold">Karya</th>
-                <th class="text-uppercase text-xs font-weight-bold">Surat Tugas</th>
-                <th class="text-uppercase text-xs font-weight-bold">Tanggal</th>
-                <th class="text-uppercase text-xs font-weight-bold">Alasan Ditolak</th>
-                <th class="text-uppercase text-xs font-weight-bold">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-sm font-weight-bold">Kompetisi Nasional</td>
-                <td class="text-sm">Olimpiade Sains Nasional</td>
-                <td class="text-sm">Juara 1</td>
-                <td class="text-sm">Nasional</td>
-                <td class="text-sm">Kemdikbud</td>
-                <td class="text-sm text-center">
-                  <a href="#" class="btn btn-sm btn-info">Lihat</a>
-                </td>
-                <td class="text-sm text-center">
-                  <a href="#" class="btn btn-sm btn-info">Lihat</a>
-                </td>
-                <td class="text-sm text-center">
-                  <a href="#" class="btn btn-sm btn-info">Lihat</a>
-                </td>
-                <td class="text-sm">01/12/2024</td>
-                <td class="text-sm">
-                  <textarea
-                    class="form-control"
-                    rows="2"
-                    style="width: 100%;"
-                    placeholder=""
-                  ></textarea>
-                </td>
-                <td class="text-sm text-center">
-                  <button class="btn btn-primary btn-sm">Edit</button>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-sm font-weight-bold">Tradisional</td>
-                <td class="text-sm">Balap karung</td>
-                <td class="text-sm">Juara 3</td>
-                <td class="text-sm">Kelurahan</td>
-                <td class="text-sm">RT 9</td>
-                <td class="text-sm text-center">
-                  <a href="#" class="btn btn-sm btn-info">Lihat</a>
-                </td>
-                <td class="text-sm text-center">
-                  <a href="#" class="btn btn-sm btn-info">Lihat</a>
-                </td>
-                <td class="text-sm text-center">
-                  <a href="#" class="btn btn-sm btn-info">Lihat</a>
-                </td>
-                <td class="text-sm">01/12/2024</td>
-                <td class="text-sm">
-                  <textarea
-                    class="form-control"
-                    rows="2"
-                    style="width: 100%;"
-                    placeholder=""
-                  ></textarea>
-                </td>
-                <td class="text-sm text-center">
-                  <button class="btn btn-primary btn-sm">Edit</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+              <thead class="bg-gradient-primary text-white">
+                <tr>
+                  <th class="text-center">#</th>
+                  <th>Nama Lomba</th>
+                  <th>Kategori</th>
+                  <th>Juara</th>
+                  <th>Tingkatan</th>
+                  <th>Penyelenggara</th>
+                  <th class="text-center">Sertifikat</th>
+                  <th class="text-center">Karya</th>
+                  <th class="text-center">Surat Tugas</th>
+                  <th>Tanggal</th>
+                  <th>Total Poin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php if (!empty($verifiedPrestasi)): ?>
+                  <?php $no = 1;
+                  foreach ($verifiedPrestasi as $presVerif): ?>
+                    <tr>
+                      <td class="text-center"><?= $no++ ?></td>
+                      <td class="text-sm font-weight-bold"><?= htmlspecialchars($presVerif['nama_lomba']) ?></td>
+                      <td class="text-sm"><?= htmlspecialchars($presVerif['nama_kategori']) ?></td>
+                      <td class="text-sm"><?= htmlspecialchars($presVerif['nama_juara']) ?></td>
+                      <td class="text-sm"><?= htmlspecialchars($presVerif['nama_tingkatan']) ?></td>
+                      <td class="text-sm"><?= htmlspecialchars($presVerif['penyelenggara']) ?></td>
+                      <td class="text-sm text-center">
+                        <a href="#" class="btn btn-sm btn-info">Lihat</a>
+                      </td>
+                      <td class="text-sm text-center">
+                        <a href="<?= htmlspecialchars($presVerif['karya']) ?>" class="btn btn-sm btn-info">Lihat</a>
+                      </td>
+                      <td class="text-sm text-center">
+                        <a href="#" class="btn btn-sm btn-info">Lihat</a>
+                      </td>
+                      <td class="text-sm"><?= htmlspecialchars($presVerif['tanggal']->format('Y-m-d')) ?></td>
+                      <td class="text-sm"><?= htmlspecialchars($presVerif['total_poin']) ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                <?php else: ?>
+                  <tr>
+                    <td colspan="8">Tidak ada data.</td>
+                  </tr>
+                <?php endif; ?>
+              </tbody>
+            </table>
         </div>
       </div>
-      </div>
-      
       
 
       <style>
-        .table {
-          border-collapse: separate;
-          border-spacing: 0;
-        }
+      .table {
+        border-collapse: separate;
+        border-spacing: 0;
+        border-radius: 12px; /* Ujung melengkung */
+        overflow: hidden;
+        
+      }
 
-        .table thead th {
+      .table thead th {
         color: white; /* Atur teks menjadi putih */
         }
 
       
-        .table-bordered {
-          border: 2px solid #ddd;
-        }
+      .table-bordered {
+        border: 2px solid #ddd;
+      }
       
-        .table thead th {
-          text-transform: uppercase;
-          font-size: 0.85rem;
-        }
-
-        .table-responsive {
-          overflow-x: auto;
-        }
-
-       .table {
-           width: 100%; /* Memastikan tabel memanfaatkan seluruh lebar */
-           max-width: 100%;
-       }
-
-       .container {
-            max-width: 100%; /* Memanfaatkan lebar penuh halaman */
-            margin-top: 5rem; /* Tetap menjaga jarak atas */
-           margin-left: 1px; /* Memberikan jarak dari sidebar */
-         }
-
+      .table thead th {
+        text-transform: uppercase;
+        font-size: 0.85rem;
+      }
       
-        .table tbody tr {
-          background-color: #fff; /* Warna putih untuk latar belakang */
-        }
+      .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 255, 0.05);
+      }
       
-        .table tbody tr td {
-          color: #000; /* Warna hitam untuk teks */
-        }
+      .table-hover tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.1);
+      }
       
-        .table-striped tbody tr:nth-of-type(odd) {
-          background-color: #f8f9fa; /* Warna abu-abu terang untuk baris ganjil */
-        }
+      .btn-info {
+        background-color: #007bff;
+        border: none;
+      }
       
-        .table-hover tbody tr:hover {
-          background-color: rgba(0, 123, 255, 0.1);
-        }
-      
-        .btn-info {
-          background-color: #007bff;
-          border: none;
-        }
-      
-        .btn-info:hover {
-          background-color: #0056b3;
-        }
-      
-        .container {
-          margin-top: 5rem; /* Memberikan jarak atas */
-          margin-left: 12px; /* Memberikan jarak dari sidebar */
-        }
-      </style>
+      .btn-info:hover {
+        background-color: #0056b3;
+      }
+    </style>  
         
     </script>
     <!-- Github buttons -->

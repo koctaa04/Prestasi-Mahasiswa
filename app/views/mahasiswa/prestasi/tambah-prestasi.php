@@ -49,9 +49,9 @@
           <ul>
             <div class="d-flex flex-column justify-content-center" width="10px">
               <ul>
-                <li><a class="nav-link active" href="../pages/tambah-prestasi.html">Tambah Prestasi</a></li>
-                <li><a class="nav-link " href="../pages/veriflomba-Mahasiswa.html">Lomba Terverifikasi</a></li>
-                <li><a class="nav-link " href="../pages/prestasi-ditolak-mahasiswa.html">Prestasi Ditolak</a></li>
+                <li><a class="nav-link active" href="index.php?controller=mahasiswa&action=tambahPrestasi">Tambah Prestasi</a></li>
+                <li><a class="nav-link " href="index.php?controller=mahasiswa&action=viewPrestasiVerif">Lomba Terverifikasi</a></li>
+                <li><a class="nav-link " href="index.php?controller=mahasiswa&action=viewPrestasiUnverif">Prestasi Ditolak</a></li>
               </ul>
             </div>
           </ul>
@@ -162,22 +162,38 @@
         }
       </style>
       <div class="form-container px-4 mx-4">
-        <form action="index.php?controller=dashboard&action=tambahPrestasi" method="POST" enctype="multipart/form-data">
+        <form action="index.php?controller=mahasiswa&action=tambahPrestasi" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="nama" class="form-control-label">Nama Lomba</label>
             <input name="nama" class="form-control" type="text" value="Balap Karung" id="nama">
           </div>
           <div class="form-group">
             <label for="kategori" class="form-control-label">Kategori</label>
-            <input name="kategori" class="form-control" type="text" value="1" id="kategori">
+            <select name="kategori" class="form-control" id="kategori">
+              <option value="" disabled selected>Pilih Kategori</option>
+              <?php foreach ($kategoriList as $kategori): ?>
+                <option value="<?= htmlspecialchars($kategori['id']) ?>"><?= htmlspecialchars($kategori['nama']) ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
             <label for="juara" class="form-control-label">Juara</label>
-            <input name="juara" class="form-control" type="text" value="1" id="juara">
+            <select name="juara" class="form-control" id="juara">
+              <option value="" disabled selected>Pilih Juara</option>
+              <?php foreach ($juaraList as $juara): ?>
+                <option value="<?= htmlspecialchars($juara['id']) ?>"><?= htmlspecialchars($juara['nama']) ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
+
           <div class="form-group">
             <label for="tingkatan" class="form-control-label">Tingkatan</label>
-            <input name="tingkatan" class="form-control" type="text" value="1" id="tingkatan">
+            <select name="tingkatan" class="form-control" id="tingkatan">
+              <option value="" disabled selected>Pilih Tingkatan</option>
+              <?php foreach ($tingkatanList as $tingkatan): ?>
+                <option value="<?= htmlspecialchars($tingkatan['id']) ?>"><?= htmlspecialchars($tingkatan['nama']) ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
             <label for="penyelenggara" class="form-control-label">Penyelenggara</label>
@@ -189,7 +205,7 @@
           </div>
           <div class="form-group">
             <label for="karya" class="form-control-label">Karya (Opsional)</label>
-            <input name="karya" class="form-control" type="file" value="example-pdf-input" id="karya">
+            <input name="karya" class="form-control" type="text" value="github.com" id="karya">
           </div>
           <div class="form-group">
             <label for="surat_tugas" class="form-control-label">Surat Tugas</label>

@@ -50,11 +50,8 @@ class MhsController
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/mahasiswa/dashboard-mahasiswa.php';
     }
-
-    public function viewPrestasi()
+    public function viewPrestasiVerif()
     {
-        echo "Dashbord viewPrestasi Mahasiswa";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -64,12 +61,28 @@ class MhsController
         }
 
         $nim = $_SESSION['user']['nim'];
+        $verifiedPrestasi = $this->prestasi->getVerifiedPrestasiByNim($nim);
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/mahasiswa/prestasi-mahasiswa.php';
+        include_once __DIR__ . '/../views/mahasiswa/prestasi/prestasi-verif.php';
     }
+    public function viewPrestasiUnverif()
+    {
+        session_start();
+
+        // Pastikan user adalah mahasiswa
+        if ($_SESSION['role'] !== 'mahasiswa') {
+            header("Location: index.php?controller=auth&action=login");
+            exit();
+        }
+
+        $nim = $_SESSION['user']['nim'];
+        $unverifiedPrestasi = $this->prestasi->getUnverifiedPrestasiByNim($nim);
 
 
+        // Logika untuk menampilkan dashboard mahasiswa
+        include_once __DIR__ . '/../views/mahasiswa/prestasi/prestasi-unverif.php';
+    }
     public function viewInformasiLomba()
     {
         session_start();
@@ -84,7 +97,6 @@ class MhsController
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/mahasiswa/info-lomba-mahasiswa.php';
     }
-
     public function viewProfilMahasiswa()
     {
         echo "Dashbord viewProfilMahasiswa Mahasiswa";
@@ -106,12 +118,12 @@ class MhsController
     // KELOLA CRUD INFORMASI LOMBA
     public function addInfoLomba()
     {
-        
+
         session_start();
 
         // Cek apakah form sudah disubmit
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             // Ambil data dari form
             $nim = $_SESSION['user']['nim'];
             $nama = $_POST['nama'];
@@ -148,7 +160,7 @@ class MhsController
 
             // Panggil model untuk menyimpan data ke database
             $result = $this->infoLomba->addInfoLomba($nim, $nama, $pamflet, $tenggat, $link, $verifikasi);
-            
+
 
             if ($result) {
                 $_SESSION['message'] = "Info lomba berhasil ditambahkan!";
@@ -167,17 +179,17 @@ class MhsController
 
 
             session_start();
-    
+
             // Ambil data dari form
             $id = htmlspecialchars($_POST['id']);
             $nama = htmlspecialchars($_POST['nama']);
             $tenggat = htmlspecialchars($_POST['tenggat']);
             $link = htmlspecialchars($_POST['link']);
-    
+
             // Ambil pamflet lama dari database
             $lomba = $this->infoLomba->getLombaById($id);
             $oldPamflet = $lomba['pamflet'];
-    
+
             // Proses upload pamflet baru
             $pamflet = $oldPamflet; // Default menggunakan pamflet lama jika tidak ada file baru
             if (isset($_FILES['pamflet']) && $_FILES['pamflet']['error'] === UPLOAD_ERR_OK) {
@@ -186,21 +198,21 @@ class MhsController
                 $originalFileName = $_FILES['pamflet']['name'];
                 $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
                 $uniqueFileName = uniqid('pamflet_', true) . '.' . $fileExtension;
-    
+
                 // Buat folder uploads jika belum ada
                 if (!file_exists($uploadDir)) {
                     mkdir($uploadDir, 0777, true);
                 }
-    
+
                 $destinationPath = $uploadDir . $uniqueFileName;
-    
+
                 // Pindahkan file ke folder tujuan
                 if (move_uploaded_file($fileTmpPath, $destinationPath)) {
                     // Hapus file pamflet lama jika ada
                     if (!empty($oldPamflet) && file_exists(__DIR__ . '/../views/' . $oldPamflet)) {
                         unlink(__DIR__ . '/../views/' . $oldPamflet);
                     }
-    
+
                     $pamflet = 'assets/uploads/' . $uniqueFileName; // Path yang disimpan di database
                 } else {
                     $_SESSION['message'] = "Gagal mengupload file pamflet.";
@@ -210,12 +222,148 @@ class MhsController
             }
             // Update data lomba ke database
             $this->infoLomba->updateLomba($id, $nama, $pamflet, $tenggat, $link);
-            
+
             // echo "Info lomba berhasil diperbarui!";
             // die;
             // Redirect setelah berhasil edit
             $_SESSION['message'] = "Info lomba berhasil diperbarui!";
             header("Location: index.php?controller=mahasiswa&action=viewInformasiLomba");
+            exit();
+        }
+    }
+
+
+    // KELOLA CRUD PRESTASI
+    public function tambahPrestasi()
+    {
+        session_start(); // Pastikan session dimulai
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // var_dump($_POST);
+            // die;
+            // Ambil data dari form
+            $nim = $_SESSION['user']['nim']; // NIM dari session
+            $kategori = htmlspecialchars($_POST['kategori']);
+            $nama_lomba = htmlspecialchars($_POST['nama']);
+            $juara = htmlspecialchars($_POST['juara']);
+            $tingkatan = htmlspecialchars($_POST['tingkatan']);
+            $penyelenggara = htmlspecialchars($_POST['penyelenggara']);
+            $karya = isset($_POST['karya']) ? htmlspecialchars($_POST['karya']) : null;
+            $tanggal = htmlspecialchars($_POST['tanggal']);
+            $verifikasi = 'Pending'; // Status awal prestasi
+
+            // Proses file upload
+            $uploadDir = __DIR__ . '/../views/assets/uploads/';
+            if (!file_exists($uploadDir)) {
+                mkdir($uploadDir, 0777, true); // Buat folder jika belum ada
+            }
+
+            // Upload sertifikat
+            $sertifikat = null; // Default jika tidak ada file
+            if (isset($_FILES['sertifikat']) && $_FILES['sertifikat']['error'] === UPLOAD_ERR_OK) {
+                $sertifikat = $this->uploadFile($_FILES['sertifikat'], $uploadDir);
+            }
+
+            // Upload surat tugas
+            $surat_tugas = null; // Default jika tidak ada file
+            if (isset($_FILES['surat_tugas']) && $_FILES['surat_tugas']['error'] === UPLOAD_ERR_OK) {
+                $surat_tugas = $this->uploadFile($_FILES['surat_tugas'], $uploadDir);
+            }
+
+            // Panggil model untuk menyimpan data prestasi
+            $isAdded = $this->prestasi->addPrestasi(
+                $nim,
+                $kategori,
+                $nama_lomba,
+                $juara,
+                $tingkatan,
+                $penyelenggara,
+                $sertifikat,
+                $karya,
+                $surat_tugas,
+                $verifikasi,
+                $tanggal
+            );
+
+            // var_dump($isAdded);
+            // die;
+
+            if ($isAdded) {
+                $_SESSION['message'] = "Prestasi berhasil ditambahkan!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+
+            // Redirect kembali ke halaman dashboard
+            header("Location: index.php?controller=mahasiswa&action=viewPrestasiUnverif");
+            exit();
+        }
+
+        $juaraList = $this->juara->getAllJuara();
+        $tingkatanList = $this->tingkatan->getAllTingkatan();
+        $kategoriList = $this->category->getAllCategories();
+        // Load view form tambah prestasi
+        include_once __DIR__ . '/../views/mahasiswa/prestasi/tambah-prestasi.php';
+    }
+
+    /**
+     * Fungsi untuk menangani upload file
+     *
+     * @param array $file File dari $_FILES
+     * @param string $uploadDir Direktori tujuan upload
+     * @return string|null Nama file yang diupload atau null jika gagal
+     */
+    private function uploadFile($file, $uploadDir)
+    {
+        $fileTmpPath = $file['tmp_name'];
+        $originalFileName = $file['name'];
+        $fileExtension = pathinfo($originalFileName, PATHINFO_EXTENSION);
+        $uniqueFileName = uniqid() . '.' . $fileExtension;
+        $destinationPath = $uploadDir . $uniqueFileName;
+
+        if (move_uploaded_file($fileTmpPath, $destinationPath)) {
+            return 'assets/uploads/' . $uniqueFileName; // Path yang disimpan di database
+        } else {
+            return null; // Gagal upload
+        }
+    }
+
+    public function editPrestasi()
+    {
+        // Ambil ID prestasi dari parameter URL
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+        if (!$id) {
+            die("ID prestasi tidak ditemukan.");
+        }
+
+        // Ambil data prestasi berdasarkan ID
+        $prestasi = $this->prestasi->getPrestasiById($id);
+
+        if (!$prestasi) {
+            die("Data prestasi tidak ditemukan.");
+        }
+
+        // Jika form di-submit
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Ambil data dari form
+            $data = [
+                'nama_lomba' => $_POST['nama_lomba'],
+                'kategori' => $_POST['kategori'],
+                'juara' => $_POST['juara'],
+                'tingkatan' => $_POST['tingkatan'],
+                'penyelenggara' => $_POST['penyelenggara'],
+                'sertifikat' => $_POST['sertifikat'],
+                'karya' => $_POST['karya'] ?? null, // Opsional
+                'surat_tugas' => $_POST['surat_tugas'],
+                'tanggal' => $_POST['tanggal']
+            ];
+
+            // Update data prestasi menggunakan model
+            $this->prestasi->updatePrestasi($id, $data);
+
+            // Redirect ke halaman dashboard setelah berhasil menyimpan
+            header("Location: index.php?controller=mahasiswa");
             exit();
         }
     }

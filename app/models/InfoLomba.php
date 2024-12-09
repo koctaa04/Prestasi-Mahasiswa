@@ -179,7 +179,7 @@ class InfoLomba
         return true;
     }
 
-    
+
 
     // Menghapus info lomba
     public function deleteLomba($id)

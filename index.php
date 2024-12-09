@@ -56,8 +56,10 @@ switch ($controller) {
         $mhsController = new MhsController();
 
         // KELOLA VIEW
-        if ($action === 'viewPrestasi') {
-            $mhsController->viewPrestasi();
+        if ($action === 'viewPrestasiVerif') {
+            $mhsController->viewPrestasiVerif();
+        } elseif ($action === 'viewPrestasiUnverif') {
+            $mhsController->viewPrestasiUnverif();
         } elseif ($action === 'viewInformasiLomba') {
             $mhsController->viewInformasiLomba();
         } elseif ($action === 'viewProfilMahasiswa') {
@@ -69,7 +71,17 @@ switch ($controller) {
             $mhsController->addInfoLomba();
         } elseif ($action === 'editInfoLomba') {
             $mhsController->editInfoLomba();
+        }
+        
+        
+        // KELOLA ACTION PRESTASI
+        elseif ($action === 'tambahPrestasi') {
+            $mhsController->tambahPrestasi();
+        } elseif ($action === 'editPrestasi') {
+            $mhsController->editPrestasi();
         } 
+
+
         
         else {
             $mhsController->mahasiswaDashboard();
