@@ -504,10 +504,8 @@ class AdminController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            var_dump($_POST);
-            die;
-            $name = htmlspecialchars($_POST['name_kategori']);
-            $poin = htmlspecialchars($_POST['poin_kategori']);
+            $name = htmlspecialchars($_POST['name_tingkatan']);
+            $poin = htmlspecialchars($_POST['poin_tingkatan']);
             $success = $this->tingkatan->addTingkatan($name, $poin);
             session_start();
 
@@ -524,17 +522,16 @@ class AdminController
     public function editTingkatan()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST);
-            die;
+
             $id = $_POST['id'];
-            $name = htmlspecialchars($_POST['name_kategori']);
-            $poin = htmlspecialchars($_POST['poin_kategori']);
+            $name = htmlspecialchars($_POST['name_tingkatan']);
+            $poin = htmlspecialchars($_POST['poin_tingkatan']);
 
             $success = $this->tingkatan->updateTingkatan($id, $name, $poin);
             session_start();
 
             if ($success) {
-                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+                $_SESSION['message'] = "Tingkatan $name berhasil diedit!";
             } else {
                 $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
             }
@@ -546,15 +543,13 @@ class AdminController
     public function deleteTingkatan()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            var_dump($_POST);
-            die;
             $id = $_POST['id'];
             $success = $this->tingkatan->deleteTingkatan($id);
 
             session_start();
 
             if ($success) {
-                $_SESSION['message'] = "Kategori berhasil dihapus!";
+                $_SESSION['message'] = "Tingkatan berhasil dihapus!";
             } else {
                 $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
             }

@@ -111,7 +111,7 @@ if (!isset($_SESSION)) {
           </ol>
           <h6 class="font-weight-bolder text-white mb-0">Juara</h6>
         </nav>
-        
+
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
@@ -127,12 +127,12 @@ if (!isset($_SESSION)) {
       </div>
     </nav>
     <?php
-        if (isset($_SESSION['message'])) { ?>
-          <div class="alert alert-success mx-4" role="alert">
-            <strong>Success!</strong> <?= $_SESSION['message'] ?>
-          </div>
-        <?php }
-        unset($_SESSION['message']); ?>
+    if (isset($_SESSION['message'])) { ?>
+      <div class="alert alert-success mx-4" role="alert">
+        <strong>Success!</strong> <?= $_SESSION['message'] ?>
+      </div>
+    <?php }
+    unset($_SESSION['message']); ?>
     <div class="border-radius-xl mt-4 mx-4 position-relative" style="background-color: rgb(35, 35, 73);">
       <div class="container-fluid py-4">
 

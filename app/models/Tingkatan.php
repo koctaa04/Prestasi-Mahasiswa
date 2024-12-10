@@ -71,6 +71,8 @@ class Tingkatan
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+
+        return true;
     }
     
 
@@ -89,6 +91,8 @@ class Tingkatan
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
+
     }
     
     public function deleteTingkatan($id)
@@ -100,5 +104,7 @@ class Tingkatan
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
+
     }
 }
