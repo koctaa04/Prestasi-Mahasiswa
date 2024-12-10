@@ -50,6 +50,10 @@ class AdminController
         $totalKategori = $this->category->getTotalKategori();
         $totalJuara = $this->juara->getTotalJuara();
 
+
+        $tahun = date('Y'); // Tahun berjalan
+        $dataStatistik = $this->prestasi->getStatistikPrestasi($tahun);
+
         // Tampilkan view dashboard admin
         include_once __DIR__ . '/../views/admin/dashboard-admin.php';
     }

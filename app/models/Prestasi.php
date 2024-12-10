@@ -484,4 +484,34 @@ class Prestasi
         
         return true;
     }
+
+
+
+    // untuk chart
+    public function getStatistikPrestasi($tahun) {
+        $query = "
+            SELECT MONTH(tanggal) AS bulan, COUNT(*) AS total
+            FROM tabel_prestasi
+            WHERE YEAR(tanggal) = ?
+            GROUP BY MONTH(tanggal)
+            ORDER BY bulan ASC";
+        $params = [$tahun];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        $data = [];
+        if ($stmt === false) {
+            die("Query error: " . print_r(sqlsrv_errors(), true));
+        }
+
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $data[(int)$row['bulan']] = (int)$row['total'];
+        }
+
+        // Isi bulan kosong dengan nilai 0
+        for ($i = 1; $i <= 12; $i++) {
+            $data[$i] = $data[$i] ?? 0;
+        }
+
+        return $data;
+    }
 }
