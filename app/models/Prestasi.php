@@ -23,7 +23,8 @@ class Prestasi
 			p.tingkatan AS id_tingkatan,
 			t.nama AS nama_tingkatan,
 			p.verifikasi,
-			p.alasan_penolakan
+            p.tanggal,
+            p.penyelenggara
         FROM tabel_prestasi p
         LEFT JOIN tabel_kategori k ON p.kategori = k.id
         LEFT JOIN tabel_juara j ON p.juara = j.id

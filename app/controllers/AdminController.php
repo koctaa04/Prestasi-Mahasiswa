@@ -102,8 +102,6 @@ class AdminController
     }
     public function viewPrestasiVerif()
     {
-        echo "Dashbord viewPrestasiVerif Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -112,10 +110,10 @@ class AdminController
             exit();
         }
 
-        $lomba = $this->infoLomba->getVerifiedLomba();
+        $prestasiVerif = $this->prestasi->getPrestasiByVerificationStatus(true);
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/lomba-verif.php';
+        include_once __DIR__ . '/../views/admin/prestasi/prestasi-verif.php';
     }
 
     public function viewPrestasiUnverif()
@@ -129,7 +127,7 @@ class AdminController
             header("Location: index.php?controller=auth&action=login");
             exit();
         }
-        $lomba = $this->infoLomba->getUnverifiedLomba();
+        $lomba = $this->prestasi->getUnverifiedLomba();
 
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/admin/prestasi/lomba-Unverif.php';
