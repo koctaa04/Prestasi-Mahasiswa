@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+  session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -118,6 +124,14 @@
       </div>
     </nav>
     <div class="main-content">
+      <?php
+      if (isset($_SESSION['message'])) { ?>
+        <div class="alert alert-success mx-4" role="alert">
+          <strong>Success!</strong> <?= $_SESSION['message'] ?>
+        </div>
+
+      <?php }
+      unset($_SESSION['message']); ?>
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
@@ -137,10 +151,10 @@
               </thead>
               <tbody>
                 <?php if (!empty($info_lomba)): ?>
-                  <?php foreach ($info_lomba as $lombaUnverif):?>
-                    
+                  <?php foreach ($info_lomba as $lombaUnverif): ?>
+
                     <tr>
-                    <td class="text-center align-middle">
+                      <td class="text-center align-middle">
                         <p class="text-xs font-weight-bold mb-0"><?= $lombaUnverif['id'] ?></p>
                       </td>
                       <td class="text-center align-middle">
@@ -153,19 +167,19 @@
                         <a href="<?= $lombaUnverif['link'] ?>" target="_blank" class="btn btn-sm btn-info">Lihat</a>
                       </td>
                       <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?= $lombaUnverif['id'] ?>">Lihat</button>
-                              <div class="modal fade" id="modal-lihatPamflet-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                                  <div class="modal-content">
-                                    <div class="modal-body p-0">
-                                      <div class="card">
-                                        <img src="app/views/<?= $lombaUnverif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
-                                      </div>
-                                    </div>
-                                  </div>
+                        <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?= $lombaUnverif['id'] ?>">Lihat</button>
+                        <div class="modal fade" id="modal-lihatPamflet-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                            <div class="modal-content">
+                              <div class="modal-body p-0">
+                                <div class="card">
+                                  <img src="app/views/<?= $lombaUnverif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
                                 </div>
                               </div>
-                            </td>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
                       <td class="text-center align-middle">
                         <p class="text-xs font-weight-bold mb-0"><?= $lombaUnverif['nama_mahasiswa'] ?></p>
                       </td>
@@ -173,11 +187,66 @@
                         <span class="badge bg-success text-white"><?= $lombaUnverif['status'] ?></span>
                       </td>
                       <td class="text-center align-middle">
-                        <p class="text-xs font-weight-bold mb-0"><?= $lombaUnverif['alasan_penolakan'] ?? '-'?></p>
+                        <p class="text-xs font-weight-bold mb-0"><?= $lombaUnverif['alasan_penolakan'] ?? '-' ?></p>
                       </td>
                       <td class="text-center">
-                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal">Verifikasi</button>
-                        <button type="button" class="btn btn-primary btn-sm">Tolak</button>
+                        <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-verifikasi-<?= $lombaUnverif['id'] ?>" <?= $lombaUnverif['status'] == "Ditolak" ? 'Disabled' : '' ?>>Verifikasi</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-tolak-<?= $lombaUnverif['id'] ?>" <?= $lombaUnverif['status'] == "Ditolak" ? 'Disabled' : '' ?>>Tolak</button>
+                        <!-- MODAL VERIFIKASI -->
+                        <div class="modal fade" id="modal-verifikasi-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-verifikasi-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="modal-verifikasi-<?= $lombaUnverif['id'] ?>">Verifikasi Info Lomba</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <p><strong>Nama Lomba:</strong> <?= $lombaUnverif['nama_lomba'] ?> </p>
+                                  <p><strong>Tenggat Pendaftaran:</strong> <?= $lombaUnverif['tenggat']->format('Y-m-d') ?> </p>
+                                  <p><strong>Link:</strong> <a href="<?= $lombaUnverif['link'] ?>" target="_blank"><?= $lombaUnverif['link'] ?></a></p>
+                                  <p><strong>Pamflet:</strong></p>
+                                  <!-- Menampilkan Gambar Pamflet -->
+                                  <img src="app/views/<?= $lombaUnverif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
+                                  <p><strong>Nama Mahasiswa:</strong> <?= $lombaUnverif['nama_mahasiswa'] ?> </p>
+                                </div>
+                                <div class="modal-footer">
+                                  <form action="index.php?controller=admin&action=verifyInfoLomba" method="post">
+                                  <input type="hidden" name="id" value="<?= $lombaUnverif['id'] ?>">
+                                  <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn bg-gradient-primary">Verifikasi pengajuan</button>
+                                </form>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- MODAL TOLAK -->
+                        <div class="modal fade" id="modal-tolak-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-tolak-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="modal-tolak-<?= $lombaUnverif['id'] ?>">Tolak Ajuan Info Lomba</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <form action="index.php?controller=admin&action=tolakInfoLomba" method="post">
+                                <div class="modal-body">
+                                  <p><strong>Nama Lomba:</strong> <?= $lombaUnverif['nama_lomba'] ?> </p>
+                                  <p><strong>Tenggat Pendaftaran:</strong> <?= $lombaUnverif['tenggat']->format('Y-m-d') ?> </p>
+                                  <p><strong>Link:</strong> <a href="<?= $lombaUnverif['link'] ?>" target="_blank"><?= $lombaUnverif['link'] ?></a></p>
+                                  <p><strong>Pamflet:</strong></p>
+                                  <!-- Menampilkan Gambar Pamflet -->
+                                  <img src="app/views/<?= $lombaUnverif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
+                                  <p><strong>Nama Mahasiswa:</strong> <?= $lombaUnverif['nama_mahasiswa'] ?> </p>
+                                  <p><strong>Alasan Penolakan:</strong> <input type="text" required name="alasan_penolakan" class="form-control"></p>
+                                  <input type="hidden" name="id" value="<?= $lombaUnverif['id'] ?>">
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn bg-gradient-primary">Tolak pengajuan</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   <?php endforeach; ?>
@@ -192,15 +261,15 @@
         </div>
       </div>
 
-        <!--   Core JS Files   -->
-  <script src="app/views/assets/js/core/popper.min.js"></script>
-  <script src="app/views/assets/js/core/bootstrap.min.js"></script>
-  <script src="app/views/assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="app/views/assets/js/plugins/smooth-scrollbar.min.js"></script>
+      <!--   Core JS Files   -->
+      <script src="app/views/assets/js/core/popper.min.js"></script>
+      <script src="app/views/assets/js/core/bootstrap.min.js"></script>
+      <script src="app/views/assets/js/plugins/perfect-scrollbar.min.js"></script>
+      <script src="app/views/assets/js/plugins/smooth-scrollbar.min.js"></script>
 
-    <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="app/views/assets/js/argon-dashboard.min.js?v=2.1.0"></script>
+      <!-- Github buttons -->
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+      <script src="app/views/assets/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 </head>

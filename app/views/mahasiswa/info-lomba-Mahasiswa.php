@@ -302,7 +302,7 @@ if (!isset($_SESSION)) {
                             </td>
 
                             <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-<?= $lombaUnverif['id'] ?>" <?= $lombaUnverif['status'] == "Pending" ? '' : '' ?>> Edit</button>
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-<?= $lombaUnverif['id'] ?>" <?= $lombaUnverif['status'] == "Pending" ? 'disabled' : '' ?>> Edit</button>
                               <div class="modal fade" id="modal-edit-verif-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">

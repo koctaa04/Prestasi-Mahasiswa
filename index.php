@@ -62,6 +62,12 @@ switch ($controller) {
             $adminController->editDosen();
         } elseif ($action === 'deleteDosen') {
             $adminController->deleteDosen();
+
+        // KELOLA CRUD INFO LOMBA
+        } elseif ($action === 'tolakInfoLomba') {
+            $adminController->tolakInfoLomba();
+        } elseif ($action === 'verifyInfoLomba') {
+            $adminController->verifyInfoLomba();
         } 
         
         

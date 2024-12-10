@@ -122,7 +122,7 @@ class InfoLomba
 
     public function verifyLomba($id, $status)
     {
-        $query = "UPDATE tabel_info_lomba SET verifikasi = ? WHERE id = ?";
+        $query = "UPDATE tabel_info_lomba SET status = ? WHERE id = ?";
         $params = array($status, $id);
         $stmt = sqlsrv_query($this->conn, $query, $params);
 
@@ -219,5 +219,22 @@ class InfoLomba
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+    }
+
+
+
+    public function rejectInfoLomba($id, $alasan)
+    {
+
+        // Update status dan alasan penolakan di database
+        $query = "UPDATE tabel_info_lomba SET status = 'Ditolak', alasan_penolakan = ? WHERE id = ?";
+        $params = [$alasan, $id];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        return true;
     }
 }

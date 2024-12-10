@@ -102,6 +102,8 @@ class AdminController
     }
     public function viewPrestasiVerif()
     {
+        echo "Dashbord viewPrestasiVerif Admin";
+        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -113,11 +115,13 @@ class AdminController
         $lomba = $this->infoLomba->getVerifiedLomba();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/info-lomba/lomba-verif.php';
+        include_once __DIR__ . '/../views/admin/prestasi/lomba-verif.php';
     }
 
     public function viewPrestasiUnverif()
     {
+        echo "Dashbord viewPrestasiUnverif Admin";
+        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -128,7 +132,7 @@ class AdminController
         $lomba = $this->infoLomba->getUnverifiedLomba();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/info-lomba/lomba-Unverif.php';
+        include_once __DIR__ . '/../views/admin/prestasi/lomba-Unverif.php';
     }
 
     public function viewKategori()
@@ -357,5 +361,51 @@ class AdminController
         }
 
         header("Location: index.php?controller=admin&action=viewKelolaDosen");
+    }
+
+
+
+    // KELOLA INFO LOMBA
+    public function verifyInfoLomba()
+    {
+
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+            $status = "Terverifikasi";
+
+            $success = $this->infoLomba->verifyLomba($id, $status);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Daftar lomba berhasil diverifikasi!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewLombaVerif");
+        exit();
+    }
+    public function tolakInfoLomba()
+    {
+
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+            $alasan = $_POST['alasan_penolakan'];
+
+            $success = $this->infoLomba->rejectInfoLomba($id, $alasan);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Daftar lomba berhasil ditolak!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewLombaUnverif");
+        exit();
     }
 }

@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+  session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -119,6 +125,14 @@
     </nav>
     <!--tabel-->
     <div class="main-content">
+      <?php
+      if (isset($_SESSION['message'])) { ?>
+        <div class="alert alert-success mx-4" role="alert">
+          <strong>Success!</strong> <?= $_SESSION['message'] ?>
+        </div>
+
+      <?php }
+      unset($_SESSION['message']); ?>
       <div class="card">
         <div class="card-body">
           <div class="table-responsive">
@@ -147,33 +161,25 @@
                         <p class="text-xs font-weight-bold mb-0"><?= $lombaVerif['tenggat']->format('Y-m-d') ?></p>
                       </td>
                       <td class="text-center align-middle">
-                        <a href="<?= $lombaVerif['link'] ?>" class="text-xs font-weight-bold mb-0"><?= $lombaVerif['link'] ?></a>
+                        <a href="<?= $lombaVerif['link'] ?>" target="_blank" class="btn btn-sm btn-info">Lihat</a>
                       </td>
                       <td class="text-center align-middle">
                         <p class="text-xs font-weight-bold mb-0"><?= $lombaVerif['nama_mahasiswa'] ?></p>
                       </td>
                       <td class="text-center align-middle">
-                        <a href="<?= $lombaVerif['pamflet'] ?>" class="text-xs font-weight-bold mb-0"><?= $lombaVerif['pamflet'] ?></a>
-                      </td>
-                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-<?= $lombaUnverif['id'] ?>">Details</button>
-                      <div class="modal fade" id="modal-details-verif-<?= $lombaUnverif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-<?= $lombaUnverif['id'] ?>" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="modal-details-verif-<?= $lombaUnverif['id'] ?>">Detail Info Lomba</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <p><strong>Nama Lomba:</strong> <?= $lombaUnverif['nama'] ?> </p>
-                              <p><strong>Tenggat Pendaftaran:</strong> <?= $lombaUnverif['tenggat']->format('Y-m-d') ?> </p>
-                              <p><strong>Link:</strong> <a href="<?= $lombaUnverif['link'] ?>" target="_blank"><?= $lombaUnverif['link'] ?></a></p>
-                              <p><strong>Pamflet:</strong></p>
-                              <!-- Menampilkan Gambar Pamflet -->
-                              <img src="app/views/<?= $lombaUnverif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
+                        <button type="button" class="btn btn-secondary bg-info btn-sm" data-bs-toggle="modal" data-bs-target="#modal-lihatPamflet-<?= $lombaVerif['id'] ?>">Lihat</button>
+                        <div class="modal fade" id="modal-lihatPamflet-<?= $lombaVerif['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="modal-lihatPamflet-<?= $lombaVerif['id'] ?>" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                            <div class="modal-content">
+                              <div class="modal-body p-0">
+                                <div class="card">
+                                  <img src="app/views/<?= $lombaVerif['pamflet'] ?>" alt="Pamflet" class="img-fluid" />
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </td>
                     </tr>
                   <?php endforeach; ?>
                 <?php else: ?>
@@ -186,5 +192,15 @@
           </div>
         </div>
       </div>
+      <!--   Core JS Files   -->
+      <script src="app/views/assets/js/core/popper.min.js"></script>
+      <script src="app/views/assets/js/core/bootstrap.min.js"></script>
+      <script src="app/views/assets/js/plugins/perfect-scrollbar.min.js"></script>
+      <script src="app/views/assets/js/plugins/smooth-scrollbar.min.js"></script>
+
+      <!-- Github buttons -->
+      <script async defer src="https://buttons.github.io/buttons.js"></script>
+      <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+      <script src="app/views/assets/js/argon-dashboard.min.js?v=2.1.0"></script>
 </body>
 </head>
