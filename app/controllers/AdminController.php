@@ -135,8 +135,6 @@ class AdminController
 
     public function viewKategori()
     {
-        echo "Dashbord viewKategori Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -145,15 +143,12 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
-
+        $categories = $this->category->getAllCategories();
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewKategori.php';
+        include_once __DIR__ . '/../views/admin/prestasi/Kelola-Kategori.php';
     }
     public function viewTingkatan()
     {
-        echo "Dashbord viewTingkatan Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -162,15 +157,13 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $tingkatans = $this->tingkatan->getAllTingkatan();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewTingkatan.php';
+        include_once __DIR__ . '/../views/admin/prestasi/Kelola-Tingkatan.php';
     }
     public function viewJuara()
     {
-        echo "Dashbord viewJuara Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -179,10 +172,10 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $juaras = $this->juara->getAllJuara();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewJuara.php';
+        include_once __DIR__ . '/../views/admin/prestasi/Kelola-Juara.php';
     }
     public function viewLombaVerif()
     {
@@ -204,13 +197,13 @@ class AdminController
     public function viewLombaUnverif()
     {
         session_start();
-        
+
         // Pastikan user adalah mahasiswa
         if ($_SESSION['role'] !== 'admin') {
             header("Location: index.php?controller=auth&action=login");
             exit();
         }
-        
+
         $info_lomba = $this->infoLomba->getUnverifiedLomba();
 
         // Logika untuk menampilkan dashboard mahasiswa
@@ -440,6 +433,62 @@ class AdminController
             }
         }
         header("Location: index.php?controller=admin&action=viewPrestasiUnverif");
+        exit();
+    }
+
+
+
+    // CRUD KATEGORI
+    public function addKategori()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $name = htmlspecialchars($_POST['name_kategori']);
+            $success = $this->category->addCategory($name);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewKategori");
+        exit();
+    }
+
+    public function editKategori()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $name = htmlspecialchars($_POST['name']);
+            $this->category->updateCategory($id, $name);
+
+            $success = $this->category->updateCategory($id, $name);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewKategori");
+        exit();
+    }
+
+    public function deleteKategori()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $success = $this->category->deleteCategory($id);
+            if ($success) {
+                $_SESSION['message'] = "Kategori berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewKategori");
         exit();
     }
 }

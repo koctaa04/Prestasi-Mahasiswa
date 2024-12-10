@@ -64,6 +64,7 @@ class Category
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
     }
 
     public function updateCategory($id, $nama)
