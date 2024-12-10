@@ -2,7 +2,7 @@
 
 <?php
 class Database {
-    private $serverName = "DESKTOP-PKL1H9B"; // Sesuaikan dengan konfigurasi SQL Server Anda
+    private $serverName = "MSI"; // Sesuaikan dengan konfigurasi SQL Server Anda
 
     private $connectionInfo = array(
         "Database" => "PrestasiMahasiswa",

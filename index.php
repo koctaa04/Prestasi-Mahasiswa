@@ -68,9 +68,14 @@ switch ($controller) {
             $adminController->tolakInfoLomba();
         } elseif ($action === 'verifyInfoLomba') {
             $adminController->verifyInfoLomba();
-        } 
+
+
+            // KELOLA PROFIL ADMIN
+        } elseif ($action === 'editProfilAdmin') {
+            $adminController->editProfilAdmin(); 
+        }
         
-        
+
         else {
             $adminController->adminDashboard();
         }
@@ -106,7 +111,10 @@ switch ($controller) {
             $mhsController->editPrestasi();
         } 
 
-
+        // KELOLA PROFIL MAHASISWA
+        elseif ($action === 'editProfilMahasiswa') {
+        $mhsController->editProfilMahasiswa(); 
+        }
         
         else {
             $mhsController->mahasiswaDashboard();
