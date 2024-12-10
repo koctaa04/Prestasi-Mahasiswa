@@ -118,8 +118,6 @@ class AdminController
 
     public function viewPrestasiUnverif()
     {
-        echo "Dashbord viewPrestasiUnverif Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -127,10 +125,12 @@ class AdminController
             header("Location: index.php?controller=auth&action=login");
             exit();
         }
-        $lomba = $this->prestasi->getUnverifiedLomba();
+        $prestasiUnverif = $this->prestasi->getPrestasiByVerificationStatus(false);
+        // var_dump($prestasiUnverif);
+        // die;
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/lomba-Unverif.php';
+        include_once __DIR__ . '/../views/admin/prestasi/prestasi-unverif.php';
     }
 
     public function viewKategori()
@@ -195,6 +195,8 @@ class AdminController
         }
 
         $info_lomba = $this->infoLomba->getVerifiedLomba();
+        // var_dump($info_lomba);
+        // die;
 
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/admin/info-lomba/lomba-verif.php';
@@ -202,16 +204,14 @@ class AdminController
     public function viewLombaUnverif()
     {
         session_start();
-
+        
         // Pastikan user adalah mahasiswa
         if ($_SESSION['role'] !== 'admin') {
             header("Location: index.php?controller=auth&action=login");
             exit();
         }
-
+        
         $info_lomba = $this->infoLomba->getUnverifiedLomba();
-        // var_dump($lomba);
-        // die;
 
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/admin/info-lomba/lomba-Unverif.php';
@@ -366,8 +366,6 @@ class AdminController
     // KELOLA INFO LOMBA
     public function verifyInfoLomba()
     {
-
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $id = $_POST['id'];
@@ -387,8 +385,6 @@ class AdminController
     }
     public function tolakInfoLomba()
     {
-
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $id = $_POST['id'];
@@ -404,6 +400,46 @@ class AdminController
             }
         }
         header("Location: index.php?controller=admin&action=viewLombaUnverif");
+        exit();
+    }
+
+
+    // KELOLA PRESTASI
+    public function verifyPrestasi()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+
+            $success = $this->prestasi->verifyPrestasi($id);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Prestasi berhasil diverifikasi!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewPrestasiVerif");
+        exit();
+    }
+
+    public function tolakPrestasi()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $alasan = $_POST['alasan_penolakan'];
+
+            $success = $this->prestasi->rejectPrestasi($id, $alasan);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Prestasi berhasil ditolak!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewPrestasiUnverif");
         exit();
     }
 }

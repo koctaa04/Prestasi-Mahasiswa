@@ -68,6 +68,12 @@ switch ($controller) {
             $adminController->tolakInfoLomba();
         } elseif ($action === 'verifyInfoLomba') {
             $adminController->verifyInfoLomba();
+        
+        // KELOLA CRUD INFO LOMBA
+        } elseif ($action === 'tolakPrestasi') {
+            $adminController->tolakPrestasi();
+        } elseif ($action === 'verifyPrestasi') {
+            $adminController->verifyPrestasi();
         } 
         
         
