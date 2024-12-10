@@ -496,4 +496,128 @@ class AdminController
         header("Location: index.php?controller=admin&action=viewKategori");
         exit();
     }
+
+
+
+    // CRUD TINGAKATAN
+    public function addTingkatan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            var_dump($_POST);
+            die;
+            $name = htmlspecialchars($_POST['name_kategori']);
+            $poin = htmlspecialchars($_POST['poin_kategori']);
+            $success = $this->tingkatan->addTingkatan($name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewTingkatan");
+        exit();
+    }
+
+    public function editTingkatan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            var_dump($_POST);
+            die;
+            $id = $_POST['id'];
+            $name = htmlspecialchars($_POST['name_kategori']);
+            $poin = htmlspecialchars($_POST['poin_kategori']);
+
+            $success = $this->tingkatan->updateTingkatan($id, $name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewTingkatan");
+        exit();
+    }
+
+    public function deleteTingkatan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            var_dump($_POST);
+            die;
+            $id = $_POST['id'];
+            $success = $this->tingkatan->deleteTingkatan($id);
+
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewTingkatan");
+        exit();
+    }
+    // CRUD KATEGORI
+    public function addJuara()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $name = htmlspecialchars($_POST['name_juara']);
+            $poin = htmlspecialchars($_POST['poin_juara']);
+            $success = $this->juara->addjuara($name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewJuara");
+        exit();
+    }
+
+    public function editJuara()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $name = htmlspecialchars($_POST['name_juara']);
+            $poin = htmlspecialchars($_POST['poin_juara']);
+
+            $success = $this->juara->updatejuara($id, $name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewJuara");
+        exit();
+    }
+
+    public function deleteJuara()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+            $success = $this->juara->deletejuara($id);
+
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewJuara");
+        exit();
+    }
 }

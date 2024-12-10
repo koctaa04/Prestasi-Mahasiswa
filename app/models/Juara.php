@@ -57,6 +57,7 @@ class Juara
 
     public function addJuara($nama, $poin)
     {
+
         // Query untuk menambahkan data juara dengan kolom nama dan poin
         $query = "INSERT INTO tabel_juara (nama, poin) VALUES (?, ?)";
         
@@ -70,11 +71,13 @@ class Juara
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
     }
     
 
     public function updateJuara($id, $nama, $poin)
     {
+
         // Query untuk update data juara berdasarkan id
         $query = "UPDATE tabel_juara SET nama = ?, poin = ? WHERE id = ?";
         
@@ -88,6 +91,8 @@ class Juara
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
+
     }
     
     public function deleteJuara ($id)
@@ -99,5 +104,7 @@ class Juara
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
+
     }
 }
