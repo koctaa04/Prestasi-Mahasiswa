@@ -84,20 +84,20 @@ switch ($controller) {
             $adminController->deleteKategori();
 
             // KELOLA CRUD TINGKATAN
-        } elseif ($action === 'addTingkatan') {
-            $adminController->addTingkatan();
-        } elseif ($action === 'editTingkatan') {
-            $adminController->editTingkatan();
-        } elseif ($action === 'deleteTingkatan') {
-            $adminController->deleteTingkatan();
+        // } elseif ($action === 'addTingkatan') {
+        //     $adminController->addTingkatan();
+        // } elseif ($action === 'editTingkatan') {
+        //     $adminController->editTingkatan();
+        // } elseif ($action === 'deleteTingkatan') {
+        //     $adminController->deleteTingkatan();
         
-            // KELOLA CRUD JUARA
-        } elseif ($action === 'addJuara') {
-            $adminController->addJuara();
-        } elseif ($action === 'editJuara') {
-            $adminController->editJuara();
-        } elseif ($action === 'deleteJuara') {
-            $adminController->deleteJuara();
+        //     // KELOLA CRUD JUARA
+        // } elseif ($action === 'addJuara') {
+        //     $adminController->addJuara();
+        // } elseif ($action === 'editJuara') {
+        //     $adminController->editJuara();
+        // } elseif ($action === 'deleteJuara') {
+        //     $adminController->deleteJuara();
 
 
         } else {

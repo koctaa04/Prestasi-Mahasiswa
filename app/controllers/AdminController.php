@@ -460,9 +460,9 @@ class AdminController
     public function editKategori()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             $id = $_POST['id'];
-            $name = htmlspecialchars($_POST['name']);
-            $this->category->updateCategory($id, $name);
+            $name = htmlspecialchars($_POST['name_kategori']);
 
             $success = $this->category->updateCategory($id, $name);
             session_start();
@@ -480,10 +480,15 @@ class AdminController
     public function deleteKategori()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // var_dump($_POST);
+            // die;
             $id = $_POST['id'];
             $success = $this->category->deleteCategory($id);
+
+            session_start();
+
             if ($success) {
-                $_SESSION['message'] = "Kategori berhasil diedit!";
+                $_SESSION['message'] = "Kategori berhasil dihapus!";
             } else {
                 $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
             }

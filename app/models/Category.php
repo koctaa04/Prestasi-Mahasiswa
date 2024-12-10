@@ -69,6 +69,7 @@ class Category
 
     public function updateCategory($id, $nama)
     {
+        var_dump($id,$nama);
         $query = "UPDATE tabel_kategori SET nama = ? WHERE id = ?";
         $params = array($nama, $id);
         $stmt = sqlsrv_query($this->conn, $query, $params);
@@ -76,6 +77,7 @@ class Category
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
     }
 
     public function deleteCategory($id)
@@ -87,5 +89,6 @@ class Category
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
+        return true;
     }
 }

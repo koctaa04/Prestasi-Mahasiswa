@@ -184,8 +184,8 @@ if (!isset($_SESSION)) {
                             </td>
 
                             <td class="text-center align-middle">
-                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-1">Edit</button>
-                              <div class="modal fade" id="modal-edit-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-1" aria-hidden="true">
+                              <button type="button" class="btn btn-secondary bg-gradient-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-edit-verif-<?=$cat['id']?>">Edit</button>
+                              <div class="modal fade" id="modal-edit-verif-<?=$cat['id']?>" tabindex="-1" role="dialog" aria-labelledby="modal-edit-verif-<?=$cat['id']?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -195,16 +195,15 @@ if (!isset($_SESSION)) {
                                       </button>
                                     </div>
                                     <div class="modal-body">
-                                      <!-- Form submit info lomba -->
-                                      <form>
+                                      <form method="POST" action="index.php?controller=admin&action=editKategori">
                                         <div class="form-group">
                                           <label for="namaLomba">ID</label>
-                                          <input type="text" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>" disabled>
-                                          <input type="hidden" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>">
+                                          <input type="text"  name="id" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>" disabled>
+                                          <input type="hidden" name="id" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>">
                                         </div>
                                         <div class="form-group mt-3">
                                           <label for="tanggalLomba">Nama Kategori</label>
-                                          <input type="text" class="form-control" id="nama" value="<?= $cat['nama'] ?>">
+                                          <input name="name_kategori" type="text" class="form-control" id="nama" value="<?= $cat['nama'] ?>">
                                         </div>
                                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                       </form>
@@ -213,22 +212,22 @@ if (!isset($_SESSION)) {
                                 </div>
                               </div>
 
-                              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-details-verif-1">Delete</button>
-                              <div class="modal fade" id="modal-details-verif-1" tabindex="-1" role="dialog" aria-labelledby="modal-details-verif-1" aria-hidden="true">
+                              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal-hapus-<?= $cat['id']?>">Delete</button>
+                              <div class="modal fade" id="modal-hapus-<?= $cat['id']?>" tabindex="-1" role="dialog" aria-labelledby="modal-hapus-<?= $cat['id']?>" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                                   <div class="modal-content">
                                     <div class="modal-body">
                                       <h4>Anda yakin ingin menghapus data ini?</h4>
-                                      <form>
+                                      <form action="index.php?controller=admin&action=deleteKategori" method="post">
                                         <div class="form-group">
                                           <label for="namaLomba">ID</label>
-                                          <input type="text" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>" disabled>
+                                          <input type="text" name="id" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>" disabled>
                                         </div>
                                         <div class="form-group mt-3">
                                           <label for="tanggalLomba">Nama Kategori</label>
-                                          <input type="text" class="form-control" id="nama" value="<?= $cat['nama'] ?>" disabled>
+                                          <input type="text" name="name_kategori" class="form-control" id="nama" value="<?= $cat['nama'] ?>" disabled>
                                         </div>
-                                        <input type="hidden" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>">
+                                        <input type="hidden" name="id" class="form-control" id="namaLomba" value="<?= $cat['id'] ?>">
                                         <button type="submit" class="btn btn-primary mt-3">Hapus</button>
                                       </form>
                                     </div>
