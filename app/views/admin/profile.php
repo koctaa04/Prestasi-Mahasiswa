@@ -35,7 +35,7 @@ if (!isset($_SESSION)) {
       <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-          <img src="../assets/img/siPresma1.png" width="30" height="30" class="navbar-brand-img h-100" alt="main_logo" />
+          <img src="app/views/assets/img/siPresma1.png" width="30" height="30" class="navbar-brand-img h-100" alt="main_logo" />
           <span class="ms-1 font-weight-bold">SiPresma</span>
         </a>
       </div>
@@ -43,7 +43,7 @@ if (!isset($_SESSION)) {
       <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="../pages/dashboard.html">
+            <a class="nav-link" href="index.php?controller=admin">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
               </div>
@@ -51,7 +51,7 @@ if (!isset($_SESSION)) {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Manajemen-Data.html">
+            <a class="nav-link" href="index.php?controller=admin&action=viewKelolaMhs">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
               </div>
@@ -59,7 +59,7 @@ if (!isset($_SESSION)) {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Prestasi-terverifikasi.html">
+            <a class="nav-link" href="index.php?controller=admin&action=viewPrestasiVerif">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-trophy text-dark text-sm opacity-10"></i>
               </div>
@@ -67,7 +67,7 @@ if (!isset($_SESSION)) {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../pages/Lomba-terverifikasi.html">
+            <a class="nav-link" href="index.php?controller=admin&action=viewLombaVerif">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-app text-dark text-sm opacity-10"></i>
               </div>
@@ -75,7 +75,7 @@ if (!isset($_SESSION)) {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" href="../pages/profile.html">
+            <a class="nav-link active" href="index.php?controller=admin&action=viewProfil">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-collection text-dark text-sm opacity-10"></i>
               </div>
@@ -84,7 +84,7 @@ if (!isset($_SESSION)) {
           </li>
         
           <li class="nav-item">
-            <a class="nav-link" href="../pages/homepage-aman.html">
+            <a class="nav-link" href="index.php?controller=auth&action=logout">
               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
               </div>
@@ -213,7 +213,7 @@ if (!isset($_SESSION)) {
           <div class="row gx-4">
             <div class="col-auto">
               <div class="avatar avatar-xl position-relative">
-                <img src="../assets/img/profile-mahasiswa.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
+                <img src="app/views/assets/img/profile-mahasiswa.png" alt="profile_image" class="w-100 border-radius-lg shadow-sm" />
               </div>
             </div>
             <div class="col-auto my-auto">
