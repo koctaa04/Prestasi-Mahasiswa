@@ -40,46 +40,46 @@
           </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?controller=admin&action=viewKelolaMhs">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Manajemen Data</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?controller=admin&action=viewPrestasiVerif">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Prestasi</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?controller=admin&action=viewLombaVerif">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-app text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Informasi Lomba</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?controller=admin&action=viewProfil">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Pengaturan</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="index.php?controller=auth&action=logout">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Keluar</span>
-            </a>
-          </li>
-        </ul>
+          <a class="nav-link" href="index.php?controller=admin&action=viewKelolaMhs">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Manajemen Data</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?controller=admin&action=viewPrestasiVerif">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Prestasi</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?controller=admin&action=viewLombaVerif">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-app text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Informasi Lomba</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?controller=admin&action=viewProfil">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-settings-gear-65 text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Pengaturan</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="index.php?controller=auth&action=logout">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Keluar</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </aside>
   <main class="main-content position-relative border-radius-lg">
@@ -96,7 +96,7 @@
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto text-light">
             <p>Welcome, <span class=" text-bold"><?= $_SESSION['user']['nama']; ?></span></p>
-            
+
           </div>
         </div>
       </div>
@@ -433,19 +433,31 @@
   <script src="app/views/assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="app/views/assets/js/plugins/chartjs.min.js"></script>
   <script>
+    // Data PHP ke JavaScript
+    var dataStatistik = <?php echo json_encode($dataStatistik); ?>;
+
+    // Labels bulan
+    var labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    // Data array
+    var dataArray = [];
+    for (var i = 1; i <= 12; i++) {
+      dataArray.push(dataStatistik[i] || 0);
+    }
+
+    // Chart.js
     var ctx1 = document.getElementById("chart-line").getContext("2d");
-
     var gradientStroke1 = ctx1.createLinearGradient(0, 230, 0, 50);
-
     gradientStroke1.addColorStop(1, "rgba(94, 114, 228, 0.2)");
     gradientStroke1.addColorStop(0.2, "rgba(94, 114, 228, 0.0)");
     gradientStroke1.addColorStop(0, "rgba(94, 114, 228, 0)");
+
     new Chart(ctx1, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        labels: labels,
         datasets: [{
-          label: "Mobile apps",
+          label: "Prestasi",
           tension: 0.4,
           borderWidth: 0,
           pointRadius: 0,
@@ -453,9 +465,9 @@
           backgroundColor: gradientStroke1,
           borderWidth: 3,
           fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+          data: dataArray,
           maxBarThickness: 6,
-        }, ],
+        }],
       },
       options: {
         responsive: true,

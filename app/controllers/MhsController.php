@@ -102,8 +102,6 @@ class MhsController
     }
     public function viewProfilMahasiswa()
     {
-        echo "Dashbord viewProfilMahasiswa Mahasiswa";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -112,10 +110,14 @@ class MhsController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $nim  = $_SESSION['user']['nim'];
 
-        // Logika untuk menampilkan dashboard mahasiswa
+        $data_mahasiswa = $this->user->getMahasiswaByNim($nim);
+        // var_dump ($data_mahasiswa);
+        // die;
+
         include_once __DIR__ . '/../views/mahasiswa/profile-mahasiswa.php';
+
     }
 
     // KELOLA CRUD INFORMASI LOMBA
@@ -406,6 +408,31 @@ class MhsController
             $prestasi = $this->prestasi->getPrestasiById($idPrestasi);
             return $prestasi[$fileField];
         }
+    }
+
+    public function editProfilMahasiswa()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+
+            $nim = $_SESSION['user']['nim'];
+            $nama = $_POST['nama'];
+            $password = $_POST['password'];
+            $program_studi = $_POST['prodi'];
+            $jurusan = $_POST['jurusan'];
+            $angkatan = $_POST['angkatan'];
+
+
+            $success = $this->user->updateMahasiswa($nim, $nama, $password,  $program_studi, $jurusan, $angkatan);
+
+            if ($success) {
+                $_SESSION['message'] = "Profil berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=mahasiswa&action=viewProfilMahasiswa");
     }
 
 }

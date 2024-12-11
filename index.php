@@ -69,7 +69,7 @@ switch ($controller) {
         } elseif ($action === 'verifyInfoLomba') {
             $adminController->verifyInfoLomba();
 
-            // KELOLA CRUD INFO LOMBA
+            // KELOLA CRUD PRESTASI
         } elseif ($action === 'tolakPrestasi') {
             $adminController->tolakPrestasi();
         } elseif ($action === 'verifyPrestasi') {
@@ -99,6 +99,10 @@ switch ($controller) {
         } elseif ($action === 'deleteJuara') {
             $adminController->deleteJuara();
 
+            // KELOLA PROFIL ADMIN
+        } elseif ($action === 'editProfilAdmin') {
+            $adminController->editProfilAdmin(); 
+        
 
         } else {
             $adminController->adminDashboard();
@@ -133,7 +137,14 @@ switch ($controller) {
             $mhsController->tambahPrestasi();
         } elseif ($action === 'editPrestasi') {
             $mhsController->editPrestasi();
-        } else {
+        } 
+
+        // KELOLA PROFIL MAHASISWA
+        elseif ($action === 'editProfilMahasiswa') {
+        $mhsController->editProfilMahasiswa(); 
+        }
+        
+        else {
             $mhsController->mahasiswaDashboard();
         }
         break;

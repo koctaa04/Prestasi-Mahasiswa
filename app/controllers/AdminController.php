@@ -50,6 +50,10 @@ class AdminController
         $totalKategori = $this->category->getTotalKategori();
         $totalJuara = $this->juara->getTotalJuara();
 
+
+        $tahun = date('Y'); // Tahun berjalan
+        $dataStatistik = $this->prestasi->getStatistikPrestasi($tahun);
+
         // Tampilkan view dashboard admin
         include_once __DIR__ . '/../views/admin/dashboard-admin.php';
     }
@@ -211,20 +215,19 @@ class AdminController
     }
     public function viewProfil()
     {
-        echo "Dashbord viewProfil Admin";
-        die;
-        session_start();
+               session_start();
 
-        // Pastikan user adalah mahasiswa
+        // Pastikan user adalah admin
         if ($_SESSION['role'] !== 'admin') {
             header("Location: index.php?controller=auth&action=login");
             exit();
         }
+        
+        $nip = $_SESSION['user']['nip'];
 
-        $nim = $_SESSION['user']['nim'];
+        $data_admin = $this->user->getAdminByNip($nip);
 
-        // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/viewProfil.php';
+        include_once __DIR__ . '/../views/admin/profile.php';
     }
 
 
@@ -614,5 +617,27 @@ class AdminController
         }
         header("Location: index.php?controller=admin&action=viewJuara");
         exit();
+    }
+
+
+    public function editProfilAdmin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nip = $_POST['nip'];
+            $nama = $_POST['nama'];
+            $password = $_POST['password'];
+            $username = $_POST['username'];
+
+            $success = $this->user->updateAdmin($nip, $nama, $password,  $username);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Profil admin berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+
+        header("Location: index.php?controller=admin&action=viewProfil");
     }
 }

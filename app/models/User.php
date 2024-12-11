@@ -100,6 +100,23 @@ class User
         return $result;
     }
 
+    public function getAdminByNip($nip)
+    {
+        $query = "SELECT * FROM tabel_admin WHERE nip = ?";
+        $stmt = sqlsrv_query($this->conn, $query, [$nip]);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $result = [];
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $result[] = $row;
+        }
+
+        return $result;
+    }
+
     public function getAllAdmin()
     {
         $query = "SELECT * FROM tabel_admin";
@@ -213,10 +230,29 @@ class User
     // Fungsi untuk memperbarui data mahasiswa
     public function updateMahasiswa($nim, $nama, $password, $program_studi, $jurusan, $angkatan)
     {
+
+        // var_dump($nim, $nama, $password, $program_studi, $jurusan, $angkatan);
+        // die;
         $query = "UPDATE tabel_mahasiswa 
-                   SET nama = ?, password = ?, prodi = ?, jurusan = ?, angkatan = ? 
+                   SET [nama] = ?, [password] = ?, [prodi] = ?, [jurusan] = ?, [angkatan] = ? 
                    WHERE nim = ?";
         $params = [$nama, $password, $program_studi, $jurusan, $angkatan, $nim];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        // var_dump($params);
+        // die;
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        
+        return true;
+    }
+    public function updateAdmin($nip, $nama, $password,  $username)
+    {
+        $query = "UPDATE tabel_admin 
+                   SET nama = ?, password = ?, username = ?
+                   WHERE nip = ?";
+        $params = [$nama, $password, $username, $nip];
         $stmt = sqlsrv_query($this->conn, $query, $params);
 
         if ($stmt === false) {
