@@ -82,7 +82,6 @@ class MhsController
         $kategoriList = $this->category->getAllCategories();
         $unverifiedPrestasi = $this->prestasi->getUnverifiedPrestasiByNim($nim);
 
-
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/mahasiswa/prestasi/prestasi-unverif.php';
     }

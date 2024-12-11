@@ -131,7 +131,9 @@
                         <a href="#" class="btn btn-sm btn-info">Lihat</a>
                       </td>
                       <td class="text-sm text-center">
-                        <a href="<?= htmlspecialchars($presVerif['karya']) ?>" class="btn btn-sm btn-info">Lihat</a>
+                        <?= !empty($pres['karya'])
+                          ? '<a href="' . htmlspecialchars($pres['karya'], ENT_QUOTES, 'UTF-8') . '" target="_blank" class="btn btn-sm btn-info">Lihat</a>'
+                          : '<button disabled class="btn btn-sm btn-info">Lihat</button>'; ?>
                       </td>
                       <td class="text-sm text-center">
                         <a href="#" class="btn btn-sm btn-info">Lihat</a>

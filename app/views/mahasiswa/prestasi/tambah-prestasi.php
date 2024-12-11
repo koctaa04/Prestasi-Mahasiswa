@@ -165,11 +165,11 @@
         <form action="index.php?controller=mahasiswa&action=tambahPrestasi" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="nama" class="form-control-label">Nama Lomba</label>
-            <input name="nama" class="form-control" type="text" value="Balap Karung" id="nama">
+            <input name="nama" class="form-control" type="text" id="nama" placeholder="Masukkan nama lomba" required>
           </div>
           <div class="form-group">
             <label for="kategori" class="form-control-label">Kategori</label>
-            <select name="kategori" class="form-control" id="kategori">
+            <select name="kategori" class="form-control" id="kategori" required>
               <option value="" disabled selected>Pilih Kategori</option>
               <?php foreach ($kategoriList as $kategori): ?>
                 <option value="<?= htmlspecialchars($kategori['id']) ?>"><?= htmlspecialchars($kategori['nama']) ?></option>
@@ -178,7 +178,7 @@
           </div>
           <div class="form-group">
             <label for="juara" class="form-control-label">Juara</label>
-            <select name="juara" class="form-control" id="juara">
+            <select name="juara" class="form-control" id="juara" required>
               <option value="" disabled selected>Pilih Juara</option>
               <?php foreach ($juaraList as $juara): ?>
                 <option value="<?= htmlspecialchars($juara['id']) ?>"><?= htmlspecialchars($juara['nama']) ?></option>
@@ -188,7 +188,7 @@
 
           <div class="form-group">
             <label for="tingkatan" class="form-control-label">Tingkatan</label>
-            <select name="tingkatan" class="form-control" id="tingkatan">
+            <select name="tingkatan" class="form-control" id="tingkatan" required>
               <option value="" disabled selected>Pilih Tingkatan</option>
               <?php foreach ($tingkatanList as $tingkatan): ?>
                 <option value="<?= htmlspecialchars($tingkatan['id']) ?>"><?= htmlspecialchars($tingkatan['nama']) ?></option>
@@ -197,23 +197,23 @@
           </div>
           <div class="form-group">
             <label for="penyelenggara" class="form-control-label">Penyelenggara</label>
-            <input name="penyelenggara" class="form-control" type="text" value="PENS" id="penyelenggara">
+            <input name="penyelenggara" class="form-control" type="text" id="penyelenggara" placeholder="Masukkan Penyelenggara" required>
           </div>
           <div class="form-group">
             <label for="sertifikat" class="form-control-label">Sertifikat</label>
-            <input name="sertifikat" class="form-control" type="file" id="sertifikat" accept="application/pdf">
+            <input name="sertifikat" class="form-control" type="file" id="sertifikat" accept="application/pdf" required>
           </div>
           <div class="form-group">
             <label for="karya" class="form-control-label">Karya (Opsional)</label>
-            <input name="karya" class="form-control" type="text" value="github.com" id="karya">
+            <input name="karya" class="form-control" type="text"  id="karya" placeholder="Masukkan Link Karya">
           </div>
           <div class="form-group">
             <label for="surat_tugas" class="form-control-label">Surat Tugas</label>
-            <input name="surat_tugas" class="form-control" type="file" id="surat_tugas" accept="application/pdf">
+            <input name="surat_tugas" class="form-control" type="file" id="surat_tugas" accept="application/pdf" required>
           </div>
           <div class="form-group">
             <label for="tanggal" class="form-control-label">Tanggal Pelaksanaan</label>
-            <input name="tanggal" class="form-control" type="date" id="tanggal">
+            <input name="tanggal" class="form-control" type="date" id="tanggal" required>
           </div>
           <!-- Kontainer untuk tombol -->
           <div class="button-container">

@@ -142,14 +142,15 @@ class Prestasi
     public function getRankingMahasiswaByNim($nim)
     {
         $query = "
-        SELECT 
-            m.nim, 
-            m.nama, 
-            m.total_poin,
-            ROW_NUMBER() OVER (ORDER BY m.total_poin DESC) AS ranking
-        FROM tabel_mahasiswa m
-        WHERE m.nim = 200001
-        ORDER BY ranking;
+        SELECT ranking FROM (
+            SELECT 
+                m.nim, 
+                m.nama, 
+                m.total_poin,
+                ROW_NUMBER() OVER (ORDER BY m.total_poin DESC) AS ranking
+            FROM tabel_mahasiswa m
+        ) AS ranking_table
+        WHERE nim = ?;
         ";
         $params = [$nim];
         $stmt = sqlsrv_query($this->conn, $query, $params);
@@ -227,7 +228,7 @@ class Prestasi
             LEFT JOIN 
                 tabel_mahasiswa m ON p.nim = m.nim
             WHERE 
-                p.nim = ? AND p.verifikasi = 'Pending';
+                p.nim = ? AND p.verifikasi = 'Pending' OR p.verifikasi = 'Ditolak';
         ";
 
         // Menyiapkan parameter untuk query
@@ -481,14 +482,15 @@ class Prestasi
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
-        
+
         return true;
     }
 
 
 
     // untuk chart
-    public function getStatistikPrestasi($tahun) {
+    public function getStatistikPrestasi($tahun)
+    {
         $query = "
             SELECT MONTH(tanggal) AS bulan, COUNT(*) AS total
             FROM tabel_prestasi

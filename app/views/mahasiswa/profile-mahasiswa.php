@@ -112,8 +112,8 @@ if (!isset($_SESSION)) {
             </div>
             <div class="col-auto my-auto">
               <div class="h-100">
+                <p class="mb-0 font-weight-bold text-sm">Profil saya</p>
                 <h5 class="mb-1"><?= $data_mahasiswa[0]['nama']?></h5>
-                <p class="mb-0 font-weight-bold text-sm">Teknologi Informasi</p>
               </div>
             </div>
   
@@ -231,7 +231,7 @@ if (!isset($_SESSION)) {
                 </div>
                 <div class="text-center mt-4">
                  
-                    <h5>Erik Ridho F<span class="font-weight-light"></span></h5>
+                    <h5><?=$data_mahasiswa[0]['nama']?><span class="font-weight-light"></span></h5>
                    
                   
                 </div>
