@@ -170,13 +170,15 @@ if (!isset($_SESSION)) {
                         <p class="text-xs font-weight-bold mb-0"><?= $pres['nama_mahasiswa'] ?></p>
                       </td>
                       <td class="text-center align-middle">
-                        <a href="<?= $pres['sertifikat'] ?>" target="_blank" class="btn btn-sm btn-info">Lihat</a>
+                        <a href="app/views/<?= $pres['sertifikat'] ?>" target="_blank" class="btn btn-sm btn-info">Lihat</a>
+                      </td>
+                      <td class="text-sm text-center">
+                        <?= !empty($pres['karya'])
+                          ? '<a href="' . htmlspecialchars($pres['karya'], ENT_QUOTES, 'UTF-8') . '" target="_blank" class="btn btn-sm btn-info">Lihat</a>'
+                          : '<button disabled class="btn btn-sm btn-info">Lihat</button>'; ?>
                       </td>
                       <td class="text-center align-middle">
-                        <a href="<?= $pres['karya'] ?>" target="_blank" class="btn btn-sm btn-info">Lihat</a>
-                      </td>
-                      <td class="text-center align-middle">
-                        <a href="<?= $pres['surat_tugas'] ?>" target="_blank" class="btn btn-sm btn-info">Lihat</a>
+                        <a href="app/views/<?= $pres['surat_tugas'] ?>" target="_blank" class="btn btn-sm btn-info">Lihat</a>
                       </td>
                       <td class="text-center align-middle">
                         <p class="text-xs font-weight-bold mb-0"><?= $pres['nama_lomba'] ?></p>
