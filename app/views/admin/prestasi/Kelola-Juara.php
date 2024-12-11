@@ -218,6 +218,10 @@ if (!isset($_SESSION)) {
                                           <label for="tanggalLomba">Nama Juara</label>
                                           <input name="name_juara" type="text" class="form-control" id="nama" value="<?= $juara['nama'] ?>">
                                         </div>
+                                        <div class="form-group mt-3">
+                                          <label for="poin">Poin tingkatan</label>
+                                          <input name="poin_juara" type="text" class="form-control" id="poin" value="<?= $juara['poin'] ?>">
+                                        </div>
                                         <button type="submit" class="btn btn-primary mt-3">Submit</button>
                                       </form>
                                     </div>
