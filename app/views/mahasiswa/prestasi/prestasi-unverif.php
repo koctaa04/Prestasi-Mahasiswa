@@ -227,7 +227,7 @@
                                       </div>
                                       <div class="form-group">
                                         <label for="karya" class="form-control-label">Karya (Opsional)</label>
-                                        <input name="karya" class="form-control" type="text" value="<?= $pres['nama_lomba'] ?>" id="karya">
+                                        <input name="karya" class="form-control" type="text" value="<?= $pres['karya'] ?? ''?>" id="karya">
                                       </div>
                                       <div class="form-group">
                                         <label for="surat_tugas" class="form-control-label">Surat Tugas</label>
