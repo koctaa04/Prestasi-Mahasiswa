@@ -50,6 +50,10 @@ class AdminController
         $totalKategori = $this->category->getTotalKategori();
         $totalJuara = $this->juara->getTotalJuara();
 
+
+        $tahun = date('Y'); // Tahun berjalan
+        $dataStatistik = $this->prestasi->getStatistikPrestasi($tahun);
+
         // Tampilkan view dashboard admin
         include_once __DIR__ . '/../views/admin/dashboard-admin.php';
     }
@@ -118,8 +122,6 @@ class AdminController
 
     public function viewPrestasiUnverif()
     {
-        echo "Dashbord viewPrestasiUnverif Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -127,16 +129,16 @@ class AdminController
             header("Location: index.php?controller=auth&action=login");
             exit();
         }
-        $lomba = $this->prestasi->getUnverifiedLomba();
+        $prestasiUnverif = $this->prestasi->getPrestasiByVerificationStatus(false);
+        // var_dump($prestasiUnverif);
+        // die;
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/lomba-Unverif.php';
+        include_once __DIR__ . '/../views/admin/prestasi/prestasi-unverif.php';
     }
 
     public function viewKategori()
     {
-        echo "Dashbord viewKategori Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -145,15 +147,12 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
-
+        $categories = $this->category->getAllCategories();
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewKategori.php';
+        include_once __DIR__ . '/../views/admin/prestasi/Kelola-Kategori.php';
     }
     public function viewTingkatan()
     {
-        echo "Dashbord viewTingkatan Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -162,15 +161,13 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $tingkatans = $this->tingkatan->getAllTingkatan();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewTingkatan.php';
+        include_once __DIR__ . '/../views/admin/prestasi/Kelola-Tingkatan.php';
     }
     public function viewJuara()
     {
-        echo "Dashbord viewJuara Admin";
-        die;
         session_start();
 
         // Pastikan user adalah mahasiswa
@@ -179,10 +176,10 @@ class AdminController
             exit();
         }
 
-        $nim = $_SESSION['user']['nim'];
+        $juaras = $this->juara->getAllJuara();
 
         // Logika untuk menampilkan dashboard mahasiswa
-        include_once __DIR__ . '/../views/admin/prestasi/viewJuara.php';
+        include_once __DIR__ . '/../views/admin/prestasi/Kelola-Juara.php';
     }
     public function viewLombaVerif()
     {
@@ -195,6 +192,8 @@ class AdminController
         }
 
         $info_lomba = $this->infoLomba->getVerifiedLomba();
+        // var_dump($info_lomba);
+        // die;
 
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/admin/info-lomba/lomba-verif.php';
@@ -210,8 +209,6 @@ class AdminController
         }
 
         $info_lomba = $this->infoLomba->getUnverifiedLomba();
-        // var_dump($lomba);
-        // die;
 
         // Logika untuk menampilkan dashboard mahasiswa
         include_once __DIR__ . '/../views/admin/info-lomba/lomba-Unverif.php';
@@ -365,8 +362,6 @@ class AdminController
     // KELOLA INFO LOMBA
     public function verifyInfoLomba()
     {
-
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $id = $_POST['id'];
@@ -386,8 +381,6 @@ class AdminController
     }
     public function tolakInfoLomba()
     {
-
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $id = $_POST['id'];
@@ -403,6 +396,226 @@ class AdminController
             }
         }
         header("Location: index.php?controller=admin&action=viewLombaUnverif");
+        exit();
+    }
+
+
+    // KELOLA PRESTASI
+    public function verifyPrestasi()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+
+            $success = $this->prestasi->verifyPrestasi($id);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Prestasi berhasil diverifikasi!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewPrestasiVerif");
+        exit();
+    }
+
+    public function tolakPrestasi()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $alasan = $_POST['alasan_penolakan'];
+
+            $success = $this->prestasi->rejectPrestasi($id, $alasan);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Prestasi berhasil ditolak!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewPrestasiUnverif");
+        exit();
+    }
+
+
+
+    // CRUD KATEGORI
+    public function addKategori()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $name = htmlspecialchars($_POST['name_kategori']);
+            $success = $this->category->addCategory($name);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewKategori");
+        exit();
+    }
+
+    public function editKategori()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+            $name = htmlspecialchars($_POST['name_kategori']);
+
+            $success = $this->category->updateCategory($id, $name);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewKategori");
+        exit();
+    }
+
+    public function deleteKategori()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // var_dump($_POST);
+            // die;
+            $id = $_POST['id'];
+            $success = $this->category->deleteCategory($id);
+
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewKategori");
+        exit();
+    }
+
+
+
+    // CRUD TINGAKATAN
+    public function addTingkatan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $name = htmlspecialchars($_POST['name_tingkatan']);
+            $poin = htmlspecialchars($_POST['poin_tingkatan']);
+            $success = $this->tingkatan->addTingkatan($name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewTingkatan");
+        exit();
+    }
+
+    public function editTingkatan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+            $name = htmlspecialchars($_POST['name_tingkatan']);
+            $poin = htmlspecialchars($_POST['poin_tingkatan']);
+
+            $success = $this->tingkatan->updateTingkatan($id, $name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Tingkatan $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewTingkatan");
+        exit();
+    }
+
+    public function deleteTingkatan()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $success = $this->tingkatan->deleteTingkatan($id);
+
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Tingkatan berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewTingkatan");
+        exit();
+    }
+    // CRUD KATEGORI
+    public function addJuara()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $name = htmlspecialchars($_POST['name_juara']);
+            $poin = htmlspecialchars($_POST['poin_juara']);
+            $success = $this->juara->addjuara($name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewJuara");
+        exit();
+    }
+
+    public function editJuara()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'];
+            $name = htmlspecialchars($_POST['name_juara']);
+            $poin = htmlspecialchars($_POST['poin_juara']);
+
+            $success = $this->juara->updatejuara($id, $name, $poin);
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori $name berhasil diedit!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewJuara");
+        exit();
+    }
+
+    public function deleteJuara()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $id = $_POST['id'];
+            $success = $this->juara->deletejuara($id);
+
+            session_start();
+
+            if ($success) {
+                $_SESSION['message'] = "Kategori berhasil dihapus!";
+            } else {
+                $_SESSION['message'] = "Terjadi kesalahan, coba lagi.";
+            }
+        }
+        header("Location: index.php?controller=admin&action=viewJuara");
         exit();
     }
 

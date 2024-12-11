@@ -34,16 +34,18 @@ class Prestasi
 
             "
             : "SELECT p.id AS id_prestasi,
-			p.nim,
 			m.nama AS nama_mahasiswa,
 			p.nama_lomba,
             k.nama AS nama_kategori,
             j.nama AS nama_juara,
-			p.juara AS id_juara,
-			p.tingkatan AS id_tingkatan,
 			t.nama AS nama_tingkatan,
 			p.verifikasi,
-			p.alasan_penolakan
+			p.alasan_penolakan,
+			p.tanggal,
+			p.poin,
+			p.sertifikat,
+			p.surat_tugas,
+            p.karya
         FROM tabel_prestasi p
         LEFT JOIN tabel_kategori k ON p.kategori = k.id
         LEFT JOIN tabel_juara j ON p.juara = j.id
@@ -426,5 +428,90 @@ class Prestasi
         }
 
         return sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    }
+
+
+    public function verifyPrestasi($id)
+    {
+        // Ambil data prestasi berdasarkan ID
+        $querySelect = "SELECT nim, poin FROM tabel_prestasi WHERE id = ?";
+        $stmtSelect = sqlsrv_query($this->conn, $querySelect, [$id]);
+
+        if ($stmtSelect === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+
+        $prestasi = sqlsrv_fetch_array($stmtSelect, SQLSRV_FETCH_ASSOC);
+
+        if (!$prestasi) {
+            die("Prestasi dengan ID tersebut tidak ditemukan.");
+        }
+
+        $nim = $prestasi['nim'];
+        $poinPrestasi = $prestasi['poin'];
+
+        // Tambahkan poin prestasi ke poin mahasiswa
+        $queryUpdateMahasiswa = "UPDATE tabel_mahasiswa SET total_poin = total_poin + ? WHERE nim = ?";
+        $paramsUpdateMahasiswa = [$poinPrestasi, $nim];
+        $stmtUpdateMahasiswa = sqlsrv_query($this->conn, $queryUpdateMahasiswa, $paramsUpdateMahasiswa);
+
+        if ($stmtUpdateMahasiswa === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        echo "sudah menambahkan poin prestasi ke poin mahasiswa";
+
+
+        // Ubah status verifikasi prestasi menjadi 'Disetujui'
+        $queryUpdatePrestasi = "UPDATE tabel_prestasi SET verifikasi = 'Disetujui' WHERE id = ?";
+        $stmtUpdatePrestasi = sqlsrv_query($this->conn, $queryUpdatePrestasi, [$id]);
+
+        if ($stmtUpdatePrestasi === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        return true;
+    }
+
+    public function rejectPrestasi($id, $alasan)
+    {
+        // Update status dan alasan penolakan di database
+        $query = "UPDATE tabel_prestasi SET verifikasi = 'Ditolak', alasan_penolakan = ? WHERE id = ?";
+        $params = [$alasan, $id];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        if ($stmt === false) {
+            die(print_r(sqlsrv_errors(), true));
+        }
+        
+        return true;
+    }
+
+
+
+    // untuk chart
+    public function getStatistikPrestasi($tahun) {
+        $query = "
+            SELECT MONTH(tanggal) AS bulan, COUNT(*) AS total
+            FROM tabel_prestasi
+            WHERE YEAR(tanggal) = ?
+            GROUP BY MONTH(tanggal)
+            ORDER BY bulan ASC";
+        $params = [$tahun];
+        $stmt = sqlsrv_query($this->conn, $query, $params);
+
+        $data = [];
+        if ($stmt === false) {
+            die("Query error: " . print_r(sqlsrv_errors(), true));
+        }
+
+        while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+            $data[(int)$row['bulan']] = (int)$row['total'];
+        }
+
+        // Isi bulan kosong dengan nilai 0
+        for ($i = 1; $i <= 12; $i++) {
+            $data[$i] = $data[$i] ?? 0;
+        }
+
+        return $data;
     }
 }

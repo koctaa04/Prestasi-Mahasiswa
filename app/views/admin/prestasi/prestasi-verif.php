@@ -57,11 +57,11 @@
           <ul>
             <div class="d-flex flex-column justify-content-center" width="10px">
               <ul>
-                <li><a class="nav-link active" href="../pages/Prestasi-terverifikasi.html">Prestasi yang terverifkasi</a></li>
-                <li><a class="nav-link " href="../pages/Prestasi-Ditolak.html">Prestasi belum terverifikasi</a></li>
-                <li><a class="nav-link" href="../pages/Kelola-Kategori.html"> Kelola Kategori</a></li>
-                <li><a class="nav-link" href="../pages/Kelola-Tingkatan.html"> Kelola Tingkatan</a></li>
-                <li><a class="nav-link" href="../pages/Kelola-Juara.html"> Kelola Juara</a></li>
+                <li><a class="nav-link active" href="index.php?controller=admin&action=viewPrestasiVerif">Prestasi yang terverifkasi</a></li>
+                <li><a class="nav-link " href="index.php?controller=admin&action=viewPrestasiUnverif">Prestasi belum terverifikasi</a></li>
+                <li><a class="nav-link" href="index.php?controller=admin&action=viewKategori"> Kelola Kategori</a></li>
+                <li><a class="nav-link" href="index.php?controller=admin&action=viewTingkatan"> Kelola Tingkatan</a></li>
+                <li><a class="nav-link" href="index.php?controller=admin&action=viewJuara"> Kelola Juara</a></li>
               </ul>
             </div>
           </ul>
@@ -137,9 +137,15 @@
       </div>
       </div>
       </nav>
+      <?php
+      if (isset($_SESSION['message'])) { ?>
+        <div class="alert alert-success mx-4" role="alert">
+          <strong>Success!</strong> <?= $_SESSION['message'] ?>
+        </div>
+      <?php }
+      unset($_SESSION['message']); ?>
       <div class="border-radius-xl mt-4 mx-4 position-relative" style="background-color: rgb(35, 35, 73);">
         <div class="container-fluid py-4">
-
           <div class="row">
             <!-- Card Lomba yang Terverifikasi -->
             <div class="row mt-4">

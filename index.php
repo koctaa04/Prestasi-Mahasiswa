@@ -47,15 +47,15 @@ switch ($controller) {
         } elseif ($action === 'viewProfil') {
             $adminController->viewProfil();
 
-        // KELOLA CRUD KELOLA MAHASISWA
+            // KELOLA CRUD KELOLA MAHASISWA
         } elseif ($action === 'addMahasiswa') {
             $adminController->addMahasiswa();
         } elseif ($action === 'editMahasiswa') {
             $adminController->editMahasiswa();
         } elseif ($action === 'deleteMahasiswa') {
             $adminController->deleteMahasiswa();
-        
-        // KELOLA CRUD KELOLA MAHASISWA
+
+            // KELOLA CRUD KELOLA MAHASISWA
         } elseif ($action === 'addDosen') {
             $adminController->addDosen();
         } elseif ($action === 'editDosen') {
@@ -63,20 +63,48 @@ switch ($controller) {
         } elseif ($action === 'deleteDosen') {
             $adminController->deleteDosen();
 
-        // KELOLA CRUD INFO LOMBA
+            // KELOLA CRUD INFO LOMBA
         } elseif ($action === 'tolakInfoLomba') {
             $adminController->tolakInfoLomba();
         } elseif ($action === 'verifyInfoLomba') {
             $adminController->verifyInfoLomba();
 
+            // KELOLA CRUD PRESTASI
+        } elseif ($action === 'tolakPrestasi') {
+            $adminController->tolakPrestasi();
+        } elseif ($action === 'verifyPrestasi') {
+            $adminController->verifyPrestasi();
+
+            // KELOLA CRUD KATEGORI
+        } elseif ($action === 'addKategori') {
+            $adminController->addKategori();
+        } elseif ($action === 'editKategori') {
+            $adminController->editKategori();
+        } elseif ($action === 'deleteKategori') {
+            $adminController->deleteKategori();
+
+            // KELOLA CRUD TINGKATAN
+        } elseif ($action === 'addTingkatan') {
+            $adminController->addTingkatan();
+        } elseif ($action === 'editTingkatan') {
+            $adminController->editTingkatan();
+        } elseif ($action === 'deleteTingkatan') {
+            $adminController->deleteTingkatan();
+        
+            // KELOLA CRUD JUARA
+        } elseif ($action === 'addJuara') {
+            $adminController->addJuara();
+        } elseif ($action === 'editJuara') {
+            $adminController->editJuara();
+        } elseif ($action === 'deleteJuara') {
+            $adminController->deleteJuara();
 
             // KELOLA PROFIL ADMIN
         } elseif ($action === 'editProfilAdmin') {
             $adminController->editProfilAdmin(); 
-        }
         
 
-        else {
+        } else {
             $adminController->adminDashboard();
         }
         break;
@@ -95,15 +123,15 @@ switch ($controller) {
         } elseif ($action === 'viewProfilMahasiswa') {
             $mhsController->viewProfilMahasiswa();
         }
-        
+
         // KELOLA ACTION INFORMASI LOMBA
         elseif ($action === 'addInfoLomba') {
             $mhsController->addInfoLomba();
         } elseif ($action === 'editInfoLomba') {
             $mhsController->editInfoLomba();
         }
-        
-        
+
+
         // KELOLA ACTION PRESTASI
         elseif ($action === 'tambahPrestasi') {
             $mhsController->tambahPrestasi();

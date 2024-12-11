@@ -42,7 +42,7 @@ class InfoLomba
     public function getVerifiedLomba()
     {
         $query = "SELECT 
-            i.id, i.nama AS nama_lomba, i.tenggat, i.pamflet, i.link, m.nama AS nama_mahasiswa FROM tabel_info_lomba i
+            i.id, i.nama AS nama_lomba, i.tenggat, i.status, i.pamflet, i.link, m.nama AS nama_mahasiswa FROM tabel_info_lomba i
             JOIN 
             tabel_mahasiswa m ON i.nim = m.nim
             WHERE status = 'Terverifikasi'";
