@@ -32,7 +32,7 @@ if (!isset($_SESSION)) {
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href=" https://demos.creative-tim.com/argon-dashboard/pages/dashboard.html " target="_blank">
-        <img src="../assets/img/siPresma1.png" width="30px" height="30px" class="navbar-brand-img h-100" alt="main_logo" />
+        <img src="app/views/assets/img/siPresma1.png" width="30px" height="30px" class="navbar-brand-img h-100" alt="main_logo" />
         <span class="ms-1 font-weight-bold">SiPresma</span>
       </a>
     </div>
@@ -40,7 +40,7 @@ if (!isset($_SESSION)) {
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../pages/dashboard.html">
+          <a class="nav-link" href="index.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
@@ -48,7 +48,7 @@ if (!isset($_SESSION)) {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Kelola-Mahasiswa.html">
+          <a class="nav-link" href="index.php?controller=admin&action=viewKelolaMhs">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
             </div>
@@ -65,17 +65,17 @@ if (!isset($_SESSION)) {
           <ul>
             <div class="d-flex flex-column justify-content-center" width="10px">
               <ul>
-                <li><a class="nav-link" href="../pages/Prestasi-terverifikasi.html">Prestasi yang terverifkasi</a></li>
-                <li><a class="nav-link active" href="../pages/Prestasi-Ditolak.html">Prestasi belum terverifikasi</a></li>
-                <li><a class="nav-link" href="../pages/Kelola-Kategori.html"> Kelola Kategori</a></li>
-                <li><a class="nav-link" href="../pages/Kelola-Tingkatan.html"> Kelola Tingkatan</a></li>
-                <li><a class="nav-link" href="../pages/Kelola-Juara.html"> Kelola Juara</a></li>
+              <li><a class="nav-link" href="index.php?controller=admin&action=viewPrestasiVerif">Prestasi yang terverifkasi</a></li>
+                <li><a class="nav-link active " href="index.php?controller=admin&action=viewPrestasiUnverif">Prestasi belum terverifikasi</a></li>
+                <li><a class="nav-link" href="index.php?controller=admin&action=viewKategori"> Kelola Kategori</a></li>
+                <li><a class="nav-link" href="index.php?controller=admin&action=viewTingkatan"> Kelola Tingkatan</a></li>
+                <li><a class="nav-link" href="index.php?controller=admin&action=viewJuara"> Kelola Juara</a></li>
               </ul>
             </div>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Lomba-terverifikasi.html">
+          <a class="nav-link" href="index.php?controller=admin&action=viewLombaVerif">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-dark text-sm opacity-10"></i>
             </div>
@@ -83,7 +83,7 @@ if (!isset($_SESSION)) {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/profile.html">
+          <a class="nav-link" href="index.php?controller=admin&action=viewProfil">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-collection text-dark text-sm opacity-10"></i>
             </div>
@@ -91,7 +91,7 @@ if (!isset($_SESSION)) {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/homepage-aman.html">
+          <a class="nav-link" href="index.php?controller=auth&action=logout">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
             </div>
@@ -135,7 +135,7 @@ if (!isset($_SESSION)) {
 
       <?php }
       unset($_SESSION['message']); ?>
-      <div class="card">
+      <div class="card mx-4">
         <div class="card-body">
           <div class="table-responsive">
             <table class="table table-bordered table-striped">

@@ -37,7 +37,7 @@ if (!isset($_SESSION)) {
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../pages/dashboard-Mahasiswa.html">
+          <a class="nav-link" href="index.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
@@ -45,7 +45,7 @@ if (!isset($_SESSION)) {
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Prestasi.html">
+          <a class="nav-link" href="index.php?controller=mahasiswa&action=tambahPrestasi">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-dark text-sm opacity-10"></i>
             </div>
@@ -53,7 +53,7 @@ if (!isset($_SESSION)) {
           </a>
         </li>
         <li class="nav-item ">
-          <a class="nav-link active" href="../pages/info-lomba-Mahasiswa.html">
+          <a class="nav-link active" href="index.php?controller=mahasiswa&action=viewInformasiLomba">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-dark text-sm opacity-10"></i>
             </div>

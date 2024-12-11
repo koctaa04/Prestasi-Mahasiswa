@@ -32,7 +32,7 @@
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../pages/dashboard.html">
+          <a class="nav-link" href="index.php">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-tv-2 text-dark text-sm opacity-10"></i>
             </div>
@@ -40,7 +40,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Kelola-Mahasiswa.html">
+          <a class="nav-link" href="index.php?controller=admin&action=viewKelolaMhs">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-calendar-grid-58 text-dark text-sm opacity-10"></i>
             </div>
@@ -67,7 +67,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/Lomba-terverifikasi.html">
+          <a class="nav-link" href="index.php?controller=admin&action=viewLombaVerif">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-app text-dark text-sm opacity-10"></i>
             </div>
@@ -75,7 +75,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/profile.html">
+          <a class="nav-link" href="index.php?controller=admin&action=viewProfil">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-collection text-dark text-sm opacity-10"></i>
             </div>
@@ -83,7 +83,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/homepage-aman.html">
+          <a class="nav-link" href="index.php?controller=auth&action=logout">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-bold-right text-dark text-sm opacity-10"></i>
             </div>
@@ -148,7 +148,7 @@
         <div class="container-fluid py-4">
           <div class="row">
             <!-- Card Lomba yang Terverifikasi -->
-            <div class="row mt-4">
+            <div class="row">
               <div class="col-12">
                 <div class="card">
                   <div class="card-header pb-0 px-3">
