@@ -197,7 +197,7 @@ class InfoLomba
     {
         // var_dump($id, $nama, $pamflet, $tenggat, $link);
         // die;
-        $query = "UPDATE tabel_info_lomba SET nama = ?, pamflet = ?, tenggat = ?, link = ? WHERE id = ?";
+        $query = "UPDATE tabel_info_lomba SET nama = ?, pamflet = ?, tenggat = ?, link = ?, status = 'Pending' WHERE id = ?";
         $params = [$nama, $pamflet, $tenggat, $link, $id];
         $stmt = sqlsrv_query($this->conn, $query, $params);
 

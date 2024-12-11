@@ -228,7 +228,7 @@ if (!isset($_SESSION)) {
                   
                 </ul>
               </div>
-            </div>
+            </div>  
           </div>
         </div>
       </div>
@@ -257,25 +257,26 @@ if (!isset($_SESSION)) {
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Username</label>
-                      <input name="username" class="form-control" type="text" value=<?= $data_admin[0]['username']?> />
+                      <input name="username" class="form-control" type="text" value="<?= $data_admin[0]['username']?>" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Password</label>
-                      <input name="password" class="form-control" type="text" value=<?= $data_admin[0]['password']?> />
+                      <input name="password" class="form-control" type="text" value="<?= $data_admin[0]['password']?>" />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">NIP</label>
-                      <input name="nip" class="form-control" type="text" value=<?= $data_admin[0]['nip']?> />
+                      <input class="form-control" type="text" value="<?= $data_admin[0]['nip']?>" Disabled />
+                      <input name="nip" class="form-control" type="hidden" value="<?= $data_admin[0]['nip']?>"  />
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="example-text-input" class="form-control-label">Nama</label>
-                      <input name="nama" class="form-control" type="text" value=<?= $data_admin[0]['nama']?> />
+                      <input name="nama" class="form-control" type="text" value="<?= $data_admin[0]['nama']?>" />
                     </div>
                   </div>
                 </div>

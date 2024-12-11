@@ -252,9 +252,8 @@ class User
         $query = "UPDATE tabel_admin 
                    SET nama = ?, password = ?, username = ?
                    WHERE nip = ?";
-        $params = [$nama, $password, $username, $nip];
+        $params = [$nama, $password, $username, $nip, $nip];
         $stmt = sqlsrv_query($this->conn, $query, $params);
-
         if ($stmt === false) {
             die(print_r(sqlsrv_errors(), true));
         }
