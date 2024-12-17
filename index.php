@@ -2,6 +2,7 @@
 $controller = isset($_GET['controller']) ? $_GET['controller'] : 'home';
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
+//kondisi
 switch ($controller) {
     case 'auth':
         include_once __DIR__ . '/app/controllers/AuthController.php';
